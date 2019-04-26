@@ -964,3 +964,10 @@ input[type=text] {
     text-align: center;
   }
 }
+
+/* ---------------------------------------MOBILE--------------------------------------- */
+@media (min-width: 320px) and (max-width: 734px) {
+  .centered-search-bar {
+    margin-top: 100px;
+  }
+}
