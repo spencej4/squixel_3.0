@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class CenteredSearchBar extends Component {
 
-    // componentDidMount() {
-
-    // }
+    componentDidMount() {
+        // does nothing??
+    }
    
     render() {
         //  console.log(`Input from Centered Search: ${this.props.inputValue}`);
