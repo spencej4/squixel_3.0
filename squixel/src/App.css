@@ -308,6 +308,13 @@ input[type=text] {
   border-radius: 20px;
 }
 
+.body-container{
+  width: 100%;
+  height: 100%;
+  padding-top: 45px;
+  position: relative
+}
+
 .wrapperDiv {
   height: 100%;
   padding-left: 5px;
@@ -1062,8 +1069,9 @@ input[type=text] {
   /* end displayed search term at top after search */
 
   .wrapperDiv {
-    top: 45px;
+    /* top: 45px; */
     /* margin: 0 auto 0 auto; */
+    margin: 0 auto;
   }
 
   .imgSmall:first-of-type {
