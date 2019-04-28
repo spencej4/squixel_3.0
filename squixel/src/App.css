@@ -1062,8 +1062,8 @@ input[type=text] {
   /* end displayed search term at top after search */
 
   .wrapperDiv {
-    top: 75px;
-    margin: 0 auto 0 auto;
+    top: 45px;
+    /* margin: 0 auto 0 auto; */
   }
 
   .imgSmall:first-of-type {
