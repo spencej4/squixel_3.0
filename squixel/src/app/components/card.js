@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 class Card extends Component   {
 
   componentDidMount(){
-    console.log('card mounted');
   }
 
   render () {

@@ -3,7 +3,7 @@ import Card from './card';
 
 class Wrapper extends Component {
   componentDidMount() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }
 
     render() {
