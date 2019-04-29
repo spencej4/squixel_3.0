@@ -1069,12 +1069,16 @@ input[type=text] {
   /* end displayed search term at top after search */
 
   .body-container{
-    width: 100%;
+    /* width: 100%;
     height: 100%;
-    /* padding-top: 45px; */
     margin-top: 45px;
     display: block;
-    position: relative;
+    position: relative; */
+
+    width: 100%;
+    height: auto;
+    margin-top: 45px;
+    position: absolute;
   }
 
   .wrapperDiv {
