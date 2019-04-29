@@ -65,8 +65,8 @@ class App extends Component {
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
-          console.log('api call made');
-          console.log(json.results);
+          // console.log('api call made');
+          // console.log(json.results);
           return {
             data: json.results,
             loading: false,
