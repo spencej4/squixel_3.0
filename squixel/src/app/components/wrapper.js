@@ -8,7 +8,7 @@ class Wrapper extends Component {
 
     render() {
       return (
-        <div className='body-container'>
+        // <div className='body-container'>
             <div className='wrapperDiv'>
                 {this.props.showCard ? (
                     <Card data={this.props.data}
@@ -21,7 +21,7 @@ class Wrapper extends Component {
                 ) : (null)
                 } 
             </div>
-        </div>
+        // </div>
       );
     }  
 }
