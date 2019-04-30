@@ -4,12 +4,14 @@ class Footer extends Component {
     render() {
         return (
             <div className='footer'>
-                <button className='loadMoreButton'
-                        onClick={this.props.onPreviousClick}>Load Prev
-                </button>
-                <button className='loadMoreButton'
-                        onClick={this.props.onNextClick}>Load Next
-                </button>
+                <div className='footer-container'>
+                    <button className='loadMoreButton left'
+                            onClick={this.props.onPreviousClick}>Load Prev
+                    </button>
+                    <button className='loadMoreButton right'
+                            onClick={this.props.onNextClick}>Load Next
+                    </button>
+                </div>
             </div>
         )
     }
