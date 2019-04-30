@@ -51,9 +51,11 @@ class App extends Component {
 
 //captures input search value, calls API and returns JSON data
   onInputSubmit(event) {
+
     // new magic
-      event.preventDefault();
+      // event.preventDefault();
     // end new magic
+    
       this.setState({
           loading: true,
           showSearchInput: false,
@@ -187,11 +189,13 @@ class App extends Component {
       <div className="App">
         <Header 
           showSearchInput={this.state.showSearchInput}
-          // onSearchClick={this.onSearchClick}
-          // onCloseSearchClick={this.onCloseSearchClick}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}
-          // closeSearch={this.closeSearch}
+          // here
+          onSearchClick={this.onSearchClick}
+          onCloseSearchClick={this.onCloseSearchClick}
+          closeSearch={this.closeSearch}
+          // to here
           showInputInHeader={this.state.showInputInHeader}
           inputValue = {this.state.value}
         />
