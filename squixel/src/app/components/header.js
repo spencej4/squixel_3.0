@@ -58,11 +58,12 @@ class Header extends Component {
                                             closeSearch={() => 
                                                 this.props.closeSearch()
                                             }
-                                            handleChange={(e) =>
-                                                this.props.handleChange(e)
+                                            handleChange={(event) =>
+                                                this.props.handleChange(event)
                                             }
                                             onInputSubmit={(event) => 
-                                             this.props.onInputSubmit()
+                                             this.props.onInputSubmit(event)
+                                            //  right fucking here, forget to include event param to input submit function
                                             }
                                 /> : null
                             }

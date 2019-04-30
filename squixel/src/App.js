@@ -51,11 +51,8 @@ class App extends Component {
 
 //captures input search value, calls API and returns JSON data
   onInputSubmit(event) {
+      event.preventDefault();
 
-    // new magic
-      // event.preventDefault();
-    // end new magic
-    
       this.setState({
           loading: true,
           showSearchInput: false,
