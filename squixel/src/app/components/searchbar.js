@@ -16,9 +16,11 @@ class SearchBar extends Component {
         window.addEventListener('keydown', this.escFunction, false);
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.escFunction, false);
-    }
+    // here
+    // componentWillUnmount() {
+    //     window.removeEventListener('keydown', this.escFunction, false);
+    // }
+    // end here
     
     render() {
             return (

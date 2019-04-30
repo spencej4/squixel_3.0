@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
-// import SearchBar from './searchbar';
+import SearchBar from './searchbar';
 import DisplaySearchInput from './displaySearchInput';
 
 
@@ -47,10 +47,11 @@ class Header extends Component {
                    {this.props.showInputInHeader ? <DisplaySearchInput
                     inputValue={this.props.inputValue}
                     /> : null }
-                        {/* <button className='searchButton' 
+{/* here */}
+                        <button className='searchButton' 
                             onClick={this.props.onSearchClick}>Search
-                        </button>   */}
-                            {/* {this.props.showSearchInput ? 
+                        </button>   
+                             {this.props.showSearchInput ? 
                                 <SearchBar onCloseSearchClick={() =>
                                                 this.props.onCloseSearchClick()
                                             }
@@ -64,7 +65,8 @@ class Header extends Component {
                                              this.props.onInputSubmit()
                                             }
                                 /> : null
-                            } */}
+                            }
+{/* to here */}
                         <div className='dd-login-title'>
                             <div className='dd-login-button'
                             onClick={this.toggleLoginMenu}></div>
