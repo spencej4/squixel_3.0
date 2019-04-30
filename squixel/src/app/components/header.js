@@ -5,6 +5,35 @@ import DisplaySearchInput from './displaySearchInput';
 
 
 class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loginMenuVisible: false
+        }
+        
+        this.toggleLoginMenu = this.toggleLoginMenu.bind(this);
+    }
+
+    toggleLoginMenu() {
+        console.log('dd menu triggered');
+        let loginMenu = document.getElementById('dd-login-menu');
+        if (this.state.loginMenuVisible === false) {
+            this.setState({
+                loginMenuVisible: true
+            })
+            loginMenu.classList.remove('hide');
+            loginMenu.classList.add('show');
+        }
+        else if (this.state.loginMenuVisible === true) {
+            this.setState({
+                loginMenuVisible: false
+            })
+            loginMenu.classList.remove('show');
+            loginMenu.classList.add('hide');
+        }
+        
+    }
+
     render() {
         // console.log(`Input from Header: ${this.props.inputValue}`);
         return (
@@ -36,6 +65,17 @@ class Header extends Component {
                                             }
                                 /> : null
                             } */}
+                        <div className='dd-login-title'>
+                            <div className='dd-login-button'
+                            onClick={this.toggleLoginMenu}></div>
+                        </div>
+                        <div className='dd-login-menu hide' id='dd-login-menu'>
+                            <ul className='login-options'>
+                                <li className='login-option'>Sign In</li>
+                                <hr></hr>
+                                <li className='login-option'>Register</li>
+                            </ul>
+                        </div>
                 </div>
             </Router>
         )

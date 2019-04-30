@@ -228,6 +228,58 @@ a {
   font-weight: 100;
 }
 
+.dd-login-title {
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 57px;
+  display: inline-block;
+  position: absolute;;
+}
+
+.dd-login-button {
+  width: 41px;
+  height: 41px;
+  margin-top: 5px;
+  background-image: url('../src/app/img/user-icon.png');
+  background-size: contain;
+}
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.dd-login-menu {
+  top: 56px;
+  width: 100%;
+  /* change to narrower width for desktop */
+  height: 104px;
+  position: absolute;
+  background-color: white;
+}
+
+.login-option {
+  margin-top: 15px;
+  margin-bottom: 12px;
+  font-size: 21px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  line-height: 1;
+}
+
+hr {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid lightgrey;
+  opacity: 0.4;
+}
+
 .landing {
   width: 90%;
   height: 300px; 
@@ -733,33 +785,19 @@ input[type=text] {
     padding: 7px 0;
     vertical-align: top;
   }
-/* original */
-  /* .fullscreen {
+
+  .fullscreen {
     width: 100vw;
     height: 100%;
     display: block;
-    top: 7%;
+    top: 0%;
     left: 0;
     position: fixed;
     z-index: 1;
     background-color: rgba(39, 39, 39, 0.90);
     text-align: center;
     content: contain;
-  } */
-  /* eng original */
-
-              .fullscreen {
-                width: 100vw;
-                height: 100%;
-                display: block;
-                top: 0%;
-                left: 0;
-                position: fixed;
-                z-index: 1;
-                background-color: rgba(39, 39, 39, 0.90);
-                text-align: center;
-                content: contain;
-              }
+  }
 
   .fullscreenAside {
     width: 200px;
@@ -783,30 +821,17 @@ input[type=text] {
     border-radius: 50px;
     background-color: none;
   }
-/* original  */
-  /* .fullScreenImage {
+
+  .fullScreenImage {
     width: auto;
-    height: 100%;
+    height: 93%;
     margin: 0 auto;
-    top: 0;
+    top: 7%;
     display: inline-block;
     position: relative;
     z-index: 1;
     text-align: center;
-  } */
-  /* end original */
-
-              .fullScreenImage {
-                width: auto;
-                height: 93%;
-                margin: 0 auto;
-                top: 7%;
-                display: inline-block;
-                position: relative;
-                z-index: 1;
-                text-align: center;
-              }
-
+  }
 
   .closeFullScreenButton {
     padding: 0;
