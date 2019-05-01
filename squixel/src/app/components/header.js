@@ -63,7 +63,7 @@ class Header extends Component {
                                             }
                                             onInputSubmit={(event) => 
                                              this.props.onInputSubmit(event)
-                                            //  right fucking here, forget to include event param to input submit function
+                                            //  right fucking here, forgot to include event param to input submit function
                                             }
                                 /> : null
                             }

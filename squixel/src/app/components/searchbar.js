@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.escFunction = this.escFunction.bind(this);
-    // }
+    constructor(props) {
+        super(props);
+        this.escFunction = this.escFunction.bind(this);
+    }
     
-    // escFunction(event) {
-    //     if (event.keyCode === 27) {
-    //         this.props.closeSearch();
-    //     }
-    // }
+    escFunction(event) {
+        if (event.keyCode === 27) {
+            this.props.closeSearch();
+        }
+    }
 
     componentDidMount() {
-        // window.addEventListener('keydown', this.escFunction, false);
+        window.addEventListener('keydown', this.escFunction, false);
     }
 
     // here
-    // componentWillUnmount() {
-    //     window.removeEventListener('keydown', this.escFunction, false);
-    // }
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.escFunction, false);
+    }
     // end here
     
     render() {
@@ -32,7 +32,7 @@ class SearchBar extends Component {
                         </button></li>
                     </ul> */}
                     <form id="form"
-                          className='myForm'
+                          className='search-form'
                           action = " "
                           method = " "
                           onSubmit={(event) => this.props.onInputSubmit(event)}

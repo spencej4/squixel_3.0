@@ -329,13 +329,14 @@ hr {
   height: 100vh;
   top: 0;
   left: 0;
-  padding: 12px 0 25px 0;
+  padding: 349px 0 25px 0;
   display: block;
   position: absolute;
   background-color: rgba(39, 39, 39, 0.90);
   content: contain;
   text-align: left;
   color: white;
+  z-index: 3;
 }
 
 input[type=text] {
@@ -1172,18 +1173,11 @@ input[type=text] {
   }
 
   .footer {
-    /* bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15%;
-    display: inline-block;
-    position: absolute; */
-
     clear: both;
     position: relative;
     z-index: 10;
-    height: 3em;
-    margin-top: -3em;
+    height: 80px;
+    margin-top: 40px;
   }
 
   .footer-container {
@@ -1197,10 +1191,12 @@ input[type=text] {
 
   .left {
     float: left;
+    left: 20%;
   }
 
   .right {
     float: right;
+    right: 20%;
   }
 }
 
