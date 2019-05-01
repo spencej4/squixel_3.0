@@ -196,25 +196,6 @@ a {
   text-decoration: none;
 }
 
-/* .searchButton {
-  width: 140px;
-  height: auto;
-  margin-top: -3px;
-  left: 12%;
-  padding: 0 15px 0 15px;
-  display: inline-block;
-  position: relative;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 2em;
-  font-weight: 100;
-} */
-
 .searchButton {
   top: 6px;
   right: 76px;
@@ -245,7 +226,7 @@ a {
 
 .dd-login-title {
   top: 0;
-  right: 0;
+  right: 59px;
   width: 60px;
   height: 57px;
   display: inline-block;
@@ -571,7 +552,6 @@ input[type=text] {
   border-radius: 20px;
   background-color: rgba(244, 118, 208, 0.8);
   color: white;
-  /* border: 1px solid white; */
 }
 
 /* ------------------------------------------------------------------------Desktop--------------------------------------------------------------------- */
@@ -594,7 +574,7 @@ input[type=text] {
     top: 0;
     left: 0;
     margin: 0px 0px 20px 0px;
-    padding-top: 15px;
+    padding-top: 12px;
     background-size: 100%;
     display: block;
     position: fixed;
@@ -605,9 +585,16 @@ input[type=text] {
 
   /* new */
   .centered-search-bar {
-    top: calc(50% - 50px);
-    left: calc(50% - 300px);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    /* top: calc(50% - 50px); */
+    /* left: calc(50% - 300px); */
+    display: block;
     position: absolute;
+    content: contain;
+    text-align: left;
+    color: white;
     z-index: 3;
   }
 
@@ -626,6 +613,9 @@ input[type=text] {
   }
 
   .search-form {
+    top: calc(40%);
+    left: calc(50% - 300px);
+    position: absolute;
     display: flex;
     align-items: center;
     margin-bottom: 40px;
@@ -653,30 +643,16 @@ input[type=text] {
   }
 
 .searchButton {
-    margin-top: -.24em;
-    left: 33%;
-    padding-bottom: 4px;
+    top: 6px;
+    right: 144px;
+    width: 32px;
+    height: 32px;
+    margin-top: 5px;
+    background-image: url('../src/app/img/search-50.png');
+    background-size: contain;
+    cursor: pointer;
     display: inline-block;
-    position: relative;
-    font-size: 2em;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: #fff;
-  }
-
-  .searchButton {
-    -webkit-transition: all 100ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -moz-transition: all 100ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -ms-transition: all 100ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    -o-transition: all 100ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    transition: all 100ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
-    transition: width 100ms;
-  }
-
-  .searchButton:hover {
-    box-shadow: rgba(30, 22, 54, 0.2) 0 0px 0px 40px inset;
-    width: 14%;
-    border-radius: 20px;
+    position: absolute;
   }
 
   .landing {
@@ -1043,10 +1019,17 @@ input[type=text] {
   }
 
   .centered-search-bar {
-    top: calc(50% - 50px);
-    /* left: calc(50% - 300px); */
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    padding: 349px 0 25px 0;
+    display: block;
     position: absolute;
-    z-index: 10;
+    content: contain;
+    text-align: left;
+    color: white;
+    z-index: 3;
   }
 
   .centered-search-input {
@@ -1064,6 +1047,8 @@ input[type=text] {
   }
 
   .search-form {
+    top: calc(30%);
+    position: absolute;
     display: flex;
     align-items: center;
     margin-bottom: 40px;
@@ -1124,6 +1109,52 @@ input[type=text] {
     letter-spacing: 4px;
   }
   /* end displayed search term at top after search */
+
+  .searchButton {
+    top: 6px;
+    right: 76px;
+    width: 32px;
+    height: 32px;
+    margin-top: 5px;
+    background-image: url('../src/app/img/search-50.png');
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+  }
+  
+  .closeSearchButton {
+    top: 302px;
+    right: 28px;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    position: absolute;;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 100;
+  }
+  
+  .dd-login-title {
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 57px;
+    display: inline-block;
+    position: absolute;;
+  }
+  
+  .dd-login-button {
+    width: 41px;
+    height: 41px;
+    margin-top: 5px;
+    background-image: url('../src/app/img/user-icon.png');
+    background-size: contain;
+    cursor: pointer;
+  }
 
   .body-container{
     /* width: 100%;

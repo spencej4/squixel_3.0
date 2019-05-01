@@ -7,7 +7,6 @@ class CenteredSearchBar extends Component {
     }
    
     render() {
-        //  console.log(`Input from Centered Search: ${this.props.inputValue}`);
         return (
             <div className='centered-search-bar'>
                 <form id='form' className='search-form'

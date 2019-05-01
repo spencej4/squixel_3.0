@@ -7,7 +7,7 @@ import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
 import Footer from './app/components/footer';
 import Wrapper from './app/components/wrapper';
-import CenteredSearchBar from './app/components/centeredSearchBar';
+// import CenteredSearchBar from './app/components/centeredSearchBar';
 
 const unsplash = new Unsplash({
   applicationId: "923e03b3d8e1b91345512fe194223858801d195497f62ccbc83d4b21fe8620ee",
@@ -26,7 +26,7 @@ class App extends Component {
       loading: false,
       showCard: false,
       /* new */
-      showCenteredSearchField: true,
+      // showCenteredSearchField: true,
       /* new */
       showSearchInput: false,
       value: '',
@@ -188,21 +188,20 @@ class App extends Component {
           showSearchInput={this.state.showSearchInput}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}
-          // here
           onSearchClick={this.onSearchClick}
           onCloseSearchClick={this.onCloseSearchClick}
           closeSearch={this.closeSearch}
-          // to here
           showInputInHeader={this.state.showInputInHeader}
           inputValue = {this.state.value}
+          showCard = {this.state.showCard}
         />
         {/* new */}
-        {(this.state.showCenteredSearchField && !this.state.showCard) ? ( 
+        {/* {(this.state.showCenteredSearchField && !this.state.showCard) ? ( 
           <CenteredSearchBar
             handleChange={(e) => this.handleChange(e)}
             onInputSubmit={(e) => this.onInputSubmit(e)}
             inputValue = {this.state.value}
-          /> ) : (null)}
+          /> ) : (null)} */}
         {/* new */}
         {!this.state.showCard ? ( <Landing /> ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}

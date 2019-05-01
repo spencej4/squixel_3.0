@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
 import SearchBar from './searchbar';
+import CenteredSearchBar from './centeredSearchBar';
 import DisplaySearchInput from './displaySearchInput';
 
 
@@ -35,7 +36,6 @@ class Header extends Component {
     }
 
     render() {
-        // console.log(`Input from Header: ${this.props.inputValue}`);
         return (
             <Router>
                 <div className='header'>
@@ -68,6 +68,17 @@ class Header extends Component {
                                 /> : null
                             }
 {/* to here */}
+            {/* new */}
+                        {(!this.props.showSearchInput && !this.props.showCard) ? ( 
+                                <CenteredSearchBar
+                                    handleChange={(e) => this.props.handleChange(e)}
+                                    onInputSubmit={(e) => this.props.onInputSubmit(e)}
+                                    // inputValue = {this.state.value}
+                                    onInputSubmit={(event) => 
+                                        this.props.onInputSubmit(event)
+                                       }
+                                /> ) : (null)}
+            {/* new */}
                         <div className='dd-login-title'>
                             <div className='dd-login-button'
                             onClick={this.toggleLoginMenu}></div>
