@@ -25,12 +25,14 @@ class SearchBar extends Component {
     render() {
             return (
                 <div className='searchScreen'>
-                    {/* <ul>
-                        <li><p>SEARCH</p></li>
-                        <li><button className='closeSearchButton' onClick={() =>
+                    {/* <ul> */}
+                        {/* <li><p>SEARCH</p></li> */}
+                        {/* <li> */}
+                            <button className='closeSearchButton' onClick={() =>
                             this.props.onCloseSearchClick()}>X
-                        </button></li>
-                    </ul> */}
+                        </button>
+                        {/* </li> */}
+                    {/* </ul> */}
                     <form id="form"
                           className='search-form'
                           action = " "

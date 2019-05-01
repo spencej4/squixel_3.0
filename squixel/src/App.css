@@ -196,7 +196,7 @@ a {
   text-decoration: none;
 }
 
-.searchButton {
+/* .searchButton {
   width: 140px;
   height: auto;
   margin-top: -3px;
@@ -213,13 +213,28 @@ a {
   cursor: pointer;
   font-size: 2em;
   font-weight: 100;
+} */
+
+.searchButton {
+  top: 6px;
+  right: 76px;
+  width: 32px;
+  height: 32px;
+  margin-top: 5px;
+  background-image: url('../src/app/img/search-50.png');
+  background-size: contain;
+  cursor: pointer;
+  display: inline-block;
+  position: absolute;
 }
 
 .closeSearchButton {
+  top: 302px;
+  right: 28px;
   margin: 0;
   padding: 0;
   display: inline-block;
-  position: relative;
+  position: absolute;;
   color: white;
   background: none;
   border: none;

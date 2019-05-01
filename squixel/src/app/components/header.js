@@ -48,9 +48,9 @@ class Header extends Component {
                     inputValue={this.props.inputValue}
                     /> : null }
 {/* here */}
-                        <button className='searchButton' 
-                            onClick={this.props.onSearchClick}>Search
-                        </button>   
+                        <div className='searchButton' 
+                            onClick={this.props.onSearchClick}>
+                        </div>   
                              {this.props.showSearchInput ? 
                                 <SearchBar onCloseSearchClick={() =>
                                                 this.props.onCloseSearchClick()
