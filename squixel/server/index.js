@@ -1,19 +1,38 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
+const logger = require('morgan');
 
 
 
 const app =express();
 app.set('port', (process.env.PORT || 4000));
 
-//update this by making a squixel mongoDB and then providing link here
-var promise = mongoose.connect('mongodb://topLevel:Progress19@ds143326.mlab.com:43326/heroku_trcqnm8p', {
-  useMongoClient: true,
-});
+// -----------------------------------------new-----------------------------------------
+app.use(cors());
+const router = express.Router();
+
+//this is our MongoDB database
+const dbRoute = "mongodb://admin:Level_2020@ds259732.mlab.com:59732/heroku_9d3jq7bc";
+
+//connects our back end code with the database
+mongoose.connect(
+    dbRoute, {
+        useNewUrlParser: true
+    }
+);
+
+// checks if connection with the database is successful
+let db = mongoose.connection;
+db.once('open', function () {
+    console.log("Connected to Mongo Database");
+})
 
 mongoose.Promise = global.Promise;
+// ----------------------------------------end new----------------------------------------
+
 
 app.use(bodyParser.json());
 app.use('/api', require('./api'));
