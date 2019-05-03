@@ -38,6 +38,8 @@ class App extends Component {
       showInputInHeader: false,
       inputValueInHeader: ''
     }
+    this.onSignInClick = this.onSignInClick.bind(this);
+    this.onRegisterClick = this.onRegisterClick.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
@@ -48,6 +50,15 @@ class App extends Component {
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
   }
+// handles click for sign in from header 
+  onSignInClick() {
+    alert('sign in clicked');
+  }
+
+// handles click for register from header
+ onRegisterClick() {
+    alert('register clicked');
+ }
 
 //captures input search value, calls API and returns JSON data
   onInputSubmit(event) {
@@ -185,6 +196,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header 
+          onSignInClick={this.onSignInClick}
+          onRegisterClick={this.onRegisterClick}
           showSearchInput={this.state.showSearchInput}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}

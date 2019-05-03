@@ -47,7 +47,6 @@ class Header extends Component {
                    {this.props.showInputInHeader ? <DisplaySearchInput
                     inputValue={this.props.inputValue}
                     /> : null }
-{/* here */}
                         <div className='searchButton' 
                             onClick={this.props.onSearchClick}>
                         </div>   
@@ -67,27 +66,27 @@ class Header extends Component {
                                             }
                                 /> : null
                             }
-{/* to here */}
-            {/* new */}
                         {(!this.props.showSearchInput && !this.props.showCard) ? ( 
                                 <CenteredSearchBar
                                     handleChange={(e) => this.props.handleChange(e)}
                                     onInputSubmit={(e) => this.props.onInputSubmit(e)}
-                                    // inputValue = {this.state.value}
                                     onInputSubmit={(event) => 
                                         this.props.onInputSubmit(event)
                                        }
                                 /> ) : (null)}
-            {/* new */}
                         <div className='dd-login-title'>
                             <div className='dd-login-button'
                             onClick={this.toggleLoginMenu}></div>
                         </div>
                         <div className='dd-login-menu hide' id='dd-login-menu'>
                             <ul className='login-options'>
-                                <li className='login-option'>Sign In</li>
+                                <li className='login-option' onClick={() =>
+                                    this.props.onSignInClick()
+                                }>Sign In</li>
                                 <hr></hr>
-                                <li className='login-option'>Register</li>
+                                <li className='login-option' onClick={() => 
+                                    this.props.onRegisterClick()
+                                }>Register</li>
                             </ul>
                         </div>
                 </div>

@@ -207,6 +207,9 @@ a {
   cursor: pointer;
   display: inline-block;
   position: absolute;
+
+  z-index: 10;
+
 }
 
 .closeSearchButton {
@@ -230,7 +233,8 @@ a {
   width: 60px;
   height: 57px;
   display: inline-block;
-  position: absolute;;
+  position: absolute;
+  z-index: 10;
 }
 
 .dd-login-button {
@@ -240,6 +244,8 @@ a {
   background-image: url('../src/app/img/user-icon.png');
   background-size: contain;
   cursor: pointer;
+
+  z-index: 1;
 }
 
 
@@ -260,6 +266,7 @@ a {
   position: absolute;
   /* background-color: white; */
   background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
 }
 
 .dd-login-menu::after { 
@@ -291,7 +298,7 @@ hr {
   border: 1px solid lightgrey;
   opacity: 0.4;
 }
-
+/* 
 .landing {
   width: 90%;
   height: 300px; 
@@ -300,13 +307,13 @@ hr {
   display: block;
   text-align: center;
   line-height: 2.5em;
-}
+} */
 
-.landingH1 {
+/* .landingH1 {
   padding-top: 30%;
   font-size: 2em;
   color: rgba(48, 46, 46, 0.518);
-}
+} */
 
 .coffeeImage {
   width: 45%;
@@ -653,6 +660,9 @@ input[type=text] {
     cursor: pointer;
     display: inline-block;
     position: absolute;
+
+    z-index: 10;
+
   }
 
   .landing {
@@ -665,9 +675,9 @@ input[type=text] {
     background-size: cover;
     opacity: 0.95;
     overflow: hidden;
-    z-index: 1;
+    z-index: 3;
     top: 45px;
-    display: block;
+    display: absolute;;
     text-align: center;
   }
 
@@ -1121,6 +1131,9 @@ input[type=text] {
     cursor: pointer;
     display: inline-block;
     position: absolute;
+
+    z-index: 10;
+
   }
   
   .closeSearchButton {
@@ -1144,7 +1157,8 @@ input[type=text] {
     width: 60px;
     height: 57px;
     display: inline-block;
-    position: absolute;;
+    position: absolute;
+    z-index: 10;
   }
   
   .dd-login-button {
@@ -1154,6 +1168,8 @@ input[type=text] {
     background-image: url('../src/app/img/user-icon.png');
     background-size: contain;
     cursor: pointer;
+
+    z-index: 1;
   }
 
   .body-container{
