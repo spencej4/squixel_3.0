@@ -45,28 +45,28 @@ mongoose.Promise = global.Promise;
 
 //handle mongo error
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  // we're connected!
-});
+// db.once('open', function () {
+//   // we're connected!
+// });
 
-//use sessions for tracking logins
-app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: db
-  })
-}));
+// //use sessions for tracking logins
+// app.use(session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: false,
+//   store: new MongoStore({
+//     mongooseConnection: db
+//   })
+// }));
 
 
 // uncomment this afterwards...
 // serve static files from template
-app.use(express.static(__dirname + '/templateLogReg'));
+// app.use(express.static(__dirname + '/templateLogReg'));
 
 // include routes
-var routes = require('./routes/router');
-app.use('/', routes);
+// var routes = require('./routes/router');
+// app.use('/', routes);
 
 // ----------------------------------------end new----------------------------------------
 
