@@ -31,11 +31,9 @@ class App extends Component {
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
-      /* new */
-      showCenteredSearchField: true,
-      /* new */
       showSearchInput: false,
       value: '',
+      signInValue: '',
       pageNum: 0,
       showFullScreenImage: false,
       fullScreenImage: '',
@@ -47,6 +45,8 @@ class App extends Component {
     this.onSignInClick = this.onSignInClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
     this.toggleLoginMenu = this.toggleLoginMenu.bind(this);
+    this.handleSignInChange = this.handleSignInChange.bind(this);
+    this.onSignInSubmit = this.onSignInSubmit.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
@@ -75,22 +75,34 @@ class App extends Component {
 
  // toggles the menu
  toggleLoginMenu() {
-  console.log('dd menu triggered');
-  let loginMenu = document.getElementById('dd-login-menu');
-  if (this.state.loginMenuVisible === false) {
-      this.setState({
-          loginMenuVisible: true
-      })
-      loginMenu.classList.remove('hide');
-      loginMenu.classList.add('show');
-  }
-  else if (this.state.loginMenuVisible === true) {
-      this.setState({
-          loginMenuVisible: false
-      })
-      loginMenu.classList.remove('show');
-      loginMenu.classList.add('hide');
-  } 
+    let loginMenu = document.getElementById('dd-login-menu');
+    
+    if (this.state.loginMenuVisible === false) {
+        this.setState({
+            loginMenuVisible: true
+        })
+        loginMenu.classList.remove('hide');
+        loginMenu.classList.add('show');
+    }
+    else if (this.state.loginMenuVisible === true) {
+        this.setState({
+            loginMenuVisible: false
+        })
+        loginMenu.classList.remove('show');
+        loginMenu.classList.add('hide');
+    } 
+}
+
+//sets state to input value of search field 
+handleSignInChange(event) {
+    this.setState({
+      signInValue: event.target.value
+    });
+}
+
+onSignInSubmit(event) {
+    alert('sign in submitted');
+    event.preventDefault();
 }
 
 
@@ -244,15 +256,10 @@ class App extends Component {
           inputValue = {this.state.value}
           showCard = {this.state.showCard}
         />
-         {this.state.showSignInPage ? ( <SignInPage /> ) : (null)}
-        {/* new */}
-        {/* {(this.state.showCenteredSearchField && !this.state.showCard) ? ( 
-          <CenteredSearchBar
-            handleChange={(e) => this.handleChange(e)}
-            onInputSubmit={(e) => this.onInputSubmit(e)}
-            inputValue = {this.state.value}
-          /> ) : (null)} */}
-        {/* new */}
+         {this.state.showSignInPage ? ( <SignInPage 
+            handleSignInChange={this.handleSignInChange}
+            onSignInSubmit={this.onSignInSubmit}
+         /> ) : (null)}
         {(!this.state.showCard  && !this.state.showSignInPage) ? ( <Landing /> ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
         <Wrapper showCard={this.state.showCard}

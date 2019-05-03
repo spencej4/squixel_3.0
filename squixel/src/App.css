@@ -602,6 +602,7 @@ input[type=text] {
     color: hotpink;
     background-color: white;
     z-index: 1;
+    text-align: center;
   }
 
   .sign-in {
@@ -616,6 +617,44 @@ input[type=text] {
   .sign-in-title {
     font-size: 38px;
 
+  }
+
+  #sign-in-form {
+    top: 23%;
+    width: 46%;
+    padding: 0 0 0 0;
+    height: auto;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  .sign-in-input {
+    width: 47%;
+    height: 50px;
+    padding: 0 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    border-radius: 5px;
+    display: block;
+    align-items: center;
+    clear: both;
+  }
+
+  #sign-in-form label {
+    width: 100%;
+    font-size: 28px;
+    position: relative;
+    display: block;
+  }
+
+  #sign-in-form input {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 3%;
+    border: 1px solid grey;
   }
 
   .register{
@@ -1090,6 +1129,30 @@ input[type=text] {
   .sign-in-title {
     font-size: 38px;
 
+  }
+
+  #sign-in-form {
+    top: 300px;
+    width: 100%;
+    height: auto;
+    border: 1px solid hotpink;
+    position: absolute;
+    display: flex;
+    align-items: center;
+  }
+
+  .sign-in-input {
+    width: 100%;
+    height: 50px;
+    line-height: 45px;
+    padding: 0 5px;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    /* background: rgba(0, 0, 0, 0.5); */
   }
 
   .register{
