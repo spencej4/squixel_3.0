@@ -1115,6 +1115,7 @@ input[type=text] {
     text-align: left;
     background-color: white;
     z-index: 1;
+    color: grey;
   }
 
   .sign-in {
@@ -1168,6 +1169,7 @@ input[type=text] {
     display: block;
     background-color: white;
     text-align: center;
+    color: grey;
   }
 
   .centered-search-bar {
