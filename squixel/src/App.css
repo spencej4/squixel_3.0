@@ -590,6 +590,42 @@ input[type=text] {
     box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
   }
 
+  .sign-in-page {
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    padding-top: 5%;
+    display: block;
+    position: absolute;
+    content: contain;
+    text-align: left;
+    color: hotpink;
+    background-color: white;
+    z-index: 1;
+  }
+
+  .sign-in {
+    width: 48%;
+    height: 100%;
+    display: inline-block;
+    border-right: 1px solid grey;
+    background-color: white;
+    text-align: center;
+  }
+
+  .sign-in-title {
+    font-size: 38px;
+
+  }
+
+  .register{
+    width: 48%;
+    height: 100%;
+    display: inline-block;
+    background-color: white;
+    text-align: center;
+  }
+
   /* new */
   .centered-search-bar {
     width: 100vw;
@@ -1025,6 +1061,42 @@ input[type=text] {
     z-index: 1;
     top: 45px;
     display: block;
+    text-align: center;
+  }
+
+  .sign-in-page {
+    width: 100vw;
+    height: 100%;
+    top: 0;
+    padding-top: 17%;
+    display: block;
+    position: absolute;
+    content: contain;
+    text-align: left;
+    color: hotpink;
+    background-color: white;
+    z-index: 1;
+  }
+
+  .sign-in {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-right: 1px solid grey;
+    background-color: white;
+    text-align: center;
+  }
+
+  .sign-in-title {
+    font-size: 38px;
+
+  }
+
+  .register{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: white;
     text-align: center;
   }
 

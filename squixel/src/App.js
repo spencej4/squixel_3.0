@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Unsplash from 'unsplash-js';
 import Header from './app/components/header';
+import SignInPage from './app/components/signInPage';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
@@ -20,13 +21,18 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // new
+      showSignInPage: false,
+      showRegisterPage: false,
+      loginMenuVisible: false,
+      // end new
       data: '',
       nextData: [],
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
       /* new */
-      // showCenteredSearchField: true,
+      showCenteredSearchField: true,
       /* new */
       showSearchInput: false,
       value: '',
@@ -40,6 +46,7 @@ class App extends Component {
     }
     this.onSignInClick = this.onSignInClick.bind(this);
     this.onRegisterClick = this.onRegisterClick.bind(this);
+    this.toggleLoginMenu = this.toggleLoginMenu.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
@@ -52,13 +59,40 @@ class App extends Component {
   }
 // handles click for sign in from header 
   onSignInClick() {
-    alert('sign in clicked');
+    this.setState({
+      showSignInPage: true
+    })
+    this.toggleLoginMenu();
   }
 
 // handles click for register from header
  onRegisterClick() {
     alert('register clicked');
+    this.setState({
+      showRegisterPage: true
+    })
  }
+
+ // toggles the menu
+ toggleLoginMenu() {
+  console.log('dd menu triggered');
+  let loginMenu = document.getElementById('dd-login-menu');
+  if (this.state.loginMenuVisible === false) {
+      this.setState({
+          loginMenuVisible: true
+      })
+      loginMenu.classList.remove('hide');
+      loginMenu.classList.add('show');
+  }
+  else if (this.state.loginMenuVisible === true) {
+      this.setState({
+          loginMenuVisible: false
+      })
+      loginMenu.classList.remove('show');
+      loginMenu.classList.add('hide');
+  } 
+}
+
 
 //captures input search value, calls API and returns JSON data
   onInputSubmit(event) {
@@ -198,6 +232,8 @@ class App extends Component {
         <Header 
           onSignInClick={this.onSignInClick}
           onRegisterClick={this.onRegisterClick}
+          toggleLoginMenu={this.toggleLoginMenu}
+          showSignInPage={this.state.showSignInPage}
           showSearchInput={this.state.showSearchInput}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}
@@ -208,6 +244,7 @@ class App extends Component {
           inputValue = {this.state.value}
           showCard = {this.state.showCard}
         />
+         {this.state.showSignInPage ? ( <SignInPage /> ) : (null)}
         {/* new */}
         {/* {(this.state.showCenteredSearchField && !this.state.showCard) ? ( 
           <CenteredSearchBar
@@ -216,7 +253,7 @@ class App extends Component {
             inputValue = {this.state.value}
           /> ) : (null)} */}
         {/* new */}
-        {!this.state.showCard ? ( <Landing /> ) : (null)}
+        {(!this.state.showCard  && !this.state.showSignInPage) ? ( <Landing /> ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
         <Wrapper showCard={this.state.showCard}
           data={this.state.data}
