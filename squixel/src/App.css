@@ -611,6 +611,7 @@ input[type=text] {
     border-right: 1px solid grey;
     background-color: white;
     text-align: center;
+    color: grey;
   }
 
   .sign-in-title {
@@ -662,6 +663,7 @@ input[type=text] {
     display: inline-block;
     background-color: white;
     text-align: center;
+    color: grey;
   }
 
   /* new */
@@ -1111,7 +1113,6 @@ input[type=text] {
     position: absolute;
     content: contain;
     text-align: left;
-    /* color: hotpink; */
     background-color: white;
     z-index: 1;
   }
@@ -1127,7 +1128,6 @@ input[type=text] {
 
   .sign-in-title {
     font-size: 38px;
-
   }
 
   #sign-in-form {
@@ -1152,7 +1152,6 @@ input[type=text] {
     border-radius: 5px;
     display: flex;
     align-items: center;
-    /* background: rgba(0, 0, 0, 0.5); */
     border: 1px solid grey;
   }
 
