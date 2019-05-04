@@ -35,6 +35,7 @@ class SearchBar extends Component {
                     >
                         <div className='icon icon-search'></div>
                         <input className='centered-search-input' 
+                            autoFocus='autofocus'
                             type='text'
                             value={this.props.value}
                             onChange={this.props.handleChange}

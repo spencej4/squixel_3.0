@@ -25,6 +25,8 @@ class App extends Component {
       showSignInPage: false,
       showRegisterPage: false,
       loginMenuVisible: false,
+      email: '',
+      password: '',
       // end new
       data: '',
       nextData: [],
@@ -60,7 +62,8 @@ class App extends Component {
 // handles click for sign in from header 
   onSignInClick() {
     this.setState({
-      showSignInPage: true
+      showSignInPage: true,
+      showCard: false
     })
     this.toggleLoginMenu();
   }
@@ -95,14 +98,13 @@ class App extends Component {
 
 //sets state to input value of search field 
 handleSignInChange(event) {
-    this.setState({
-      signInValue: event.target.value
-    });
+    this.setState({ [event.target.name]: event.target.value });
 }
 
 onSignInSubmit(event) {
-    alert('sign in submitted');
     event.preventDefault();
+    alert(`Email: ${this.state.email}`);
+    alert(`Password: ${this.state.password}`);
 }
 
 
@@ -256,7 +258,7 @@ onSignInSubmit(event) {
           inputValue = {this.state.value}
           showCard = {this.state.showCard}
         />
-         {this.state.showSignInPage ? ( <SignInPage 
+         {(!this.state.showCard && this.state.showSignInPage) ? ( <SignInPage 
             handleSignInChange={this.handleSignInChange}
             onSignInSubmit={this.onSignInSubmit}
          /> ) : (null)}
