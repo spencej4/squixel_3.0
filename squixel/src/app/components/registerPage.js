@@ -46,14 +46,14 @@ class RegisterPage extends Component {
                             />
                         </label>
                     </div>
-                    {/* <br></br>
+                    <br></br>
                     <div className='form-row'>
                         <label>
                             Confirm Password: 
                             <br></br>
                             <input className='sign-in-input' 
-                                id='password'
-                                name='password_secondary'
+                                id='password_confirm'
+                                name='password_confirm'
                                 type='password'
                                 autoComplete='off'
                                 value={this.props.value}
@@ -61,7 +61,7 @@ class RegisterPage extends Component {
                                 onChange={(event) => this.props.handleSignInChange(event)}
                             />
                         </label>
-                    </div> */}
+                    </div>
                     <div className='form-row'>
                         <button type='submit' className='submit-btn'>Register</button>
                     </div>

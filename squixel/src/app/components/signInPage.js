@@ -14,15 +14,15 @@ class SignInPage extends Component {
                     <form id="sign-in-form"
                           action = " "
                           method = " "
-                          onSubmit={(event) => this.props.onSignInSubmit(event)}
+                          onSubmit={(event) => this.props.onLoginSubmit(event)}
                     >   
                     <div className='form-row'>
                         <label>
                             Email:
                             <br></br>
                             <input className='sign-in-input' 
-                                id='email'
-                                name='email'
+                                id='log_email'
+                                name='log_email'
                                 type='Email'
                                 value={this.props.value}
                                 placeholder='Email'
@@ -36,8 +36,8 @@ class SignInPage extends Component {
                             Password: 
                             <br></br>
                             <input className='sign-in-input' 
-                                id='password'
-                                name='password'
+                                id='log_password'
+                                name='log_password'
                                 type='password'
                                 autoComplete='off'
                                 value={this.props.value}

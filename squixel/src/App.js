@@ -29,6 +29,8 @@ class App extends Component {
       // email: '',
       // password: '',
       // end new
+      log_email: '',
+      log_password: '',
       data: '',
       nextData: [],
       imagesArrrayNext: [],
@@ -50,7 +52,7 @@ class App extends Component {
     this.toggleLoginMenu = this.toggleLoginMenu.bind(this);
     this.toggleLoginPage = this.toggleLoginPage.bind(this);
     this.handleSignInChange = this.handleSignInChange.bind(this);
-    this.onSignInSubmit = this.onSignInSubmit.bind(this);
+    this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
@@ -62,25 +64,28 @@ class App extends Component {
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
   }
+
+
 // handles click for sign in from header 
-  onSignInMenuClick() {
-    this.setState({
-      showSignInPage: true,
-      showRegisterPage: false,
-      showCard: false
-    })
-    this.toggleLoginMenu();
-  }
+onSignInMenuClick() {
+  this.setState({
+    showSignInPage: true,
+    showRegisterPage: false,
+    showCard: false
+  })
+  this.toggleLoginMenu();
+}
+
 
 // handles click for register from header
- onRegisterMenuClick() {
-    this.setState({
-      showSignInPage: false,
-      showRegisterPage: true,
-      showCard: false
-    })
-    this.toggleLoginMenu();
- }
+onRegisterMenuClick() {
+  this.setState({
+    showSignInPage: false,
+    showRegisterPage: true,
+    showCard: false
+  })
+  this.toggleLoginMenu();
+}
 
  // toggles the menu
  toggleLoginMenu() {
@@ -102,51 +107,75 @@ class App extends Component {
     } 
 }
 
+
 //sets state to input value of search field 
 handleSignInChange(event) {
     this.setState({ [event.target.name]: event.target.value });
 }
 
 
-onSignInSubmit() {
-  alert('sign in clicked, no post routes set up yet');
+onLoginSubmit(event) {
+  event.preventDefault();
+ 
+  fetch('/api/login',{
+        method: 'POST',
+        mode: "cors",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.state.log_email,
+          password: this.state.log_password
+        }) 
+    }).then(function(){
+      //update this line to remove the form
+      // this.setState({ displayForm: false });
+      alert(`You're signed in! ${this.state.log_email}`);
+    }.bind(this));
 }
+
 
 onRegisterSubmit(event) {
     event.preventDefault();
 
-    console.log("sending");
-    
-    fetch('/api/login',{
-          method: 'POST',
-          mode: "cors",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.state.email,
-            password: this.state.password
-          }) 
-    }).then(function(){
-      this.setState({ displayForm: false });
-    }.bind(this));
-  }
-
-  // toggle from register page to login page and vice versus
-  toggleLoginPage() {
-    if (this.state.showSignInPage) {
-      this.setState({
-        showSignInPage: false,
-        showRegisterPage: true
-      })
-    }else if (this.state.showRegisterPage) {
-      this.setState({
-        showSignInPage: true,
-        showRegisterPage: false
-      })
+    // confirm that user typed same password twice
+    if (this.state.password !== this.state.password_confirm) {
+      alert("The passwords doesn't match")
+    } else {
+        fetch('/api/register',{
+              method: 'POST',
+              mode: "cors",
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+                password_confirm: this.state.password_confirm
+              }) 
+        }).then(function(){
+          this.setState({ displayForm: false });
+        }.bind(this));
     }
   }
+
+
+// toggle from register page to login page and vice versus
+toggleLoginPage() {
+  if (this.state.showSignInPage) {
+    this.setState({
+      showSignInPage: false,
+      showRegisterPage: true
+    })
+  }else if (this.state.showRegisterPage) {
+    this.setState({
+      showSignInPage: true,
+      showRegisterPage: false
+    })
+  }
+}
 
 
 //captures input search value, calls API and returns JSON data
@@ -181,7 +210,8 @@ onRegisterSubmit(event) {
             }
           });
         });
-  }
+}
+
 
 //user clicks next, calls API and returns JSON data
   onNextClick() {
@@ -210,78 +240,86 @@ onRegisterSubmit(event) {
             }
           });
         });
-  }
+}
   
+
 //user clicks previous, calls API and returns JSON data
-  onPreviousClick() {
-      this.setState({
-        loading: true,
-        showSearchInput: false,
-        showFooter: false
-      });
-      unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum - 1}`, 30)
-        .then(response => response.json())
-        .then(json => this.setState((prevState) => {
+onPreviousClick() {
+    this.setState({
+      loading: true,
+      showSearchInput: false,
+      showFooter: false
+    });
+    unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum - 1}`, 30)
+      .then(response => response.json())
+      .then(json => this.setState((prevState) => {
+        return {
+          showSearchInput: false,
+          data: json.results,
+          loading: false,
+          showFooter: true,
+          showCard: true,
+          pageNum: this.state.pageNum - 1
+        }
+      }))
+      .catch((error) => {
+        this.setState((prevState) => {
           return {
-            showSearchInput: false,
-            data: json.results,
             loading: false,
-            showFooter: true,
-            showCard: true,
-            pageNum: this.state.pageNum - 1
+            error: 'Error when retrieving'
           }
-        }))
-        .catch((error) => {
-          this.setState((prevState) => {
-            return {
-              loading: false,
-              error: 'Error when retrieving'
-            }
-          });
         });
-  }
+      });
+}
   
-  onSearchClick() {
-    this.setState({
-      showSearchInput: true
-    });
-  }
 
-  onCloseSearchClick() {
-    this.setState({
-      showSearchInput: false
-    })
-  }
+onSearchClick() {
+  this.setState({
+    showSearchInput: true
+  });
+}
 
-  closeSearch () {
-    this.setState ({
-      showSearchInput: false
-    })
-  }
 
-  //sets state to input value of search field 
-  handleChange(event) {
-    this.setState({
-      value: event.target.value
-    });
-  }
+onCloseSearchClick() {
+  this.setState({
+    showSearchInput: false
+  })
+}
 
-  showFullScreenImage(image, fullscreenData, ) {
-    this.setState({
-      showFullScreenImage: true,
-      fullScreenImage: image,
-      fullscreenData: fullscreenData
-    })
-  }
 
-  closeFullScreenImage() {
-    this.setState({
-      showFullScreenImage: false,
-      fullScreenImage: ''
-    })
-  }
+closeSearch () {
+  this.setState ({
+    showSearchInput: false
+  })
+}
 
-  render() {
+
+//sets state to input value of search field 
+handleChange(event) {
+  this.setState({
+    value: event.target.value
+  });
+}
+
+
+showFullScreenImage(image, fullscreenData, ) {
+  this.setState({
+    showFullScreenImage: true,
+    fullScreenImage: image,
+    fullscreenData: fullscreenData
+  })
+}
+
+
+closeFullScreenImage() {
+  this.setState({
+    showFullScreenImage: false,
+    fullScreenImage: ''
+  })
+}
+
+
+render() {
     return (
       <div className="App">
         <Header 
@@ -303,7 +341,7 @@ onRegisterSubmit(event) {
          {(!this.state.showCard && this.state.showSignInPage) ? ( <SignInPage 
             toggleLoginPage= {this.toggleLoginPage}
             handleSignInChange={this.handleSignInChange}
-            onSignInSubmit={this.onSignInSubmit}
+            onLoginSubmit={this.onLoginSubmit}
          /> ) : (null)}
          {(!this.state.showCard && this.state.showRegisterPage) ? ( <RegisterPage 
             toggleLoginPage= {this.toggleLoginPage}

@@ -10,7 +10,6 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 
-
 const app =express();
 app.set('port', (process.env.PORT || 4000));
 app.use(cors());
@@ -21,13 +20,16 @@ const dbRoute = "mongodb://admin:Level_2020@ds259732.mlab.com:59732/heroku_9d3jq
 //connects our back end code with the database
 mongoose.connect(
     dbRoute, {
-        useNewUrlParser: true
-    }
+        useNewUrlParser: true,
+        useMongoClient: true 
+    },
 );
+
+// mongoose.connect( "mongodb://username:password@ds125146.mlab.com:25146/dbName'", { useMongoClient: true } );
 
 // checks if connection with the database is successful
 let db = mongoose.connection;
-db.once('openUri', function () {
+db.once('open', function () {
     console.log("Connected to Mongo Database");
 })
 
@@ -61,9 +63,6 @@ app.use(function(err, req, res, next){
   //console.log(err);
   res.status(422).send({error: err.message})
 });
-
-
-
 
 
 
