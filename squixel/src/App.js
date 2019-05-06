@@ -3,6 +3,7 @@ import './App.css';
 import Unsplash from 'unsplash-js';
 import Header from './app/components/header';
 import SignInPage from './app/components/signInPage';
+import RegisterPage from './app/components/registerPage';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
@@ -25,8 +26,8 @@ class App extends Component {
       showSignInPage: false,
       showRegisterPage: false,
       loginMenuVisible: false,
-      email: '',
-      password: '',
+      // email: '',
+      // password: '',
       // end new
       data: '',
       nextData: [],
@@ -44,11 +45,13 @@ class App extends Component {
       showInputInHeader: false,
       inputValueInHeader: ''
     }
-    this.onSignInClick = this.onSignInClick.bind(this);
-    this.onRegisterClick = this.onRegisterClick.bind(this);
+    this.onSignInMenuClick = this.onSignInMenuClick.bind(this);
+    this.onRegisterMenuClick = this.onRegisterMenuClick.bind(this);
     this.toggleLoginMenu = this.toggleLoginMenu.bind(this);
+    this.toggleLoginPage = this.toggleLoginPage.bind(this);
     this.handleSignInChange = this.handleSignInChange.bind(this);
     this.onSignInSubmit = this.onSignInSubmit.bind(this);
+    this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
@@ -60,20 +63,23 @@ class App extends Component {
     this.onPreviousClick = this.onPreviousClick.bind(this);
   }
 // handles click for sign in from header 
-  onSignInClick() {
+  onSignInMenuClick() {
     this.setState({
       showSignInPage: true,
+      showRegisterPage: false,
       showCard: false
     })
     this.toggleLoginMenu();
   }
 
 // handles click for register from header
- onRegisterClick() {
-    alert('register clicked');
+ onRegisterMenuClick() {
     this.setState({
-      showRegisterPage: true
+      showSignInPage: false,
+      showRegisterPage: true,
+      showCard: false
     })
+    this.toggleLoginMenu();
  }
 
  // toggles the menu
@@ -101,11 +107,46 @@ handleSignInChange(event) {
     this.setState({ [event.target.name]: event.target.value });
 }
 
-onSignInSubmit(event) {
-    event.preventDefault();
-    alert(`Email: ${this.state.email}`);
-    alert(`Password: ${this.state.password}`);
+
+onSignInSubmit() {
+  alert('sign in clicked, no post routes set up yet');
 }
+
+onRegisterSubmit(event) {
+    event.preventDefault();
+
+    console.log("sending");
+    
+    fetch('/api/login',{
+          method: 'POST',
+          mode: "cors",
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.state.email,
+            password: this.state.password
+          }) 
+    }).then(function(){
+      this.setState({ displayForm: false });
+    }.bind(this));
+  }
+
+  // toggle from register page to login page and vice versus
+  toggleLoginPage() {
+    if (this.state.showSignInPage) {
+      this.setState({
+        showSignInPage: false,
+        showRegisterPage: true
+      })
+    }else if (this.state.showRegisterPage) {
+      this.setState({
+        showSignInPage: true,
+        showRegisterPage: false
+      })
+    }
+  }
 
 
 //captures input search value, calls API and returns JSON data
@@ -244,10 +285,11 @@ onSignInSubmit(event) {
     return (
       <div className="App">
         <Header 
-          onSignInClick={this.onSignInClick}
-          onRegisterClick={this.onRegisterClick}
+          onSignInMenuClick={this.onSignInMenuClick}
+          onRegisterMenuClick={this.onRegisterMenuClick}
           toggleLoginMenu={this.toggleLoginMenu}
           showSignInPage={this.state.showSignInPage}
+          showRegisterPage={this.state.showRegisterPage}
           showSearchInput={this.state.showSearchInput}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}
@@ -259,10 +301,16 @@ onSignInSubmit(event) {
           showCard = {this.state.showCard}
         />
          {(!this.state.showCard && this.state.showSignInPage) ? ( <SignInPage 
+            toggleLoginPage= {this.toggleLoginPage}
             handleSignInChange={this.handleSignInChange}
             onSignInSubmit={this.onSignInSubmit}
          /> ) : (null)}
-        {(!this.state.showCard  && !this.state.showSignInPage) ? ( <Landing /> ) : (null)}
+         {(!this.state.showCard && this.state.showRegisterPage) ? ( <RegisterPage 
+            toggleLoginPage= {this.toggleLoginPage}
+            handleSignInChange={this.handleSignInChange}
+            onRegisterSubmit={this.onRegisterSubmit}
+         /> ) : (null)}
+        {(!this.state.showCard  && !this.state.showSignInPage && !this.state.showRegisterPage) ? ( <Landing /> ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
         <Wrapper showCard={this.state.showCard}
           data={this.state.data}

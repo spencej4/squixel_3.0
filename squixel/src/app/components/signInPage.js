@@ -54,7 +54,7 @@ class SignInPage extends Component {
                 <div className='register right'>
                     <div className='sign-in-title'>Register</div>
                     <div className='float-right-sign-in-page-container'>
-                        <button type='submit' className='action-btn'>Register</button>
+                        <button onClick={this.props.toggleLoginPage} className='action-btn'>Register</button>
                     </div>
                 </div>
             </div>

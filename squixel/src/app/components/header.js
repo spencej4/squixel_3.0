@@ -6,9 +6,9 @@ import DisplaySearchInput from './displaySearchInput';
 
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     
     render() {
@@ -42,13 +42,10 @@ class Header extends Component {
                                             }
                                 /> : null
                             }
-                        {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage) ? ( 
+                        {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage) ? ( 
                                 <CenteredSearchBar
                                     handleChange={(e) => this.props.handleChange(e)}
                                     onInputSubmit={(e) => this.props.onInputSubmit(e)}
-                                    onInputSubmit={(event) => 
-                                        this.props.onInputSubmit(event)
-                                       }
                                 /> ) : (null)}
                         <div className='dd-login-title'>
                             <div className='dd-login-button'
@@ -57,11 +54,11 @@ class Header extends Component {
                         <div className='dd-login-menu hide' id='dd-login-menu'>
                             <ul className='login-options'>
                                 <li className='login-option' onClick={() =>
-                                    this.props.onSignInClick()
+                                    this.props.onSignInMenuClick()
                                 }>Sign In</li>
                                 <hr></hr>
                                 <li className='login-option' onClick={() => 
-                                    this.props.onRegisterClick()
+                                    this.props.onRegisterMenuClick()
                                 }>Register</li>
                             </ul>
                         </div>

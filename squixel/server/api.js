@@ -2,41 +2,24 @@ const express= require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
 const config = require('./config.js');
-
 const cors = require('cors')
+const mongoose = require('mongoose');
+const User =  require('./models/user.js');
 
-router.post('/mail', cors(), (req, res, next) =>{
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    secure: false, 
-    port: 25, 
-    auth: {
-      user: 'spencerjack.sj@gmail.com',
-      pass: config.password
-    },
-    tls: {
-      rejectUnauthorized: false
-    }
 
+router.post('/login', function(request, response){
+  var u = new User({
+      email: request.body.email,
+      password: request.body.password
   });
 
-  let HelperOptions = {
-    from: '"Spencer Jack <spencerjack.sj@gmail.com',
-    to: 'spencerjack.sj@gmail.com',
-    subject: req.body.subject ,// subject line
-    text: req.body.text + req.body.from, // plain text body
-    html: `<p>${req.body.text}</p><h4>from: ${req.body.from}</h4>` // html body
-  }
-
-  transporter.sendMail(HelperOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-    }
-    console.log("The message was sent!");
-    console.log(info);
-  })
-
-  res.json({msg: res.body});
+  u.save(function(err) {
+      if (err)
+         throw err;
+      else 
+         console.log('saved user successfully...');
+  });
+  response.json({msg: response.body});
 });
 
 
