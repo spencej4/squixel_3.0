@@ -183,7 +183,8 @@ onRegisterSubmit(event) {
               body: JSON.stringify({
                 email: this.state.email,
                 password: this.state.password,
-                password_confirm: this.state.password_confirm
+                password_confirm: this.state.password_confirm,
+                content: []
               }) 
         }).then(function(){
           this.setState({ displayForm: false });

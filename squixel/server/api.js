@@ -11,7 +11,8 @@ var bcrypt = require('bcrypt');
 router.post('/register', function(request, response){
       var u = new User({
         email: request.body.email,
-        password: request.body.password
+        password: request.body.password,
+        content: request.body.content
     });
 
     u.save(function(err) {

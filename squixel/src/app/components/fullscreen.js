@@ -8,6 +8,36 @@ class FullScreen extends Component   {
 
     addImageToDatabase () {
         alert('image add clicked');
+
+        fetch('/api/add-image',{
+            method: 'POST',
+            mode: "cors",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: this.state.log_email,
+              password: this.state.log_password
+            }) 
+        }).then(function(){
+          //update this line to remove the form
+          // this.setState({ displayForm: false });    
+    
+          // set local storage
+          let key = this.state.log_email;
+          localStorage.setItem("key", key); 
+    
+          console.log(`You're signed in! ${this.state.log_email}`);
+    
+          //update state
+          this.setState({
+            isAuthenticated: true
+          })
+    
+          let localStorageKey = localStorage.getItem("key");
+          console.log(`Local Storage Key: ${localStorageKey}`);
+        }.bind(this));
     }
 
     removeImageFromDatabase() {
