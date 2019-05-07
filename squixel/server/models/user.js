@@ -36,6 +36,41 @@ UserSchema.statics.authenticate = function (email, password, callback) {
     });
 }
 
+// ============================================== new ==============================================
+UserSchema.statics.add_image = function (email, image) {
+  User.findByIdAndUpdate(req.params.email, req.body, {new: true}, (err) => {
+    if (err) return res.status(500).send(err);
+    return res.send("not sure");
+  });
+}
+// ============================================== end new ==============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ---------------------------------------------mine---------------------------------------------
 //get list of all users in database

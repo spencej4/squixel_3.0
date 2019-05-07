@@ -405,9 +405,11 @@ render() {
           showFullScreenImage={this.showFullScreenImage}
           fullScreenImage={this.state.fullScreenImage}/>
         {this.state.showFullScreenImage ? (
-          <FullScreen photo={this.state.fullScreenImage} 
+          <FullScreen 
+            photo={this.state.fullScreenImage} 
             fullscreenData={this.state.fullscreenData}
             closeFullScreen={this.closeFullScreenImage}
+            log_email={this.state.log_email}
           />
           ) : (null)
         }

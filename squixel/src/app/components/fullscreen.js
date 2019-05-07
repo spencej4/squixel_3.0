@@ -3,45 +3,46 @@ import React, {Component} from 'react';
 class FullScreen extends Component   {
     constructor(props) {
         super(props);
+        this.state = {
+            log_email: this.props.log_email
+        }
         this.escFunction = this.escFunction.bind(this);
+        this.addImageToDatabase = this.addImageToDatabase.bind(this)
     }
 
-    addImageToDatabase () {
-        alert('image add clicked');
+    componentDidMount() {
+        console.log(this.props.log_email);
+    }
 
-        fetch('/api/add-image',{
-            method: 'POST',
+    addImageToDatabase (event) {
+        event.preventDefault();
+        // let email = this.state.log_email;
+        // here
+        // find how to get user id from response in user.js
+
+
+
+        let email = "5cd1cc80e76f6e074c4584f7";
+        let image = event.target.value;
+
+        fetch('/api/add-image' + email + image,{
+            method: 'PUT',
             mode: "cors",
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-              email: this.state.log_email,
-              password: this.state.log_password
+              email: email,
+              content: [image]
             }) 
         }).then(function(){
-          //update this line to remove the form
-          // this.setState({ displayForm: false });    
-    
-          // set local storage
-          let key = this.state.log_email;
-          localStorage.setItem("key", key); 
-    
-          console.log(`You're signed in! ${this.state.log_email}`);
-    
-          //update state
-          this.setState({
-            isAuthenticated: true
-          })
-    
-          let localStorageKey = localStorage.getItem("key");
-          console.log(`Local Storage Key: ${localStorageKey}`);
+            console.log('reached end of add image to database function');
         }.bind(this));
     }
 
     removeImageFromDatabase() {
-        alert('remove image cliced');
+        alert('remove image clicked');
     }
 
     escFunction(event) {
@@ -67,9 +68,11 @@ class FullScreen extends Component   {
                     </button>
                     <button className='add-to-db'
                         onClick={this.addImageToDatabase}
+                        value={this.props.photo}
                     >+</button>
                     <button className='remove-from-db'
                         onClick={this.removeImageFromDatabase}
+                        value={this.props.photo}
                     >-</button>
                 </div>
                 <img src={this.props.photo}

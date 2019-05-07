@@ -36,7 +36,10 @@ router.post('/login', function(request, response){
       } else {
         // request.session.userId = user._id;
         console.log('user authenticated! :D');
-        return response.redirect('/profile');
+        let userID = response.user
+        console.log(userID);
+        // get user id somehow here...
+        return response.send(user._id)
       }
     });
 });
@@ -59,9 +62,12 @@ router.get('/profile', function (request, response, next) {
     });
 });
 
-// router.post('/add-image', function (request, response, next) {
-//   User
-// })
+router.put('/add-image:email:image', function (request, response) {
+  let email = request.email;
+  let image = request.image;
+
+  User.add_image(email, image)
+})
 
 
 
