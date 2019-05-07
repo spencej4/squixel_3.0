@@ -41,7 +41,7 @@ router.post('/login', function(request, response){
 });
 
 // GET route after registering
-router.get('/profile', function (request, ressponse, next) {
+router.get('/profile', function (request, response, next) {
   User.findById(request.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -52,11 +52,15 @@ router.get('/profile', function (request, ressponse, next) {
           err.status = 400;
           return next(err);
         } else {
-          return ressponse.send('<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+          return response.send('<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     });
 });
+
+// router.post('/add-image', function (request, response, next) {
+//   User
+// })
 
 
 

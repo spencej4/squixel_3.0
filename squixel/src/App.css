@@ -278,7 +278,9 @@ a {
 .login-options {
   top: 0;
   padding-top: 1px;
+  /* original height before view collection link added */
   height: 103px;
+  /* height: 150px; */
   background-color: white;
 }
 
@@ -992,6 +994,30 @@ input[type=text] {
     border: none;
     cursor: pointer;
     font-size: 2em;
+    font-weight: 100;
+    z-index: 0;
+  }
+
+  .add-to-db {
+    display: block;
+    position: relative;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 3em;
+    font-weight: 100;
+    z-index: 0;
+  }
+
+  .remove-from-db {
+    display: block;
+    position: relative;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 3em;
     font-weight: 100;
     z-index: 0;
   }

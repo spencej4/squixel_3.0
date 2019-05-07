@@ -31,6 +31,7 @@ class App extends Component {
       // end new
       log_email: '',
       log_password: '',
+      isAuthenticated: false,
       data: '',
       nextData: [],
       imagesArrrayNext: [],
@@ -54,6 +55,8 @@ class App extends Component {
     this.handleSignInChange = this.handleSignInChange.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
+    this.onViewCollectionClick = this.onViewCollectionClick.bind(this);
+    this.onLogoutClick = this.onLogoutClick.bind(this);
     this.onSearchClick = this.onSearchClick.bind(this);
     this.onCloseSearchClick = this.onCloseSearchClick.bind(this);
     this.closeSearch = this.closeSearch.bind(this);
@@ -65,6 +68,20 @@ class App extends Component {
     this.onPreviousClick = this.onPreviousClick.bind(this);
   }
 
+componentDidMount() {
+  let localStorageKey = localStorage.getItem("key");
+
+  // check if user is logged in via local storage
+  if (this.state.isAuthenticated && localStorageKey) {
+    console.log(`Local Storage Key: ${localStorageKey}`)
+    // update state that user is logged in
+    this.setState({
+      isAuthenticated: true
+    })
+  }else {
+    console.log('no local storage key found');
+  }
+}
 
 // handles click for sign in from header 
 onSignInMenuClick() {
@@ -130,8 +147,21 @@ onLoginSubmit(event) {
         }) 
     }).then(function(){
       //update this line to remove the form
-      // this.setState({ displayForm: false });
-      alert(`You're signed in! ${this.state.log_email}`);
+      // this.setState({ displayForm: false });    
+
+      // set local storage
+      let key = this.state.log_email;
+      localStorage.setItem("key", key); 
+
+      console.log(`You're signed in! ${this.state.log_email}`);
+
+      //update state
+      this.setState({
+        isAuthenticated: true
+      })
+
+      let localStorageKey = localStorage.getItem("key");
+      console.log(`Local Storage Key: ${localStorageKey}`);
     }.bind(this));
 }
 
@@ -159,7 +189,20 @@ onRegisterSubmit(event) {
           this.setState({ displayForm: false });
         }.bind(this));
     }
-  }
+}
+
+onViewCollectionClick() {
+  console.log('view collection clicked');
+  this.toggleLoginMenu();
+}
+
+onLogoutClick() {
+  console.log('logout clicked');
+  this.setState({
+    isAuthenticated: false
+  }) 
+  this.toggleLoginMenu();
+}
 
 
 // toggle from register page to login page and vice versus
@@ -179,7 +222,7 @@ toggleLoginPage() {
 
 
 //captures input search value, calls API and returns JSON data
-  onInputSubmit(event) {
+onInputSubmit(event) {
       event.preventDefault();
 
       this.setState({
@@ -214,7 +257,7 @@ toggleLoginPage() {
 
 
 //user clicks next, calls API and returns JSON data
-  onNextClick() {
+onNextClick() {
       this.setState({
         loading: true,
         showSearchInput: false,
@@ -328,6 +371,9 @@ render() {
           toggleLoginMenu={this.toggleLoginMenu}
           showSignInPage={this.state.showSignInPage}
           showRegisterPage={this.state.showRegisterPage}
+          isAuthenticated={this.state.isAuthenticated}
+          onViewCollectionClick={this.onViewCollectionClick}
+          onLogoutClick={this.onLogoutClick}
           showSearchInput={this.state.showSearchInput}
           handleChange={this.handleChange}
           onInputSubmit={this.onInputSubmit}
