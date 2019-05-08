@@ -11,21 +11,22 @@ class FullScreen extends Component   {
     }
 
     componentDidMount() {
-        console.log(this.props.log_email);
+        window.addEventListener('keydown', this.escFunction, false);
+        console.log(`Log_email: ${this.state.log_email}`);
+    }  
+
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.escFunction, false);
     }
+
 
     addImageToDatabase (event) {
         event.preventDefault();
-        // let email = this.state.log_email;
-        // here
-        // find how to get user id from response in user.js
-
-
-
-        let email = "5cd1cc80e76f6e074c4584f7";
+        let email = this.state.log_email;
         let image = event.target.value;
 
-        fetch('/api/add-image' + email + image,{
+        fetch('/api/add-image/',{
             method: 'PUT',
             mode: "cors",
             headers: {
@@ -34,30 +35,25 @@ class FullScreen extends Component   {
             },
             body: JSON.stringify({
               email: email,
-              content: [image]
+              image: image
             }) 
         }).then(function(){
-            console.log('reached end of add image to database function');
+            // enter message if you feel so inclined
         }.bind(this));
     }
+
 
     removeImageFromDatabase() {
         alert('remove image clicked');
     }
+
 
     escFunction(event) {
         if (event.keyCode === 27) {
             this.props.closeFullScreen();
         }
     }
-
-    componentDidMount() {
-        window.addEventListener('keydown', this.escFunction, false);
-    }  
-
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.escFunction, false);
-    }
+    
     
     render () { 
         return (
