@@ -12,7 +12,9 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   }, 
-  content: []
+  content: {
+    type: Array
+}
 });
 
 //authenticate input against database
@@ -37,56 +39,51 @@ UserSchema.statics.authenticate = function (email, password, callback) {
 }
 
 // ============================================== new ==============================================
+// works mofo
 UserSchema.statics.add_image = function (email, image) {
-  User.findByIdAndUpdate(req.params.email, req.body, {new: true}, (err) => {
-    if (err) return res.status(500).send(err);
-    return res.send("not sure");
-  });
+  User.update({ email: email }, { $push: { content: image }})
+    .exec(function(err, user){
+    console.log(`${image} has been added to your collection!`);
+  })
 }
+
+
+// =========================================== current ===========================================
+UserSchema.statics.getUserContent = function (email) {
+  User.find({ email: email })
+    .exec(function (err, user) {
+      if (err) {
+          return callback(err)
+      } else if (!user) {
+          var err = new Error('User not found.');
+          err.status = 401;
+          return callback(err);
+      } else {
+          return user
+      }
+  })
+}
+// ========================================== end current =======================================
+
 // ============================================== end new ==============================================
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ---------------------------------------------mine---------------------------------------------
+// --------------------------------------------- mine ---------------------------------------------
 //get list of all users in database
-UserSchema.statics.findAll = function () {
+UserSchema.statics.findAll = function (request, response) {
   User.find({}, function(err, users) {
     var userMap = {};
   
     users.forEach(function(user) {
       userMap[user._id] = user;
     });
-  
-    res.send(userMap);  
+    
+    console.log(userMap)
+    // response.send(userMap);  
   });
 }
-// ---------------------------------------------end mine---------------------------------------------
-
+// --------------------------------------------- end mine ---------------------------------------------
 
 
 //hashing a password before saving it to the database

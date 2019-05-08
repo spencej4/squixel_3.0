@@ -12,7 +12,6 @@ router.post('/register', function(request, response){
       var u = new User({
         email: request.body.email,
         password: request.body.password,
-        content: request.body.content
     });
 
     u.save(function(err) {
@@ -36,10 +35,7 @@ router.post('/login', function(request, response){
       } else {
         // request.session.userId = user._id;
         console.log('user authenticated! :D');
-        let userID = response.user
-        console.log(userID);
-        // get user id somehow here...
-        return response.send(user._id)
+        return response
       }
     });
 });
@@ -62,14 +58,28 @@ router.get('/profile', function (request, response, next) {
     });
 });
 
-router.put('/add-image:email:image', function (request, response) {
-  let email = request.email;
-  let image = request.image;
+
+// works mofo 
+router.put('/add-image', function (request, response) {
+  let email = request.body.email;
+  let image = request.body.image;
 
   User.add_image(email, image)
+  return response
+})
+// =================================== curent ====================================
+
+// no workie
+router.get('/getUserContent', function (request, response) {  
+  User.getUserContent(request.email)
 })
 
+// =================================== end curent====================================
 
 
+// works mofo, posts console log in mongod terminal
+router.get('/users', function (request, response) {
+  User.findAll();
+})
 
 module.exports = router;
