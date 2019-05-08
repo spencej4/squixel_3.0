@@ -9,7 +9,6 @@ import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
 import Footer from './app/components/footer';
 import Wrapper from './app/components/wrapper';
-// import CenteredSearchBar from './app/components/centeredSearchBar';
 
 const unsplash = new Unsplash({
   applicationId: "923e03b3d8e1b91345512fe194223858801d195497f62ccbc83d4b21fe8620ee",
@@ -133,7 +132,6 @@ handleSignInChange(event) {
 
 onLoginSubmit(event) {
   event.preventDefault();
- 
   fetch('/api/login',{
         method: 'POST',
         mode: "cors",
@@ -187,14 +185,30 @@ onRegisterSubmit(event) {
                 content: []
               }) 
         }).then(function(){
-          this.setState({ displayForm: false });
-        }.bind(this));
+          // this.setState({ displayForm: false });
+        });
     }
 }
 
 onViewCollectionClick() {
   console.log('view collection clicked');
   this.toggleLoginMenu();
+
+  let email = this.state.log_email;
+  let password = 'test'
+
+  console.log(`Email: ${this.state.log_email}   (from onViewCollectionClick)`);
+
+  fetch(`/api/getUserContent/${email}/${password}`,{
+      method: 'GET',
+      mode: "cors",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }, 
+  }).then(function(response){
+      console.log(JSON.stringify(response));
+  });
 }
 
 onLogoutClick() {

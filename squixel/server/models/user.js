@@ -30,6 +30,8 @@ UserSchema.statics.authenticate = function (email, password, callback) {
       }
       bcrypt.compare(password, user.password, function (err, result) {
         if (result === true) {
+          // console.log(`Hello there User   (from: schema)`);
+          // console.log(`User ID: ${user._id}   (from: schema)`);
           return callback(null, user);
         } else {
           return callback();
@@ -38,19 +40,10 @@ UserSchema.statics.authenticate = function (email, password, callback) {
     });
 }
 
-// ============================================== new ==============================================
-// works mofo
-UserSchema.statics.add_image = function (email, image) {
-  User.update({ email: email }, { $push: { content: image }})
-    .exec(function(err, user){
-    console.log(`${image} has been added to your collection!`);
-  })
-}
 
 
-// =========================================== current ===========================================
-UserSchema.statics.getUserContent = function (email) {
-  User.find({ email: email })
+UserSchema.statics.getUserContent = function (email, callback) {
+  User.findOne({ email: email })
     .exec(function (err, user) {
       if (err) {
           return callback(err)
@@ -59,13 +52,35 @@ UserSchema.statics.getUserContent = function (email) {
           err.status = 401;
           return callback(err);
       } else {
-          return user
+          console.log('line 55 reached in schema');
+          console.log(`User: ${user.content}    (from: schema)`);
+          return callback(user.content)
       }
   })
 }
-// ========================================== end current =======================================
 
-// ============================================== end new ==============================================
+// add an image to database
+UserSchema.statics.add_image = function (email, image) {
+  User.update({ email: email }, { $push: { content: image }})
+    .exec(function(err, user){
+    console.log(`${image} has been added to your collection!`);
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

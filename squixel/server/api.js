@@ -1,11 +1,6 @@
 const express= require('express');
-const nodemailer = require('nodemailer');
 const router = express.Router();
-const config = require('./config.js');
-const cors = require('cors')
-const mongoose = require('mongoose');
 const User =  require('./models/user.js');
-var bcrypt = require('bcrypt');
 
 
 router.post('/register', function(request, response){
@@ -14,31 +9,54 @@ router.post('/register', function(request, response){
         password: request.body.password,
     });
 
-    u.save(function(err) {
+    u.save(function(err, user) {
         if (err)
           throw err;
         else 
+          // added this here
+          request.session.userId = user._id;
           console.log('saved user successfully...');
     });
     response.json({msg: response.body});
 });
 
-router.post('/login', function(request, response){
-  console.log(`Email: ${request.body.email}`);
-  console.log(`Password: ${request.body.password}`);
+
+router.post('/login', function(request, response, next){
+  // console.log(`Email: ${request.body.email}   (from: api)`);
+  // console.log(`Password: ${request.body.password}   (from: api)`);
 
    User.authenticate(request.body.email, request.body.password, function (error, user) {
       if (error || !user) {
         var err = new Error('Wrong email or password.');
         err.status = 401;
-        return
+        return next(err)
       } else {
-        // request.session.userId = user._id;
-        console.log('user authenticated! :D');
-        return response
+        console.log('user authenticated! :D     (from: api)');
+        // console.log(`User ID: ${user._id}   (from: api)`)
+        request.session.userID = user._id;
+        return response.send('<h1>User Email: </h1>' + user.email + '<h2>User ID: </h2>' + user._id + '<br><a type="button" href="/logout">Logout</a>')
       }
     });
 });
+
+// =================================== curent ====================================
+
+// no workie
+router.get('/getUserContent/:email/:/password', function (request, response, next) {  
+  User.getUserContent(request.email, request.body.password, function (error, user) {
+    if (error || !user) {
+      var err = new Error('Wrong email or password.');
+      err.status = 401;
+      return next(err)
+    } else {
+      console.log(response);
+      return response.data
+    }
+  })
+})
+
+// =================================== end curent====================================
+
 
 // GET route after registering
 router.get('/profile', function (request, response, next) {
@@ -59,7 +77,6 @@ router.get('/profile', function (request, response, next) {
 });
 
 
-// works mofo 
 router.put('/add-image', function (request, response) {
   let email = request.body.email;
   let image = request.body.image;
@@ -67,14 +84,6 @@ router.put('/add-image', function (request, response) {
   User.add_image(email, image)
   return response
 })
-// =================================== curent ====================================
-
-// no workie
-router.get('/getUserContent', function (request, response) {  
-  User.getUserContent(request.email)
-})
-
-// =================================== end curent====================================
 
 
 // works mofo, posts console log in mongod terminal

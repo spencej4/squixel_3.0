@@ -39,7 +39,7 @@ class FullScreen extends Component   {
             }) 
         }).then(function(){
             // enter message if you feel so inclined
-        }.bind(this));
+        });
     }
 
 
