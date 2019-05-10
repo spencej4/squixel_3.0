@@ -34,16 +34,11 @@ router.post('/login', function(request, response, next){
         console.log('user authenticated! :D     (from: api)');
         console.log(`User ID: ${user._id}   (from: api)`)
         // request.session.userID = user._id;
-        userID = user._id;
 
         response.cookie('id', user.id, { signed: true, httpOnly: true });
-        let body = userID;
+        let body = user.id;
         return response.json(body);
-        // return response.send(userID);
-        // response.body({ userID: userID });
-        // return callback(user._id);
       }
-     
     });
 });
 
@@ -55,18 +50,21 @@ router.get('/getUserContent/:user', function (request, response, next) {
   var user = request.params.user;
   console.log(`User request param from API: ${ user }`);
 
-  User.getUserContent(user, function (error, user) {
+  User.getUserContent(user, function (error, user, result) {
     if (error || !user) {
       var err = new Error('Wrong email or password.');
       err.status = 401;
       return next(err)
-    } else {
-      console.log(`Response from within API: ${ user.content }`);
+    } else if (!user) {
+      var err = new Error('Collection not found.');
+      err.status = 401;
+      return callback(err);
+    }else {
+      console.log(`Response from within API: ${ user }`);
+      let body = user;
+      return response.json(body);
     }
   })
-
-  // console.log(`Response from within API: ${response}`);
-  return response
 })
 
 // =================================== end curent====================================

@@ -196,14 +196,12 @@ onViewCollectionClick() {
         'Content-Type': 'application/json',
       }, 
       credentials: "same-origin",
-  })
-  // .then(response => (console.log(response)));
-  
-  .then(response => response.json())
-    .then(data => {
-        console.log(data)
-  })
-  console.log('view collection clicked');
+  }).then(function(response){
+    return response.json();
+  }).then(function(data){
+      console.log(`USER CONTENT DATA FROM APP: ${data}`);
+      console.log('view collection clicked');
+  });
 }
 
 

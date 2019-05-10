@@ -28,6 +28,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
         err.status = 401;
         return callback(err);
       }
+      
       bcrypt.compare(password, user.password, function (err, result) {
         if (result === true) {
           // console.log(`Hello there User   (from: schema)`);
@@ -53,9 +54,10 @@ UserSchema.statics.getUserContent = function (email, callback) {
           err.status = 401;
           return callback(err);
       } else {
-          console.log('line 55 reached in schema');
+          console.log('line 56 reached in schema');
           console.log(`User Content from Schema: ${ user.content }`); 
-          return callback( null, user.content )
+          let user_content = user.content;
+          return callback( null, user_content )
       }
   })
 }
