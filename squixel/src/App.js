@@ -146,13 +146,13 @@ onLoginSubmit(event) {
           password: this.state.log_password
         }) 
     }).then(function(response){
-      console.log(`You're signed in! ${this.state.log_email}`);
-
-      //update state
+      return response.json();
+    }).then(function(data){
       this.setState({
         isAuthenticated: true
       })
-
+      console.log(`You're signed in! ${this.state.log_email}`);
+      console.log(`USER ID FROM APP: ${data}`);
     }.bind(this));
 }
 
@@ -185,29 +185,25 @@ onRegisterSubmit(event) {
 
 
 onViewCollectionClick() {
-  console.log('view collection clicked');
   this.toggleLoginMenu();
+  let user = this.state.log_email
 
-  fetch('/api/getUserContent',{
-      method: 'POST',
+  fetch('/api/getUserContent/' + user,{
+      method: 'GET',
       mode: "cors",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }, 
       credentials: "same-origin",
-      body: JSON.stringify({
-        email: this.state.log_email,
-        password: this.state.log_password
-      }) 
-  }).then(response => response.json())
+  })
+  // .then(response => (console.log(response)));
+  
+  .then(response => response.json())
     .then(data => {
         console.log(data)
   })
-  // .then(function(response){
-  //     // console.log(JSON.stringify(response));
-  //     console.log(response);
-  // });
+  console.log('view collection clicked');
 }
 
 

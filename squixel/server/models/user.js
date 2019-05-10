@@ -42,7 +42,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
 
 
 
-UserSchema.statics.getUserContent = function (email) {
+UserSchema.statics.getUserContent = function (email, callback) {
   User.findOne({ email: email })
   // User.find({ 'User.collection': ''}, {'collection.$': 1})
     .exec(function (err, user) {
@@ -54,8 +54,8 @@ UserSchema.statics.getUserContent = function (email) {
           return callback(err);
       } else {
           console.log('line 55 reached in schema');
-          console.log(`User: ${user.content}    (from: schema)`);
-          return (user)
+          console.log(`User Content from Schema: ${ user.content }`); 
+          return callback( null, user.content )
       }
   })
 }

@@ -37,7 +37,8 @@ router.post('/login', function(request, response, next){
         userID = user._id;
 
         response.cookie('id', user.id, { signed: true, httpOnly: true });
-        return response.send('<h1>User Email: </h1>' + user.email + '<h2>User ID: </h2>' + user._id + '<br><a type="button" href="/logout">Logout</a>')
+        let body = userID;
+        return response.json(body);
         // return response.send(userID);
         // response.body({ userID: userID });
         // return callback(user._id);
@@ -50,17 +51,22 @@ router.post('/login', function(request, response, next){
 // =================================== curent ====================================
 
 // no workie
-router.post('/getUserContent', function (request, response, next) {  
-  User.getUserContent(request.body.email, request.body.password, function (error, user) {
+router.get('/getUserContent/:user', function (request, response, next) {  
+  var user = request.params.user;
+  console.log(`User request param from API: ${ user }`);
+
+  User.getUserContent(user, function (error, user) {
     if (error || !user) {
       var err = new Error('Wrong email or password.');
       err.status = 401;
       return next(err)
     } else {
-      console.log(response);
-      return response
+      console.log(`Response from within API: ${ user.content }`);
     }
   })
+
+  // console.log(`Response from within API: ${response}`);
+  return response
 })
 
 // =================================== end curent====================================
