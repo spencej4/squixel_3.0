@@ -34,7 +34,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
           // console.log(`User ID: ${user._id}   (from: schema)`);
           return callback(null, user);
         } else {
-          return callback();
+          return callback(user._id);
         }
       })
     });
@@ -42,8 +42,9 @@ UserSchema.statics.authenticate = function (email, password, callback) {
 
 
 
-UserSchema.statics.getUserContent = function (email, callback) {
+UserSchema.statics.getUserContent = function (email) {
   User.findOne({ email: email })
+  // User.find({ 'User.collection': ''}, {'collection.$': 1})
     .exec(function (err, user) {
       if (err) {
           return callback(err)
@@ -54,10 +55,14 @@ UserSchema.statics.getUserContent = function (email, callback) {
       } else {
           console.log('line 55 reached in schema');
           console.log(`User: ${user.content}    (from: schema)`);
-          return callback(user.content)
+          return (user)
       }
   })
 }
+
+
+// User.find({ 'User.collection': ''}, {'collection.$': 1});
+// db.coll.find({ 'notes.title': 'Hello MongoDB' }, {'notes.$': 1});
 
 // add an image to database
 UserSchema.statics.add_image = function (email, image) {

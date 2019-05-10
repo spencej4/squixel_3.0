@@ -68,18 +68,18 @@ class App extends Component {
   }
 
 componentDidMount() {
-  let localStorageKey = localStorage.getItem("key");
+  // let localStorageKey = localStorage.getItem("key");
 
-  // check if user is logged in via local storage
-  if (this.state.isAuthenticated && localStorageKey) {
-    console.log(`Local Storage Key: ${localStorageKey}`)
-    // update state that user is logged in
-    this.setState({
-      isAuthenticated: true
-    })
-  }else {
-    console.log('no local storage key found');
-  }
+  // // check if user is logged in via local storage
+  // if (this.state.isAuthenticated && localStorageKey) {
+  //   console.log(`Local Storage Key: ${localStorageKey}`)
+  //   // update state that user is logged in
+  //   this.setState({
+  //     isAuthenticated: true
+  //   })
+  // }else {
+  //   console.log('no local storage key found');
+  // }
 }
 
 // handles click for sign in from header 
@@ -138,19 +138,14 @@ onLoginSubmit(event) {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+
         },
+        credentials: "same-origin",
         body: JSON.stringify({
           email: this.state.log_email,
           password: this.state.log_password
         }) 
-    }).then(function(){
-      //update this line to remove the form
-      // this.setState({ displayForm: false });    
-
-      // set local storage
-      let key = this.state.log_email;
-      localStorage.setItem("key", key); 
-
+    }).then(function(response){
       console.log(`You're signed in! ${this.state.log_email}`);
 
       //update state
@@ -158,8 +153,6 @@ onLoginSubmit(event) {
         isAuthenticated: true
       })
 
-      let localStorageKey = localStorage.getItem("key");
-      console.log(`Local Storage Key: ${localStorageKey}`);
     }.bind(this));
 }
 
@@ -190,26 +183,33 @@ onRegisterSubmit(event) {
     }
 }
 
+
 onViewCollectionClick() {
   console.log('view collection clicked');
   this.toggleLoginMenu();
 
-  let email = this.state.log_email;
-  let password = 'test'
-
-  console.log(`Email: ${this.state.log_email}   (from onViewCollectionClick)`);
-
-  fetch(`/api/getUserContent/${email}/${password}`,{
-      method: 'GET',
+  fetch('/api/getUserContent',{
+      method: 'POST',
       mode: "cors",
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }, 
-  }).then(function(response){
-      console.log(JSON.stringify(response));
-  });
+      credentials: "same-origin",
+      body: JSON.stringify({
+        email: this.state.log_email,
+        password: this.state.log_password
+      }) 
+  }).then(response => response.json())
+    .then(data => {
+        console.log(data)
+  })
+  // .then(function(response){
+  //     // console.log(JSON.stringify(response));
+  //     console.log(response);
+  // });
 }
+
 
 onLogoutClick() {
   console.log('logout clicked');

@@ -32,25 +32,33 @@ router.post('/login', function(request, response, next){
         return next(err)
       } else {
         console.log('user authenticated! :D     (from: api)');
-        // console.log(`User ID: ${user._id}   (from: api)`)
-        request.session.userID = user._id;
+        console.log(`User ID: ${user._id}   (from: api)`)
+        // request.session.userID = user._id;
+        userID = user._id;
+
+        response.cookie('id', user.id, { signed: true, httpOnly: true });
         return response.send('<h1>User Email: </h1>' + user.email + '<h2>User ID: </h2>' + user._id + '<br><a type="button" href="/logout">Logout</a>')
+        // return response.send(userID);
+        // response.body({ userID: userID });
+        // return callback(user._id);
       }
+     
     });
 });
+
 
 // =================================== curent ====================================
 
 // no workie
-router.get('/getUserContent/:email/:/password', function (request, response, next) {  
-  User.getUserContent(request.email, request.body.password, function (error, user) {
+router.post('/getUserContent', function (request, response, next) {  
+  User.getUserContent(request.body.email, request.body.password, function (error, user) {
     if (error || !user) {
       var err = new Error('Wrong email or password.');
       err.status = 401;
       return next(err)
     } else {
       console.log(response);
-      return response.data
+      return response
     }
   })
 })
@@ -59,22 +67,22 @@ router.get('/getUserContent/:email/:/password', function (request, response, nex
 
 
 // GET route after registering
-router.get('/profile', function (request, response, next) {
-  User.findById(request.session.userId)
-    .exec(function (error, user) {
-      if (error) {
-        return next(error);
-      } else {
-        if (user === null) {
-          var err = new Error('Not authorized! Go back!');
-          err.status = 400;
-          return next(err);
-        } else {
-          return response.send('<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
-        }
-      }
-    });
-});
+// router.get('/profile', function (request, response, next) {
+//   User.findById(request.session.userId)
+//     .exec(function (error, user) {
+//       if (error) {
+//         return next(error);
+//       } else {
+//         if (user === null) {
+//           var err = new Error('Not authorized! Go back!');
+//           err.status = 400;
+//           return next(err);
+//         } else {
+//           return response.send('<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+//         }
+//       }
+//     });
+// });
 
 
 router.put('/add-image', function (request, response) {

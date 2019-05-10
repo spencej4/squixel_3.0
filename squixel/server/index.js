@@ -8,6 +8,9 @@ const router = express.Router();
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
+var cookieParser = require('cookie-parser')
+
+
 const app =express();
 app.set('port', (process.env.PORT || 4000));
 app.use(cors());
@@ -32,14 +35,15 @@ db.once('open', function () {
 })
 
 //use sessions for tracking logins
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: db
-    })
-  }));
+// app.use(session({
+//     secret: 'work hard',
+//     resave: true,
+//     saveUninitialized: false,
+//     store: new MongoStore({
+//       mongooseConnection: db
+//     })
+//   }));
+app.use(cookieParser('secret'));
 
 mongoose.Promise = global.Promise;
 
