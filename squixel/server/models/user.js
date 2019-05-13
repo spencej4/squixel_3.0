@@ -55,9 +55,9 @@ UserSchema.statics.getUserContent = function (email, callback) {
           return callback(err);
       } else {
           console.log('line 56 reached in schema');
-          console.log(`User Content from Schema: ${ user.content }`); 
-          let user_content = user.content;
-          return callback( null, user_content )
+          let user = JSON.parse(user);
+          console.log(`User Content from Schema: ${ user }`); 
+          return callback( null, user )
       }
   })
 }
@@ -68,7 +68,7 @@ UserSchema.statics.getUserContent = function (email, callback) {
 
 // add an image to database
 UserSchema.statics.add_image = function (email, image) {
-  User.update({ email: email }, { $push: { content: image }})
+  User.update({ email: email }, { $push: { content: {image} }})
     .exec(function(err, user){
     console.log(`${image} has been added to your collection!`);
   })

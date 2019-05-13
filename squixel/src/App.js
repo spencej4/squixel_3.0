@@ -197,7 +197,7 @@ onViewCollectionClick() {
       }, 
       credentials: "same-origin",
   }).then(function(response){
-    return response.json();
+    // return response.json();
   }).then(function(data){
       console.log(`USER CONTENT DATA FROM APP: ${data}`);
       console.log('view collection clicked');
@@ -246,7 +246,7 @@ onInputSubmit(event) {
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           // console.log('api call made');
-          // console.log(json.results);
+          console.log(json.results);
           return {
             data: json.results,
             loading: false,
@@ -354,7 +354,7 @@ handleChange(event) {
 }
 
 
-showFullScreenImage(image, fullscreenData, ) {
+showFullScreenImage(image, fullscreenData) {
   this.setState({
     showFullScreenImage: true,
     fullScreenImage: image,

@@ -16,12 +16,16 @@ class Card extends Component   {
                     key={id}
                     onClick={() => {
                       let image = this.props.data[id].urls.full;
+                      let width = this.props.data[id].width;
+                      let height = this.props.data[id].height;
                       let fullscreenData = this.props.data[id];
-                      this.props.showFullScreenImage(image, fullscreenData)
+                      this.props.showFullScreenImage(image, width, height, fullscreenData)
                     }}
                 >
                   <img src={this.props.data[id].urls.small} 
                     key={id} 
+                    width={this.props.data[id].width}
+                    height={this.props.data[id].height}
                     alt={this.props.data[id].description}
                     className='landscape'
                   />
@@ -34,12 +38,16 @@ class Card extends Component   {
                     key={id}
                     onClick={() => {
                       let image = this.props.data[id].urls.full;
+                      let width = this.props.data[id].width;
+                      let height = this.props.data[id].height;
                       let fullscreenData = this.props.data[id];
-                      this.props.showFullScreenImage(image, fullscreenData)
+                      this.props.showFullScreenImage(image, width, height, fullscreenData)
                     }}
                 >
                   <img src={this.props.data[id].urls.small} 
                     key={id} 
+                    width={this.props.data[id].width}
+                    height={this.props.data[id].height}
                     alt={this.props.data[id].description}
                     className='portrait'
                   />
