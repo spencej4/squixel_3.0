@@ -55,16 +55,13 @@ UserSchema.statics.getUserContent = function (email, callback) {
           return callback(err);
       } else {
           console.log('line 56 reached in schema');
-          let user = JSON.parse(user);
-          console.log(`User Content from Schema: ${ user }`); 
+          // let user_content = JSON.parse(user);
+          // console.log(`User Content from Schema: ${ user }`); 
           return callback( null, user )
       }
   })
 }
 
-
-// User.find({ 'User.collection': ''}, {'collection.$': 1});
-// db.coll.find({ 'notes.title': 'Hello MongoDB' }, {'notes.$': 1});
 
 // add an image to database
 UserSchema.statics.add_image = function (email, image) {

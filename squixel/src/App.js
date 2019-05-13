@@ -21,13 +21,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // new
       showSignInPage: false,
       showRegisterPage: false,
       loginMenuVisible: false,
-      // email: '',
-      // password: '',
-      // end new
       log_email: '',
       log_password: '',
       isAuthenticated: false,
@@ -36,6 +32,11 @@ class App extends Component {
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
+// new  
+      userCollectionData: '',
+      userCardLoading: false, /* I think this is redundant */
+      showUserCard: false,
+// new
       showSearchInput: false,
       value: '',
       signInValue: '',
@@ -188,6 +189,13 @@ onViewCollectionClick() {
   this.toggleLoginMenu();
   let user = this.state.log_email
 
+  this.setState({
+    loading: true,
+    userCardLoading: true,
+    pageNum: 0,
+    showCard: false, 
+  });
+
   fetch('/api/getUserContent/' + user,{
       method: 'GET',
       mode: "cors",
@@ -196,12 +204,27 @@ onViewCollectionClick() {
         'Content-Type': 'application/json',
       }, 
       credentials: "same-origin",
-  }).then(function(response){
-    // return response.json();
-  }).then(function(data){
-      console.log(`USER CONTENT DATA FROM APP: ${data}`);
-      console.log('view collection clicked');
-  });
+  })
+  .then(response => response.json())
+  // get returned images from user's database
+  .then(response => {
+      //iterate through return for images
+      for (var index in response) {
+        this.setState({
+          // push each image to state array
+          userCollectionData:  [...this.state.userCollectionData, response[index].image]
+        })
+      }
+      console.log(this.state.userCollectionData);
+
+  }).then(response => this.setState((prevState) => {
+        return {
+          loading: false,
+          userCardLoading: false,
+          showUserCard: true,
+          showSignInPage: false
+        } 
+  }))
 }
 
 
@@ -246,7 +269,7 @@ onInputSubmit(event) {
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           // console.log('api call made');
-          console.log(json.results);
+          // console.log(json.rezsults);
           return {
             data: json.results,
             loading: false,
@@ -408,6 +431,11 @@ render() {
         <Wrapper showCard={this.state.showCard}
           data={this.state.data}
           loading={this.state.loading}
+// new
+          userCollectionData={this.state.userCollectionData}
+          showUserCard={this.state.showUserCard}
+          userCardLoading={this.state.userCardLoading}
+ // new       
           photos={this.state.photos}
           showFullScreen={this.state.showFullScreen}
           showFullScreenImage={this.showFullScreenImage}

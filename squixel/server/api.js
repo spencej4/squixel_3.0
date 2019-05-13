@@ -60,9 +60,12 @@ router.get('/getUserContent/:user', function (request, response, next) {
       err.status = 401;
       return callback(err);
     }else {
-      console.log(`Response from within API: ${ user }`);
-      let body = user;
-      return response.json(body);
+        // for (var j = 0; j < user.content.length; j++){
+        //   let value = user.content[j];
+        //   console.log(user.content[j]);
+        // }
+      response.json(user.content);
+      return response 
     }
   })
 })

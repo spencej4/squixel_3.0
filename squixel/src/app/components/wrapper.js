@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './card';
+import UserCard from './userCard';
 
 class Wrapper extends Component {
   componentDidMount() {
@@ -8,20 +9,32 @@ class Wrapper extends Component {
 
     render() {
       return (
-        // <div className='body-container'>
+        <div className='body-container'>
             <div className='wrapperDiv'>
                 {this.props.showCard ? (
                     <Card data={this.props.data}
-                    loading={this.props.loading}
-                    photos={this.props.photos}
-                    showFullScreen={this.props.showFullScreen}
-                    showFullScreenImage={this.props.showFullScreenImage}
-                    fullScreenImage={this.props.fullScreenImage}
+                          loading={this.props.loading}
+                          photos={this.props.photos}
+                          showFullScreen={this.props.showFullScreen}
+                          showFullScreenImage={this.props.showFullScreenImage}
+                          fullScreenImage={this.props.fullScreenImage}
                     />
                 ) : (null)
                 } 
             </div>
-        // </div>
+            <div className='wrapperDiv'>
+                {this.props.showUserCard ? (
+                    <UserCard data={this.props.userCollectionData}
+                              loading={this.props.loading}
+                              photos={this.props.photos}
+                              showFullScreen={this.props.showFullScreen}
+                              showFullScreenImage={this.props.showFullScreenImage}
+                              fullScreenImage={this.props.fullScreenImage}
+                    />
+                ) : (null)
+                } 
+            </div>
+         </div>
       );
     }  
 }
