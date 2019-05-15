@@ -31,7 +31,9 @@ router.post('/login', function(request, response, next){
         err.status = 401;
         return next(err)
       } else {
-        console.log(`User ID: ${user._id} is authenticated  (from: api)`)
+        console.log(`User ID: ${user._id} is authenticated  (from: api)`);
+        let body = user.id;
+        return response.json(body);
       }
     });
 });
