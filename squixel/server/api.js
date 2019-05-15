@@ -31,13 +31,7 @@ router.post('/login', function(request, response, next){
         err.status = 401;
         return next(err)
       } else {
-        console.log('user authenticated! :D     (from: api)');
-        console.log(`User ID: ${user._id}   (from: api)`)
-        // request.session.userID = user._id;
-
-        response.cookie('id', user.id, { signed: true, httpOnly: true });
-        let body = user.id;
-        return response.json(body);
+        console.log(`User ID: ${user._id} is authenticated  (from: api)`)
       }
     });
 });
@@ -48,7 +42,7 @@ router.post('/login', function(request, response, next){
 // no workie
 router.get('/getUserContent/:user', function (request, response, next) {  
   var user = request.params.user;
-  console.log(`User request param from API: ${ user }`);
+  // console.log(`User request param from API: ${ user }`);
 
   User.getUserContent(user, function (error, user, result) {
     if (error || !user) {
@@ -60,10 +54,6 @@ router.get('/getUserContent/:user', function (request, response, next) {
       err.status = 401;
       return callback(err);
     }else {
-        // for (var j = 0; j < user.content.length; j++){
-        //   let value = user.content[j];
-        //   console.log(user.content[j]);
-        // }
       response.json(user.content);
       return response 
     }

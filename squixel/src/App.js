@@ -284,6 +284,7 @@ onViewCollectionClick() {
     userCardLoading: true,
     pageNum: 0,
     showCard: false, 
+    userCollectionData: ''
   });
 
   fetch('/api/getUserContent/' + user,{
@@ -302,10 +303,14 @@ onViewCollectionClick() {
       for (var index in response) {
         this.setState({
           // push each image to state array
-          userCollectionData:  [...this.state.userCollectionData, response[index].image]
+          // userCollectionData:  [...this.state.userCollectionData, response[index].image]
+          userCollectionData:  [...this.state.userCollectionData, 
+            {image: response[index].image, 
+             smallImage: response[index].smallImage}
+          ]
         })
       }
-      // console.log(this.state.userCollectionData);
+      console.log(this.state.userCollectionData);
 
   }).then(response => this.setState((prevState) => {
         return {

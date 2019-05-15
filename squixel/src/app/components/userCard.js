@@ -20,14 +20,14 @@ class UserCard extends Component   {
               <div className='imgSmall' 
                     key={id}
                     onClick={() => {
-                      let image = this.props.userCollectionData[id];
+                      let image = this.props.userCollectionData[id].image;
                       let width = this.props.userCollectionData[id].width;
                       let height = this.props.userCollectionData[id].height;
                       let fullscreenData = this.props.userCollectionData[id];
                       this.props.showFullScreenImage(image, width, height, fullscreenData)
                     }}
                 >
-                  <img src={this.props.userCollectionData[id]} 
+                  <img src={this.props.userCollectionData[id].smallImage} 
                        key={id} 
                        width={this.props.userCollectionData[id].width}
                        height={this.props.userCollectionData[id].height}

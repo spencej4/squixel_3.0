@@ -23,7 +23,7 @@ class Wrapper extends Component {
                 } 
             </div>
             <div className='wrapperDiv'>
-                {this.props.showUserCard ? (
+                {this.props.showUserCard && !this.props.loading && !this.props.showCard ? (
                     <UserCard userCollectionData={this.props.userCollectionData}
                               userCardLoading={this.props.userCardLoading}
                               photos={this.props.photos}
