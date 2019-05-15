@@ -317,7 +317,8 @@ onViewCollectionClick() {
           // loading: false,
           userCardLoading: false,
           showUserCard: true,
-          showSignInPage: false
+          showSignInPage: false,
+          showFooter: false
         } 
   }))
 }
