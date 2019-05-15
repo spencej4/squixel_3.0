@@ -548,27 +548,30 @@ input[type=text] {
 }
 
 .loadMoreButton {
-  margin: 40px 15px 140px 15px;
+  width: 25%;
+  height: 45px;
+  margin: 70px 15px 145px 15px;
   padding: 0 15px 7px 15px;
   display: inline-block;
   position: relative;
-  font-size: 1em;
-  color: rgba(81, 79, 79, 0.703);
-  border: 1px solid rgba(81, 79, 79, 0.703);
-  border-radius: 10px;
   font-weight: 100;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  outline: none;
+  transition: background-color .2s ease-in-out,border .2s ease-in-out,color .2s ease-in-out;
+  cursor: pointer;
+  border: none;
 }
 
 .loadMoreButton:hover {
-  border-radius: 20px;
-  background-color: rgba(244, 118, 208, 0.8);
-  color: white;
+  background-color: rgba(230, 127, 209, 1 );
 }
 
 /* ------------------------------------------------------------------------Desktop--------------------------------------------------------------------- */
 @media only screen and (min-width: 768px) {
   body {
-    /* margin-top: 5.5%;  */
     font-weight: 100;
   }
 
@@ -1032,23 +1035,27 @@ input[type=text] {
   }
 
   .loadMoreButton {
+    width: 25%;
+    height: 45px;
     margin: 70px 15px 145px 15px;
     padding: 0 15px 7px 15px;
     display: inline-block;
     position: relative;
-    font-size: 2em;
-    color: rgba(81, 79, 79, 0.703);
-    border: 1px solid rgba(81, 79, 79, 0.703);
-    border-radius: 10px;
     font-weight: 100;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    transition: background-color .2s ease-in-out,border .2s ease-in-out,color .2s ease-in-out;
+    cursor: pointer;
+    border: none;
   }
 
   .loadMoreButton:hover {
-    border-radius: 20px;
-    background-color: rgba(244, 118, 208, 0.8);
-    color: white;
-    border: 1px solid white;
+    background-color: rgba(230, 127, 209, 1 );
   }
+
 }
 
 /*------------------------------------------------------------------------------ Large Desktop -------------------------------------------------------------------------*/
