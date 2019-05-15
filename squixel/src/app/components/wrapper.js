@@ -10,8 +10,8 @@ class Wrapper extends Component {
     render() {
       return (
         <div className='body-container'>
+        {this.props.showCard ? (
             <div className='wrapperDiv'>
-                {this.props.showCard ? (
                     <Card data={this.props.data}
                           loading={this.props.loading}
                           photos={this.props.photos}
@@ -19,11 +19,12 @@ class Wrapper extends Component {
                           showFullScreenImage={this.props.showFullScreenImage}
                           fullScreenImage={this.props.fullScreenImage}
                     />
-                ) : (null)
-                } 
+                
             </div>
+            ) : (null)
+          } 
+          {this.props.showUserCard && !this.props.loading && !this.props.showCard ? (
             <div className='wrapperDiv'>
-                {this.props.showUserCard && !this.props.loading && !this.props.showCard ? (
                     <UserCard userCollectionData={this.props.userCollectionData}
                               userCardLoading={this.props.userCardLoading}
                               photos={this.props.photos}
@@ -31,9 +32,10 @@ class Wrapper extends Component {
                               showFullScreenImage={this.props.showFullScreenImage}
                               fullScreenImage={this.props.fullScreenImage}
                     />
-                ) : (null)
-                } 
+               
             </div>
+            ) : (null)
+          } 
          </div>
       );
     }  
