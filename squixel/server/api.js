@@ -95,8 +95,9 @@ router.get('/getUserContent/:user', function (request, response, next) {
 router.put('/add-image', function (request, response) {
   let email = request.body.email;
   let image = request.body.image;
+  let smallImage = request.body.smallImage;
 
-  User.add_image(email, image)
+  User.add_image(email, image, smallImage)
   return response
 })
 

@@ -24,8 +24,8 @@ class Wrapper extends Component {
             </div>
             <div className='wrapperDiv'>
                 {this.props.showUserCard ? (
-                    <UserCard data={this.props.userCollectionData}
-                              loading={this.props.loading}
+                    <UserCard userCollectionData={this.props.userCollectionData}
+                              userCardLoading={this.props.userCardLoading}
                               photos={this.props.photos}
                               showFullScreen={this.props.showFullScreen}
                               showFullScreenImage={this.props.showFullScreenImage}

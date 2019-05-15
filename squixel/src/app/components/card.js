@@ -9,6 +9,8 @@ class Card extends Component   {
     if (this.props.loading === false) {
       return (
         this.props.data.map((item, id) => {
+          // log all the data
+          // console.log(this.props.data[id]);
           //For landscape photos
           if (this.props.data[id].width > this.props.data[id].height){
             return (
@@ -16,10 +18,11 @@ class Card extends Component   {
                     key={id}
                     onClick={() => {
                       let image = this.props.data[id].urls.full;
+                      let smallImage = this.props.data[id].urls.small;
                       let width = this.props.data[id].width;
                       let height = this.props.data[id].height;
                       let fullscreenData = this.props.data[id];
-                      this.props.showFullScreenImage(image, width, height, fullscreenData)
+                      this.props.showFullScreenImage(image, smallImage, width, height, fullscreenData)
                     }}
                 >
                   <img src={this.props.data[id].urls.small} 
@@ -38,10 +41,11 @@ class Card extends Component   {
                     key={id}
                     onClick={() => {
                       let image = this.props.data[id].urls.full;
+                      let smallImage = this.props.data[id].urls.small;
                       let width = this.props.data[id].width;
                       let height = this.props.data[id].height;
-                      let fullscreenData = this.props.data[id];
-                      this.props.showFullScreenImage(image, width, height, fullscreenData)
+                      let fullscreenDataID = this.props.data[id];
+                      this.props.showFullScreenImage(image, smallImage, width, height, fullscreenDataID)
                     }}
                 >
                   <img src={this.props.data[id].urls.small} 

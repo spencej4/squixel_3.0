@@ -64,8 +64,8 @@ UserSchema.statics.getUserContent = function (email, callback) {
 
 
 // add an image to database
-UserSchema.statics.add_image = function (email, image) {
-  User.update({ email: email }, { $push: { content: {image} }})
+UserSchema.statics.add_image = function (email, image, smallImage) {
+  User.update({ email: email }, { $push: { content: {image, smallImage} }})
     .exec(function(err, user){
     console.log(`${image} has been added to your collection!`);
   })

@@ -12,7 +12,6 @@ class FullScreen extends Component   {
 
     componentDidMount() {
         window.addEventListener('keydown', this.escFunction, false);
-        console.log(`Log_email: ${this.state.log_email}`);
     }  
 
 
@@ -25,6 +24,7 @@ class FullScreen extends Component   {
         event.preventDefault();
         let email = this.state.log_email;
         let image = event.target.value;
+        let smallImage = this.props.smallImage;
 
         fetch('/api/add-image/',{
             method: 'PUT',
@@ -35,7 +35,8 @@ class FullScreen extends Component   {
             },
             body: JSON.stringify({
               email: email,
-              image: image
+              image: image,
+              smallImage: smallImage
             }) 
         }).then(function(){
             // enter message if you feel so inclined

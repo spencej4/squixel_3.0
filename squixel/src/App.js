@@ -32,18 +32,16 @@ class App extends Component {
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
-// new  
       userCollectionData: '',
-      userCardLoading: false, /* I think this is redundant */
+      userCardLoading: false, 
       showUserCard: false,
-// new
       showSearchInput: false,
       value: '',
       signInValue: '',
       pageNum: 0,
       showFullScreenImage: false,
       fullScreenImage: '',
-      fullscreenData: '',
+      fullscreenDataID: '',
       showFooter: false,
       showInputInHeader: false,
       inputValueInHeader: ''
@@ -54,6 +52,7 @@ class App extends Component {
     this.toggleLoginPage = this.toggleLoginPage.bind(this);
     this.handleSignInChange = this.handleSignInChange.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
+    this.setCookie = this.setCookie.bind(this);
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
     this.onViewCollectionClick = this.onViewCollectionClick.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
@@ -67,6 +66,11 @@ class App extends Component {
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
   }
+
+componentWillMount() {
+  this.checkCookie();
+}
+
 
 componentDidMount() {
   // let localStorageKey = localStorage.getItem("key");
@@ -82,6 +86,8 @@ componentDidMount() {
   //   console.log('no local storage key found');
   // }
 }
+
+
 
 // handles click for sign in from header 
 onSignInMenuClick() {
@@ -131,6 +137,7 @@ handleSignInChange(event) {
 }
 
 
+// logs in a user
 onLoginSubmit(event) {
   event.preventDefault();
   fetch('/api/login',{
@@ -155,9 +162,60 @@ onLoginSubmit(event) {
       console.log(`You're signed in! ${this.state.log_email}`);
       console.log(`USER ID FROM APP: ${data}`);
     }.bind(this));
+
+    // calls setCookie function
+    this.setCookie('username', this.state.log_email, 30)
 }
 
 
+// create a user cookie
+setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
+// retrieve a cookie
+getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+// verify a cookie
+checkCookie() {
+  var user= this.getCookie("username");
+  if (user !== "") {
+    console.log('User has a cookie!')
+    console.log(document.cookie);
+
+    // update state that user is logged in and set log_email value to user
+    this.setState({
+      isAuthenticated: true,
+      log_email: user
+    })
+  } else {
+    // user is not logged in, no cookie found
+    console.log('No user cookie found');
+  }
+}
+
+
+
+// registers user
 onRegisterSubmit(event) {
     event.preventDefault();
 
@@ -184,13 +242,45 @@ onRegisterSubmit(event) {
     }
 }
 
+// logs user out
+onLogoutClick() {
+  console.log('logout clicked');
 
+  // set current cookie to expired
+  document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+
+  this.setState({
+    isAuthenticated: false,
+    log_email: ''
+  }) 
+  this.toggleLoginMenu();
+}
+
+
+// toggle from register page to login page and vice versus
+toggleLoginPage() {
+  if (this.state.showSignInPage) {
+    this.setState({
+      showSignInPage: false,
+      showRegisterPage: true
+    })
+  }else if (this.state.showRegisterPage) {
+    this.setState({
+      showSignInPage: true,
+      showRegisterPage: false
+    })
+  }
+}
+
+
+// retrieves and displays user photo collection
 onViewCollectionClick() {
   this.toggleLoginMenu();
   let user = this.state.log_email
+  console.log(`User from View collection function: ${user}`);
 
   this.setState({
-    loading: true,
+    // loading: true,
     userCardLoading: true,
     pageNum: 0,
     showCard: false, 
@@ -215,41 +305,16 @@ onViewCollectionClick() {
           userCollectionData:  [...this.state.userCollectionData, response[index].image]
         })
       }
-      console.log(this.state.userCollectionData);
+      // console.log(this.state.userCollectionData);
 
   }).then(response => this.setState((prevState) => {
         return {
-          loading: false,
+          // loading: false,
           userCardLoading: false,
           showUserCard: true,
           showSignInPage: false
         } 
   }))
-}
-
-
-onLogoutClick() {
-  console.log('logout clicked');
-  this.setState({
-    isAuthenticated: false
-  }) 
-  this.toggleLoginMenu();
-}
-
-
-// toggle from register page to login page and vice versus
-toggleLoginPage() {
-  if (this.state.showSignInPage) {
-    this.setState({
-      showSignInPage: false,
-      showRegisterPage: true
-    })
-  }else if (this.state.showRegisterPage) {
-    this.setState({
-      showSignInPage: true,
-      showRegisterPage: false
-    })
-  }
 }
 
 
@@ -377,12 +442,14 @@ handleChange(event) {
 }
 
 
-showFullScreenImage(image, fullscreenData) {
+showFullScreenImage(image, smallImage, fullscreenDataID) {
   this.setState({
     showFullScreenImage: true,
     fullScreenImage: image,
-    fullscreenData: fullscreenData
+    smallImage: smallImage,
+    fullscreenDataID: fullscreenDataID
   })
+  
 }
 
 
@@ -415,27 +482,26 @@ render() {
           showInputInHeader={this.state.showInputInHeader}
           inputValue = {this.state.value}
           showCard = {this.state.showCard}
+          showUserCard = {this.state.showUserCard}
         />
-         {(!this.state.showCard && this.state.showSignInPage) ? ( <SignInPage 
+         {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? ( <SignInPage 
             toggleLoginPage= {this.toggleLoginPage}
             handleSignInChange={this.handleSignInChange}
             onLoginSubmit={this.onLoginSubmit}
          /> ) : (null)}
-         {(!this.state.showCard && this.state.showRegisterPage) ? ( <RegisterPage 
+         {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( <RegisterPage 
             toggleLoginPage= {this.toggleLoginPage}
             handleSignInChange={this.handleSignInChange}
             onRegisterSubmit={this.onRegisterSubmit}
          /> ) : (null)}
-        {(!this.state.showCard  && !this.state.showSignInPage && !this.state.showRegisterPage) ? ( <Landing /> ) : (null)}
+        {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage) ? ( <Landing /> ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
         <Wrapper showCard={this.state.showCard}
           data={this.state.data}
           loading={this.state.loading}
-// new
           userCollectionData={this.state.userCollectionData}
           showUserCard={this.state.showUserCard}
           userCardLoading={this.state.userCardLoading}
- // new       
           photos={this.state.photos}
           showFullScreen={this.state.showFullScreen}
           showFullScreenImage={this.showFullScreenImage}
@@ -443,7 +509,8 @@ render() {
         {this.state.showFullScreenImage ? (
           <FullScreen 
             photo={this.state.fullScreenImage} 
-            fullscreenData={this.state.fullscreenData}
+            smallImage={this.state.smallImage}
+            fullscreenDataID={this.state.fullscreenDataID}
             closeFullScreen={this.closeFullScreenImage}
             log_email={this.state.log_email}
           />

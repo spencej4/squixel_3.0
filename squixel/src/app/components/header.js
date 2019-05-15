@@ -42,7 +42,7 @@ class Header extends Component {
                                             }
                                 /> : null
                             }
-                        {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage) ? ( 
+                        {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage && !this.props.showUserCard) ? ( 
                                 <CenteredSearchBar
                                     handleChange={(e) => this.props.handleChange(e)}
                                     onInputSubmit={(e) => this.props.onInputSubmit(e)}
