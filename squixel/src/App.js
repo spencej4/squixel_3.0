@@ -199,8 +199,8 @@ getCookie(cname) {
 checkCookie() {
   var user= this.getCookie("username");
   if (user !== "") {
-    console.log('User has a cookie!')
-    console.log(document.cookie);
+    // console.log('User has a cookie!')
+    // console.log(document.cookie);
 
     // update state that user is logged in and set log_email value to user
     this.setState({
@@ -209,7 +209,7 @@ checkCookie() {
     })
   } else {
     // user is not logged in, no cookie found
-    console.log('No user cookie found');
+    // console.log('No user cookie found');
   }
 }
 
