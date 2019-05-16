@@ -19,7 +19,7 @@ in, you can view and interact with our collections.
 * Mongo
 * Mongoose
 * Express
-* HTML/ CSS
+* HTML5/ CSS3
 
 ## Author
 
