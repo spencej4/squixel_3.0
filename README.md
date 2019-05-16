@@ -4,7 +4,7 @@
 Squixel is your new portal to professional grade, Instagram-worthy photographs. 
 Search within all of your favorite photography genres, and when you're ready to start
 collecting, register and save your most liked photos to your account.  Once you're logged
-in, you can view and interact with our collections.
+in, you can view and interact with your collections.
 
 ## Deployment
 * This App is deployed to Heroku.
