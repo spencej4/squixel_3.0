@@ -16,6 +16,8 @@ in, you can view and interact with our collections.
 * [React](https://www.npmjs.com/package/react) - JavaScript library for creating user interface.
 * NodeJS
 * Javascript
+* Mongo
+* Mongoose
 * Express
 * HTML/ CSS
 
