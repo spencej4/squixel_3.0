@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Card from './card';
 import UserCard from './userCard';
-import CenteredSearchBar from './CenteredSearchBar';
 
 class Wrapper extends Component {
   componentDidMount() {
@@ -37,7 +36,6 @@ class Wrapper extends Component {
             </div>
             ) : (null)
           } 
-         
         </div>
       );
     }  
