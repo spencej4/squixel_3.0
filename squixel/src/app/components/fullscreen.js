@@ -65,16 +65,23 @@ class FullScreen extends Component   {
                     <button className='closeFullScreenButton'
                         onClick={this.props.closeFullScreen}>X
                     </button>
-                    <button className='add-to-db'
-                        onClick={this.addImageToDatabase}
-                        value={this.props.photo}
-                    >+</button>
-                    <button className='remove-from-db'
-                        onClick={this.removeImageFromDatabase}
-                        value={this.props.photo}
-                    >-</button>
+                    {this.props.isAuthenticated ? (
+                        <button 
+                            className='add-to-db'
+                            onClick={this.addImageToDatabase}
+                            value={this.props.photo}
+                        >+</button>
+                    ) : (null)}
+                    {this.props.isAuthenticated ? (
+                        <button 
+                            className='remove-from-db'
+                            onClick={this.removeImageFromDatabase}
+                            value={this.props.photo}
+                        >-</button>
+                    ) : (null)}
                 </div>
-                <img src={this.props.photo}
+                <img 
+                    src={this.props.photo}
                     className='fullScreenImage'
                     alt={this.props.photo.description}
                 />

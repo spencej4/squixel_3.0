@@ -525,6 +525,7 @@ render() {
             />
         {this.state.showFullScreenImage ? (
             <FullScreen 
+              isAuthenticated={this.state.isAuthenticated}
               photo={this.state.fullScreenImage} 
               smallImage={this.state.smallImage}
               fullscreenDataID={this.state.fullscreenDataID}
