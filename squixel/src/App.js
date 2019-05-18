@@ -66,7 +66,6 @@ class App extends Component {
     this.closeFullScreenImage = this.closeFullScreenImage.bind(this);
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
-    this.renderFooter = this.renderFooter.bind(this);
   }
 
 componentWillMount() {
@@ -344,7 +343,7 @@ onInputSubmit(event) {
           return {
             data: json.results,
             loading: false,
-            // showFooter: true,
+            showFooter: true,
             pageNum: this.state.pageNum + 1
           }
         }))
@@ -466,11 +465,6 @@ closeFullScreenImage() {
   })
 }
 
-renderFooter() {
-  this.setState({
-    showFooter: true
-  })
-}
 
 render() {
     return (
@@ -526,7 +520,6 @@ render() {
               showFullScreen={this.state.showFullScreen}
               showFullScreenImage={this.showFullScreenImage}
               fullScreenImage={this.state.fullScreenImage}
-              renderFooter={this.renderFooter}
             />
         {this.state.showFullScreenImage ? (
             <FullScreen 
@@ -537,15 +530,13 @@ render() {
               closeFullScreen={this.closeFullScreenImage}
               log_email={this.state.log_email}
             />
-        ) : (null)
-        }
+        ) : (null)}
         {this.state.showFooter ? (
-            <Footer 
-              onPreviousClick={this.onPreviousClick}
-              onNextClick={this.onNextClick}
-            />
-          ) : (null)
-        }
+          <Footer 
+            onPreviousClick={this.onPreviousClick}
+            onNextClick={this.onNextClick}
+          />
+        ) : (null)}
       </div>
     );
   }

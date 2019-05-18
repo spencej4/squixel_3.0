@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
 class Card extends Component   {
-  
-  componentDidMount() {
-    this.props.renderFooter();
-  }
 
   render () {
     if (this.props.loading === false) {
