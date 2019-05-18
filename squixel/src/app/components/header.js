@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
 import SearchBar from './searchbar';
-import CenteredSearchBar from './CenteredSearchBar';
+// import CenteredSearchBar from './CenteredSearchBar';
 import DisplaySearchInput from './displaySearchInput';
 
 
