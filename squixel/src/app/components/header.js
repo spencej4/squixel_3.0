@@ -30,12 +30,12 @@ class Header extends Component {
                                     onInputSubmit={(event) => this.props.onInputSubmit(event)}
                                 /> : null
                             }
-                            {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage && !this.props.showUserCard) ? ( 
+                            {/* {(!this.props.showSearchInput && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage && !this.props.showUserCard) ? ( 
                                 <CenteredSearchBar
                                     handleChange={(e) => this.props.handleChange(e)}
                                     onInputSubmit={(e) => this.props.onInputSubmit(e)}
                                 /> ) : (null)
-                            }
+                            } */}
                         <div className='dd-login-title'>
                             <div className='dd-login-button'
                             onClick={this.props.toggleLoginMenu}></div>
