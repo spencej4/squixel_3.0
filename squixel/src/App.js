@@ -494,6 +494,7 @@ render() {
             toggleLoginPage= {this.toggleLoginPage}
             handleSignInChange={this.handleSignInChange}
             onLoginSubmit={this.onLoginSubmit}
+            isAuthenticated={this.state.isAuthenticated}
          /> ) : (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( <RegisterPage 
             toggleLoginPage= {this.toggleLoginPage}
