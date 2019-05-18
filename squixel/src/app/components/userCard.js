@@ -4,7 +4,7 @@ class UserCard extends Component   {
 
   render () {
     if (this.props.userCardLoading === false) {
-      if(!this.props.data) {
+      if(this.props.data === null) {
         return ( 
           <div className='emptyCollectionMessage'>Your collection is empty</div>
         )
