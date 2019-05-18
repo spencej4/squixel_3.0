@@ -154,8 +154,6 @@ onLoginSubmit(event) {
       this.setState({
         isAuthenticated: true
       })
-      // console.log(`You're signed in! ${this.state.log_email}`);
-      // console.log(`USER ID FROM APP: ${data}`);
     }.bind(this));
 
     // calls setCookie function
@@ -194,17 +192,13 @@ getCookie(cname) {
 checkCookie() {
   var user= this.getCookie("username");
   if (user !== "") {
-    // console.log('User has a cookie!')
-    // console.log(document.cookie);
-
-    // update state that user is logged in and set log_email value to user
+    // updates state that user is logged in and set log_email value to user
     this.setState({
       isAuthenticated: true,
       log_email: user
     })
   } else {
     // user is not logged in, no cookie found
-    // console.log('No user cookie found');
   }
 }
 
@@ -213,7 +207,7 @@ checkCookie() {
 onRegisterSubmit(event) {
     event.preventDefault();
 
-    // confirm that user typed same password twice
+    // confirms that user typed same password twice
     if (this.state.password !== this.state.password_confirm) {
       alert("The passwords doesn't match")
     } else {
@@ -242,9 +236,7 @@ onRegisterSubmit(event) {
 
 // logs user out
 onLogoutClick() {
-  console.log('logout clicked');
-
-  // set current cookie to expired
+  // sets current cookie to expired
   document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
   this.setState({
@@ -276,10 +268,8 @@ toggleLoginPage() {
 onViewCollectionClick() {
   this.toggleLoginMenu();
   let user = this.state.log_email
-  console.log(`User from View collection function: ${user}`);
 
   this.setState({
-    // loading: true,
     userCardLoading: true,
     pageNum: 0,
     showCard: false, 
@@ -302,15 +292,12 @@ onViewCollectionClick() {
       for (var index in response) {
         this.setState({
           // push each image to state array
-          // userCollectionData:  [...this.state.userCollectionData, response[index].image]
           userCollectionData:  [...this.state.userCollectionData, 
             {image: response[index].image, 
              smallImage: response[index].smallImage}
           ]
         })
       }
-      console.log(this.state.userCollectionData);
-
   }).then(response => this.setState((prevState) => {
         return {
           userCardLoading: false,
@@ -338,8 +325,6 @@ onInputSubmit(event) {
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
-          // console.log('api call made');
-          // console.log(json.rezsults);
           return {
             data: json.results,
             loading: false,
