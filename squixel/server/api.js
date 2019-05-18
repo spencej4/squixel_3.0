@@ -14,7 +14,7 @@ router.post('/register', function(request, response){
           throw err;
         else 
           // added this here
-          request.session.userId = user._id;
+          // request.session.userId = user._id;
           console.log('saved user successfully...');
     });
     response.json({msg: response.body});

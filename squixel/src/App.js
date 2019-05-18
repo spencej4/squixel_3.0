@@ -27,6 +27,7 @@ class App extends Component {
       log_email: '',
       log_password: '',
       isAuthenticated: false,
+      isRegistered: false,
       data: '',
       nextData: [],
       imagesArrrayNext: [],
@@ -73,18 +74,7 @@ componentWillMount() {
 
 
 componentDidMount() {
-  // let localStorageKey = localStorage.getItem("key");
-
-  // // check if user is logged in via local storage
-  // if (this.state.isAuthenticated && localStorageKey) {
-  //   console.log(`Local Storage Key: ${localStorageKey}`)
-  //   // update state that user is logged in
-  //   this.setState({
-  //     isAuthenticated: true
-  //   })
-  // }else {
-  //   console.log('no local storage key found');
-  // }
+ // 
 }
 
 
@@ -133,7 +123,9 @@ onRegisterMenuClick() {
 
 //sets state to input value of search field 
 handleSignInChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ 
+      [event.target.name]: event.target.value 
+    });
 }
 
 
@@ -159,8 +151,8 @@ onLoginSubmit(event) {
       this.setState({
         isAuthenticated: true
       })
-      console.log(`You're signed in! ${this.state.log_email}`);
-      console.log(`USER ID FROM APP: ${data}`);
+      // console.log(`You're signed in! ${this.state.log_email}`);
+      // console.log(`USER ID FROM APP: ${data}`);
     }.bind(this));
 
     // calls setCookie function
@@ -236,9 +228,13 @@ onRegisterSubmit(event) {
                 password_confirm: this.state.password_confirm,
                 content: []
               }) 
-        }).then(function(){
-          // this.setState({ displayForm: false });
-        });
+        }).then(function(response){
+          return response.json();
+        }).then(function(data){
+          this.setState({ 
+            isRegistered: true 
+          });
+        }.bind(this));
     }
 }
 
@@ -471,60 +467,67 @@ render() {
     return (
       <div className="App">
         <Header 
-          onSignInMenuClick={this.onSignInMenuClick}
-          onRegisterMenuClick={this.onRegisterMenuClick}
-          toggleLoginMenu={this.toggleLoginMenu}
-          showSignInPage={this.state.showSignInPage}
-          showRegisterPage={this.state.showRegisterPage}
-          isAuthenticated={this.state.isAuthenticated}
-          onViewCollectionClick={this.onViewCollectionClick}
-          onLogoutClick={this.onLogoutClick}
-          showSearchInput={this.state.showSearchInput}
-          handleChange={this.handleChange}
-          onInputSubmit={this.onInputSubmit}
-          onSearchClick={this.onSearchClick}
-          onCloseSearchClick={this.onCloseSearchClick}
-          closeSearch={this.closeSearch}
-          showInputInHeader={this.state.showInputInHeader}
-          inputValue = {this.state.value}
-          showCard = {this.state.showCard}
-          showUserCard = {this.state.showUserCard}
-        />
-         {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? ( <SignInPage 
-            toggleLoginPage= {this.toggleLoginPage}
-            handleSignInChange={this.handleSignInChange}
-            onLoginSubmit={this.onLoginSubmit}
+            onSignInMenuClick={this.onSignInMenuClick}
+            onRegisterMenuClick={this.onRegisterMenuClick}
+            toggleLoginMenu={this.toggleLoginMenu}
+            showSignInPage={this.state.showSignInPage}
+            showRegisterPage={this.state.showRegisterPage}
             isAuthenticated={this.state.isAuthenticated}
+            onViewCollectionClick={this.onViewCollectionClick}
+            onLogoutClick={this.onLogoutClick}
+            showSearchInput={this.state.showSearchInput}
+            handleChange={this.handleChange}
+            onInputSubmit={this.onInputSubmit}
+            onSearchClick={this.onSearchClick}
+            onCloseSearchClick={this.onCloseSearchClick}
+            closeSearch={this.closeSearch}
+            showInputInHeader={this.state.showInputInHeader}
+            inputValue = {this.state.value}
+            showCard = {this.state.showCard}
+            showUserCard = {this.state.showUserCard}
+        />
+         {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? (
+            <SignInPage 
+                toggleLoginPage= {this.toggleLoginPage}
+                handleSignInChange={this.handleSignInChange}
+                onLoginSubmit={this.onLoginSubmit}
+                isAuthenticated={this.state.isAuthenticated}
          /> ) : (null)}
-         {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( <RegisterPage 
-            toggleLoginPage= {this.toggleLoginPage}
-            handleSignInChange={this.handleSignInChange}
-            onRegisterSubmit={this.onRegisterSubmit}
+         {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( 
+            <RegisterPage 
+                toggleLoginPage={this.toggleLoginPage}
+                handleSignInChange={this.handleSignInChange}
+                onRegisterSubmit={this.onRegisterSubmit}
+                isRegistered={this.state.isRegistered}
          /> ) : (null)}
-        {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage) ? ( <Landing /> ) : (null)}
+        {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage) ? ( 
+            <Landing /> 
+        ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
-        <Wrapper showCard={this.state.showCard}
-          data={this.state.data}
-          loading={this.state.loading}
-          userCollectionData={this.state.userCollectionData}
-          showUserCard={this.state.showUserCard}
-          userCardLoading={this.state.userCardLoading}
-          photos={this.state.photos}
-          showFullScreen={this.state.showFullScreen}
-          showFullScreenImage={this.showFullScreenImage}
-          fullScreenImage={this.state.fullScreenImage}/>
+            <Wrapper 
+                showCard={this.state.showCard}
+                data={this.state.data}
+                loading={this.state.loading}
+                userCollectionData={this.state.userCollectionData}
+                showUserCard={this.state.showUserCard}
+                userCardLoading={this.state.userCardLoading}
+                photos={this.state.photos}
+                showFullScreen={this.state.showFullScreen}
+                showFullScreenImage={this.showFullScreenImage}
+                fullScreenImage={this.state.fullScreenImage}/>
         {this.state.showFullScreenImage ? (
-          <FullScreen 
-            photo={this.state.fullScreenImage} 
-            smallImage={this.state.smallImage}
-            fullscreenDataID={this.state.fullscreenDataID}
-            closeFullScreen={this.closeFullScreenImage}
-            log_email={this.state.log_email}
-          />
-          ) : (null)
+            <FullScreen 
+                photo={this.state.fullScreenImage} 
+                smallImage={this.state.smallImage}
+                fullscreenDataID={this.state.fullscreenDataID}
+                closeFullScreen={this.closeFullScreenImage}
+                log_email={this.state.log_email}
+            />
+        ) : (null)
         }
         {this.state.showFooter ? (
-          <Footer onPreviousClick={this.onPreviousClick}
+          <Footer 
+            onPreviousClick={this.onPreviousClick}
             onNextClick={this.onNextClick}/>
           ) : (null)
         }

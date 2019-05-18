@@ -46,7 +46,7 @@ class SignInForm extends Component {
                             <button type='submit' className='submit-btn'>Sign In</button>
                         </div>
                     </form>         
-                </div>
+            </div>
         )
     }
 }

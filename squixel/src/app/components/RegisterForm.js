@@ -1,23 +1,17 @@
-import React, { Component } from 'react';
-import RegisterForm from './RegisterForm';
-import RegisteredMessage from './RegisteredMessage';
+import React, {Component} from 'react';
 
-class RegisterPage extends Component {
 
-    componentDidMount() {
-        // does nothing??
-    }
-   
+class RegisterForm extends Component {
+    
     render() {
         return (
-            <div className='sign-in-page'>
-                {/* <div className='sign-in left'>
-                    <div className='sign-in-title'>Register</div>
-                    <form id="sign-in-form"
-                          action = " "
-                          method = " "
-                          onSubmit={(event) => this.props.onRegisterSubmit(event)}
-                    >   
+            <div className='sign-in left'>
+                <div className='sign-in-title'>Register</div>
+                <form id="sign-in-form"
+                    action = " "
+                    method = " "
+                    onSubmit={(event) => this.props.onRegisterSubmit(event)}
+                >   
                     <div className='form-row'>
                         <label>
                             Email:
@@ -67,24 +61,10 @@ class RegisterPage extends Component {
                     <div className='form-row'>
                         <button type='submit' className='submit-btn'>Register</button>
                     </div>
-                    </form>
-                </div> */}
-                { !this.props.isRegistered ? (
-                    <RegisterForm
-                        onRegisterSubmit={this.props.onRegisterSubmit}
-                        handleSignInChange={this.props.handleSignInChange}
-                    ></RegisterForm>
-                ): (<RegisteredMessage></RegisteredMessage>)}
-
-                <div className='register right'>
-                    <div className='sign-in-title'>Sign In</div>
-                    <div className='float-right-sign-in-page-container'>
-                        <button onClick={this.props.toggleLoginPage} className='action-btn'>Sign In</button>
-                    </div>
-                </div>
+                </form>
             </div>
         )
     }
 }
 
-export default RegisterPage
+export default RegisterForm;
