@@ -19,6 +19,7 @@ class Wrapper extends Component {
                   showFullScreen={this.props.showFullScreen}
                   showFullScreenImage={this.props.showFullScreenImage}
                   fullScreenImage={this.props.fullScreenImage}
+                  renderFooter={this.props.renderFooter}
               />
             </div>
           ) : (null)
