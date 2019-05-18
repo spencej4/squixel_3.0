@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 class FullScreen extends Component   {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -10,6 +11,7 @@ class FullScreen extends Component   {
         this.addImageToDatabase = this.addImageToDatabase.bind(this)
     }
 
+    
     componentDidMount() {
         window.addEventListener('keydown', this.escFunction, false);
     }  

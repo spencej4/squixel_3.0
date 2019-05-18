@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-
-
 class RegisteredMessage extends Component {
     
     render() {

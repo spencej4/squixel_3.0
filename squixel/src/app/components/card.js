@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 
 class Card extends Component   {
 
-  componentDidMount(){
-  }
-
   render () {
     if (this.props.loading === false) {
       return (

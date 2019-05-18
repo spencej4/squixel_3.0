@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 
-
 class RegisterForm extends Component {
-    
+
     render() {
         return (
             <div className='sign-in left'>

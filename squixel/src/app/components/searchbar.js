@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
+
     constructor(props) {
         super(props);
         this.escFunction = this.escFunction.bind(this);
     }
+    
     
     escFunction(event) {
         if (event.keyCode === 27) {
@@ -12,14 +14,17 @@ class SearchBar extends Component {
         }
     }
 
+
     componentDidMount() {
         window.addEventListener('keydown', this.escFunction, false);
     }
+
 
     componentWillUnmount() {
         window.removeEventListener('keydown', this.escFunction, false);
     }
     
+
     render() {
             return (
                 <div className='searchScreen'>
