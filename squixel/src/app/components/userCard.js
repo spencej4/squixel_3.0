@@ -2,13 +2,6 @@ import React, {Component} from 'react';
 
 class UserCard extends Component   {
 
-  componentDidMount(){
-  }
-
-
-// here need to figure how to access width/height of images before or after they've loaded so that 
-// these if checks can run and return images.
-
   render () {
     if (this.props.userCardLoading === false) {
       return (
@@ -64,9 +57,7 @@ class UserCard extends Component   {
       ) 
     }else {
         return ( 
-          <div>
-           {/* empty div  */}
-          </div>
+          null
         )
     }  
   }

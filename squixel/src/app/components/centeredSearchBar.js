@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 
 class CenteredSearchBar extends Component {
-
-    componentDidMount() {
-        // does nothing??
-    }
    
     render() {
         return (
