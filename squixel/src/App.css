@@ -1188,6 +1188,24 @@ input[type=text] {
     text-align: center;
   }
 
+  .loadingH1 {
+    margin-left: 15px;
+    font-size: 1.5em;
+    color: rgb(244, 118, 208);
+    margin-top: 60%;
+  }
+
+  .lds-ellipsis div {
+    position: absolute;
+    /* top: 257px; */
+    width: 11px;
+    height: 11px;
+    margin-top: 25px;
+    border-radius: 50%;
+    background: rgb(244, 118, 208);
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
   .dd-login-menu {
     top: 57px;
     width: 100%;
