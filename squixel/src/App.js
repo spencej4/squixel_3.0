@@ -84,7 +84,8 @@ scrollWindow() {
 
 // handles click for sign in from header 
 onSignInMenuClick() {
-  this.scrollWindow()
+  this.scrollWindow();
+
   this.setState({
     showSignInPage: true,
     showRegisterPage: false,
@@ -98,7 +99,8 @@ onSignInMenuClick() {
 
 // handles click for register from header
 onRegisterMenuClick() {
-  this.scrollWindow()
+  this.scrollWindow();
+
   this.setState({
     showSignInPage: false,
     showRegisterPage: true,
@@ -520,6 +522,7 @@ render() {
               showFooter={this.state.showFooter}
               onPreviousClick={this.onPreviousClick}
               onNextClick={this.onNextClick}
+              showSearchInput={this.state.showSearchInput}
             />
         {this.state.showFullScreenImage ? (
             <FullScreen 

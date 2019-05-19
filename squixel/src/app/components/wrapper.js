@@ -21,6 +21,7 @@ class Wrapper extends Component {
                   showFullScreenImage={this.props.showFullScreenImage}
                   fullScreenImage={this.props.fullScreenImage}
                   renderFooter={this.props.renderFooter}
+                  showSearchInput={this.props.showSearchInput}
               />
             </div>
           ) : (null)
@@ -34,6 +35,7 @@ class Wrapper extends Component {
                   showFullScreen={this.props.showFullScreen}
                   showFullScreenImage={this.props.showFullScreenImage}
                   fullScreenImage={this.props.fullScreenImage}
+                  showSearchInput={this.state.showSearchInput}
               />
             </div>
             ) : (null)
