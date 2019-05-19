@@ -130,7 +130,7 @@ onRegisterMenuClick() {
 }
 
 
-//sets state to input value of search field 
+//sets state to input value of sign-in/ register fields
 handleSignInChange(event) {
   event.preventDefault();
   this.setState({ 
@@ -437,6 +437,7 @@ closeSearch () {
 
 //sets state to input value of search field 
 handleChange(event) {
+  event.preventDefault();
   this.setState({
     value: event.target.value
   });
