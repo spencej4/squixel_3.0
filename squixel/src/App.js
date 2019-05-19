@@ -140,6 +140,8 @@ handleSignInChange(event) {
 
 // logs in a user
 onLoginSubmit(event) {
+  this.scrollWindow();
+  
   event.preventDefault();
   fetch('/api/login',{
         method: 'POST',
@@ -257,7 +259,7 @@ onLogoutClick() {
 // toggle from register page to login page and vice versus
 toggleLoginPage() {
   this.scrollWindow();
-  
+
   if (this.state.showSignInPage) {
     this.setState({
       showSignInPage: false,

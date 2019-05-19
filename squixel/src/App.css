@@ -1247,7 +1247,7 @@ input[type=text] {
 
   .sign-in {
     width: 100%;
-    height: 60%;
+    height: 57%;
     display: block;
     border-right: 1px solid grey;
     background-color: white;
@@ -1303,6 +1303,7 @@ input[type=text] {
     border: 1px solid grey;
     font-size: 19px;
     color: black;
+    background-image: linear-gradient(transparent, transparent);
   }
 
   .submit-btn {
