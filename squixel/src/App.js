@@ -519,12 +519,6 @@ render() {
               log_email={this.state.log_email}
             />
         ) : (null)}
-        {/* {this.state.showFooter ? (
-          <Footer 
-            onPreviousClick={this.onPreviousClick}
-            onNextClick={this.onNextClick}
-          />
-        ) : (null)} */}
       </div>
     );
   }
