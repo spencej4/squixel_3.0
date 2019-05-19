@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 class UserCard extends Component   {
 
   render () {
-    // new to test
+    // reset window to top
     window.scrollTo(0, 0);
-    // end new to test
-    
+
     if (this.props.userCardLoading === false) {
       if(this.props.data === null) {
         return ( 
@@ -16,7 +15,6 @@ class UserCard extends Component   {
       else {
         return (
           this.props.userCollectionData.map((item, id) => {
-              // console.log(this.props.userCollectionData[id]);
             //For landscape photos
           //   if (this.props.userCollectionData[id].width > this.props.userCollectionData[id].height){
               return (

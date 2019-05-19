@@ -1269,6 +1269,18 @@ input[type=text] {
     text-align: left;
   }
 
+  .form-row {
+    display: flex;
+    flex: 1 1 auto;
+    position: relative;
+    text-align: left;
+  }
+
+  .form-row:last-of-type {
+    width: 95vw;
+    clear: both;
+  }
+
   .sign-in-input {
     width: 98%;
     height: 50px;
@@ -1284,11 +1296,12 @@ input[type=text] {
   }
 
   #sign-in-form input {
-    width: 95vw;
-    padding: 0;
+    width: 89vw;
+    padding: 0 2% 0 4%;
     margin-bottom: 3%;
     border: 1px solid grey;
-    color: black
+    font-size: 19px;
+    color: black;
   }
 
   .submit-btn {
