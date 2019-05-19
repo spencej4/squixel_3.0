@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 
 class Card extends Component   {
 
+  componentDidMount() { 
+    window.scrollTo(0, 0) 
+  };
+
   render () {
     if (this.props.loading === false) {
         return (
