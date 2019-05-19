@@ -2,7 +2,7 @@ const express= require('express');
 const router = express.Router();
 const User =  require('./models/user.js');
 
-
+//POST request for user registration
 router.post('/register', function(request, response){
       var u = new User({
         email: request.body.email,
@@ -21,6 +21,7 @@ router.post('/register', function(request, response){
 });
 
 
+// POST request for user login
 router.post('/login', function(request, response, next){
   // console.log(`Email: ${request.body.email}   (from: api)`);
   // console.log(`Password: ${request.body.password}   (from: api)`);
@@ -39,9 +40,7 @@ router.post('/login', function(request, response, next){
 });
 
 
-// =================================== curent ====================================
-
-// no workie
+// GETS request for user content
 router.get('/getUserContent/:user', function (request, response, next) {  
   var user = request.params.user;
   // console.log(`User request param from API: ${ user }`);
@@ -62,28 +61,8 @@ router.get('/getUserContent/:user', function (request, response, next) {
   })
 })
 
-// =================================== end curent====================================
 
-
-// GET route after registering
-// router.get('/profile', function (request, response, next) {
-//   User.findById(request.session.userId)
-//     .exec(function (error, user) {
-//       if (error) {
-//         return next(error);
-//       } else {
-//         if (user === null) {
-//           var err = new Error('Not authorized! Go back!');
-//           err.status = 400;
-//           return next(err);
-//         } else {
-//           return response.send('<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
-//         }
-//       }
-//     });
-// });
-
-
+// PUT request for adding image to db
 router.put('/add-image', function (request, response) {
   let email = request.body.email;
   let image = request.body.image;
@@ -94,7 +73,7 @@ router.put('/add-image', function (request, response) {
 })
 
 
-// works mofo, posts console log in mongod terminal
+// GET request to console log list of users in mongod terminal
 router.get('/users', function (request, response) {
   User.findAll();
 })
