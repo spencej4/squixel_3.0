@@ -1439,9 +1439,9 @@ input[type=text] {
   }
 
   input[type=text] {
-    font-size: 1.5em;
-    padding-left: 2.3em;
-    color: grey;
+    font-size: 16px;
+    padding-left: 3.2em;
+    color: lightgrey;
     letter-spacing: 0.2px;
     width: 84vw;
   }
