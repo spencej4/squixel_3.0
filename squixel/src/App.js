@@ -66,6 +66,7 @@ class App extends Component {
     this.closeFullScreenImage = this.closeFullScreenImage.bind(this);
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
+    this.scrollWindow = this.scrollWindow.bind(this);
   }
 
 componentWillMount() {
@@ -77,9 +78,13 @@ componentDidMount() {
  // 
 }
 
+scrollWindow() {
+  window.scrollTo(0, 0);
+}
 
 // handles click for sign in from header 
 onSignInMenuClick() {
+  this.scrollWindow()
   this.setState({
     showSignInPage: true,
     showRegisterPage: false,
@@ -93,6 +98,7 @@ onSignInMenuClick() {
 
 // handles click for register from header
 onRegisterMenuClick() {
+  this.scrollWindow()
   this.setState({
     showSignInPage: false,
     showRegisterPage: true,
@@ -250,6 +256,8 @@ onLogoutClick() {
 
 // toggle from register page to login page and vice versus
 toggleLoginPage() {
+  this.scrollWindow();
+  
   if (this.state.showSignInPage) {
     this.setState({
       showSignInPage: false,

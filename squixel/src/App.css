@@ -686,7 +686,7 @@ input[type=text] {
     width: 30%;
     padding: 0 0 0 0;
     height: auto;
-    position: absolute;
+    position: absolute;;
     align-items: center;
     text-align: center;
   }
@@ -1247,7 +1247,7 @@ input[type=text] {
 
   .sign-in {
     width: 100%;
-    height: 100%;
+    height: 60%;
     display: block;
     border-right: 1px solid grey;
     background-color: white;
@@ -1255,11 +1255,12 @@ input[type=text] {
   }
 
   .sign-in-title {
+    margin-top: 4%;
     font-size: 38px;
   }
 
   #sign-in-form {
-    top: 120px;
+    top: 134px;
     /* width: 98%; */
     height: auto;
     padding: 0 2% 0 2%;
@@ -1324,11 +1325,41 @@ input[type=text] {
 
   .register{
     width: 100%;
-    height: 100%;
+    height: 20%;
     display: block;
     background-color: white;
     text-align: center;
     color: grey;
+  }
+
+  .float-right-sign-in-page-container {
+    top: 15%;
+    right: 13%;
+    width: 30%;
+    padding: 0 0 0 0;
+    height: auto;
+    position: relative;;
+    align-items: center;
+    text-align: center;
+  }
+
+  .action-btn {
+    width: 95vw;
+    height: 45px;
+    margin-top: 11px;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    text-transform: uppercase;
+    font-size: 14px;
+    position: absolute;
+    transition: background-color .2s ease-in-out,border .2s ease-in-out,color .2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .action-btn:hover {
+    border: 1px solid rgba(230, 127, 209, 1 );
+    color: rgba(230, 127, 209, 1);
   }
 
   .centered-search-bar {
