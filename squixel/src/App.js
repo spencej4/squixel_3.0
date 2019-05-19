@@ -132,16 +132,17 @@ onRegisterMenuClick() {
 
 //sets state to input value of search field 
 handleSignInChange(event) {
-    this.setState({ 
-      [event.target.name]: event.target.value 
-    });
+  event.preventDefault();
+  this.setState({ 
+    [event.target.name]: event.target.value 
+  });
 }
 
 
 // logs in a user
 onLoginSubmit(event) {
   this.scrollWindow();
-  
+
   event.preventDefault();
   fetch('/api/login',{
         method: 'POST',
