@@ -7,7 +7,7 @@ import RegisterPage from './app/components/registerPage';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
-import Footer from './app/components/footer';
+// import Footer from './app/components/footer';
 import Wrapper from './app/components/wrapper';
 
 const unsplash = new Unsplash({
@@ -505,6 +505,9 @@ render() {
               showFullScreen={this.state.showFullScreen}
               showFullScreenImage={this.showFullScreenImage}
               fullScreenImage={this.state.fullScreenImage}
+              showFooter={this.state.showFooter}
+              onPreviousClick={this.onPreviousClick}
+              onNextClick={this.onNextClick}
             />
         {this.state.showFullScreenImage ? (
             <FullScreen 
@@ -516,12 +519,12 @@ render() {
               log_email={this.state.log_email}
             />
         ) : (null)}
-        {this.state.showFooter ? (
+        {/* {this.state.showFooter ? (
           <Footer 
             onPreviousClick={this.onPreviousClick}
             onNextClick={this.onNextClick}
           />
-        ) : (null)}
+        ) : (null)} */}
       </div>
     );
   }
