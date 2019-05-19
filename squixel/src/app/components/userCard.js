@@ -3,6 +3,10 @@ import React, {Component} from 'react';
 class UserCard extends Component   {
 
   render () {
+    // new to test
+    window.scrollTo(0, 0);
+    // end new to test
+    
     if (this.props.userCardLoading === false) {
       if(this.props.data === null) {
         return ( 

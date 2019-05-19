@@ -7,10 +7,9 @@ class Card extends Component   {
   };
 
   render () {
-    if (this.props.loading) {
-      window.scrollTo(0 ,0);
-    }
-
+    // reset window to top
+    window.scrollTo(0 ,0);
+    
     if (this.props.loading === false) {
         return (
           this.props.data.map((item, id) => {
