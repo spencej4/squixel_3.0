@@ -1643,7 +1643,7 @@ input[type=text] {
     clear: both;
     position: relative;
     height: 180px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 20px;
   }
 
@@ -1666,6 +1666,7 @@ input[type=text] {
   }
 
   .loadMoreButton {
+    margin: 50px 15px 145px 15px;
     width: 33%;
   }
 }
