@@ -41,7 +41,7 @@ class Header extends Component {
                             onClick={this.props.toggleLoginMenu}></div>
                         </div>
                         <div className='dd-login-menu hide' id='dd-login-menu'>
-                            <ul className='login-options'>
+                            <ul className='login-options hide' id='login-options'>
                                 {/* user is not logged in */}
                                 {(!this.props.isAuthenticated) ? ( 
                                     <li className='login-option' onClick={() => this.props.onSignInMenuClick()}>Sign In</li>
@@ -53,7 +53,32 @@ class Header extends Component {
                                     <li className='login-option' onClick={() => this.props.onRegisterMenuClick()}>Register</li>
                                 ) : (null)} 
                                 
-                                {/*  user is logged in, show appropriate menu options*/}
+                            
+                                {/* {(this.props.isAuthenticated) ? ( 
+                                    <li className='login-option' onClick={() => this.props.onViewCollectionClick()}>Logged In As:</li>
+                                 ) : (null)} 
+                                {(this.props.isAuthenticated) ? ( 
+                                    <hr></hr>
+                                    ) : (null)}  */}
+                                 {/* user is logged in, show appropriate menu options */}
+                                {/* {(this.props.isAuthenticated) ? ( 
+                                    <li className='login-option' onClick={() => this.props.onViewCollectionClick()}>View My Collection</li>
+                                 ) : (null)} 
+                                {(this.props.isAuthenticated) ? ( 
+                                    <hr></hr>
+                                    ) : (null)} 
+                                {(this.props.isAuthenticated) ? ( 
+                                    <li className='login-option' onClick={() => this.props.onLogoutClick()}>Logout</li>
+                                ) : (null)}  */}
+                            </ul>
+                            {/* temp */}
+                            <ul className='user-options hide' id='user-options'>
+                                {(this.props.isAuthenticated) ? ( 
+                                    <li className='user-card' id='user-card' onClick={() => this.props.onViewCollectionClick()}>Logged In As: {this.props.log_email}</li>
+                                 ) : (null)} 
+                                {(this.props.isAuthenticated) ? ( 
+                                    <hr></hr>
+                                    ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
                                     <li className='login-option' onClick={() => this.props.onViewCollectionClick()}>View My Collection</li>
                                  ) : (null)} 
@@ -62,8 +87,9 @@ class Header extends Component {
                                     ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
                                     <li className='login-option' onClick={() => this.props.onLogoutClick()}>Logout</li>
-                                ) : (null)} 
+                                ) : (null)}
                             </ul>
+                            {/* end temp */}
                         </div>
                 </div>
             </Router>

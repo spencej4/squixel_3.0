@@ -13,7 +13,8 @@ var UserSchema = new mongoose.Schema({
     required: true,
   }, 
   content: {
-    type: Array
+    type: Array,
+    
 }
 });
 
@@ -42,7 +43,6 @@ UserSchema.statics.authenticate = function (email, password, callback) {
 }
 
 
-
 UserSchema.statics.getUserContent = function (email, callback) {
   User.findOne({ email: email })
     .exec(function (err, user) {
@@ -69,24 +69,23 @@ UserSchema.statics.add_image = function (email, image, smallImage) {
 }
 
 
+// new / untested
+// delete image from database
+
+// so, i seem to need to be able to create new image objects with unique id's, which will then be used by this delete method
+// trying to delete based on image string doesn't work
+UserSchema.statics.delete_image = function (email, image) {
+  User.findByIdAndRemove(image, function(err) {
+    if (err) {
+      console.log(err)
+    }else {
+      console.log('image has been deleted from your database');
+    }
+  })
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------------- mine ---------------------------------------------
-//get list of all users in database
+// get list of all users in database
 UserSchema.statics.findAll = function (request, response) {
   User.find({}, function(err, users) {
     var userMap = {};
@@ -99,7 +98,6 @@ UserSchema.statics.findAll = function (request, response) {
     // response.send(userMap);  
   });
 }
-// --------------------------------------------- end mine ---------------------------------------------
 
 
 //hashing a password before saving it to the database

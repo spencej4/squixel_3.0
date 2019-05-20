@@ -8,7 +8,8 @@ class FullScreen extends Component   {
             log_email: this.props.log_email
         }
         this.escFunction = this.escFunction.bind(this);
-        this.addImageToDatabase = this.addImageToDatabase.bind(this)
+        this.addImageToDatabase = this.addImageToDatabase.bind(this);
+        this.removeImageFromDatabase = this.removeImageFromDatabase.bind(this);
     }
 
     
@@ -30,7 +31,7 @@ class FullScreen extends Component   {
 
         fetch('/api/add-image/',{
             method: 'PUT',
-            mode: "cors",
+            mode: 'cors',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
@@ -45,11 +46,34 @@ class FullScreen extends Component   {
         });
     }
 
+    // new / untested
+    removeImageFromDatabase (event) {
+        event.preventDefault();
 
-    removeImageFromDatabase() {
         alert('remove image clicked');
-    }
 
+        let email = this.state.log_email;
+        let image = event.target.value;
+
+        console.log(image);
+
+        fetch('/api/delete-image/',{
+            method: 'PUT',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+                image: image,
+              }) 
+          }).then(function(response){
+              // enter message if you feel so inclined
+              console.log(response)
+          });
+    }
+    
 
     escFunction(event) {
         if (event.keyCode === 27) {

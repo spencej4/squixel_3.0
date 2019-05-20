@@ -114,13 +114,38 @@ onRegisterMenuClick() {
  // toggles the menu
  toggleLoginMenu() {
     let loginMenu = document.getElementById('dd-login-menu');
+
+    let loginOptions = document.getElementById('login-options');
+    let userOptions = document.getElementById('user-options')
     
-    if (this.state.loginMenuVisible === false) {
+    if (!this.state.isAuthenticated) {
+      if (this.state.loginMenuVisible === false) {
+          this.setState({
+              loginMenuVisible: true
+          })
+          loginMenu.classList.remove('hide');
+          loginMenu.classList.add('show');
+          loginOptions.classList.remove('hide');
+          loginOptions.classList.add('show');
+      }
+      else if (this.state.loginMenuVisible === true) {
+          this.setState({
+              loginMenuVisible: false
+          })
+          loginMenu.classList.remove('show');
+          loginMenu.classList.add('hide');
+          loginOptions.classList.remove('show');
+          loginOptions.classList.add('hide');
+      } 
+  }else if (this.state.isAuthenticated) {
+      if (this.state.loginMenuVisible === false) {
         this.setState({
             loginMenuVisible: true
         })
         loginMenu.classList.remove('hide');
         loginMenu.classList.add('show');
+        userOptions.classList.remove('hide');
+        userOptions.classList.add('show');
     }
     else if (this.state.loginMenuVisible === true) {
         this.setState({
@@ -128,7 +153,10 @@ onRegisterMenuClick() {
         })
         loginMenu.classList.remove('show');
         loginMenu.classList.add('hide');
+        userOptions.classList.remove('show');
+        userOptions.classList.add('hide');
     } 
+  }
 }
 
 
@@ -475,6 +503,7 @@ render() {
             showSignInPage={this.state.showSignInPage}
             showRegisterPage={this.state.showRegisterPage}
             isAuthenticated={this.state.isAuthenticated}
+            log_email={this.state.log_email}
             onViewCollectionClick={this.onViewCollectionClick}
             onLogoutClick={this.onLogoutClick}
             showSearchInput={this.state.showSearchInput}

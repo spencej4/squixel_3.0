@@ -279,9 +279,21 @@ a {
   top: 0;
   right: 0;
   width: 19%;
-  height: 103px;
+  height: 104px;
   position: absolute;
   padding-top: 1px;  
+  background-color: white;
+}
+
+
+/* temp */
+.user-options {
+  top: 0;
+  right: 0;
+  width: 19%;
+  height: 205px;
+  position: absolute;
+  padding-top: 1px;
   background-color: white;
 }
 
@@ -293,6 +305,19 @@ a {
   font-weight: 100;
   line-height: 1;
   cursor: pointer;
+}
+
+.user-card {
+  margin-top: 15px;
+  margin-bottom: 12px;
+  font-size: 21px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  line-height: 1;
+}
+
+#user-card {
+  height: 71px;
 }
 
 hr {
@@ -1237,7 +1262,16 @@ input[type=text] {
     top: 0;
     padding-top: 1px;
     width: 100%;
-    height: 103px;
+    height: 104px;
+    background-color: white;
+  }
+
+  .user-options {
+    top: 0;
+    width: 100%;
+    height: 205px;
+    /* position: absolute; */
+    /* padding-top: 1px; */
     background-color: white;
   }
 
@@ -1247,6 +1281,20 @@ input[type=text] {
     margin-right: auto;
     border: 1px solid lightgrey;
     opacity: 0.4;
+  }
+  
+  .user-card {
+    margin-top: 15px;
+    margin-bottom: 12px;
+    font-size: 21px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    line-height: 1;
+  }
+
+  #user-card {
+    height: 71px;
+    cursor: none;
   }
 
   .sign-in-page {

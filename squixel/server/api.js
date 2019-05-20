@@ -73,6 +73,16 @@ router.put('/add-image', function (request, response) {
 })
 
 
+// new / untested
+router.put('/delete-image', function (request, response) {
+  let email = request.body.email;
+  let image = request.body.image;
+
+  User.delete_image(email, image)
+  return response
+})
+
+
 // GET request to console log list of users in mongod terminal
 router.get('/users', function (request, response) {
   User.findAll();
