@@ -307,6 +307,10 @@ a {
   cursor: pointer;
 }
 
+.login-option:hover {
+  color: rgb(230, 124, 205);
+}
+
 .user-card {
   margin-top: 15px;
   margin-bottom: 12px;
@@ -1638,8 +1642,7 @@ input[type=text] {
   .footer {
     clear: both;
     position: relative;
-    /* z-index: 10; */
-    height: 80px;
+    height: 180px;
     margin-top: 20px;
     margin-bottom: 20px;
   }
@@ -1649,18 +1652,21 @@ input[type=text] {
     height: 100%;
     display: block;
     position: relative;
-    /* background-color: hotpink; */
     z-index: 80;
   }
 
   .left {
     float: left;
-    left: 15%;
+    left: 10%;
   }
 
   .right {
     float: right;
-    right: 15%;
+    right: 10%;
+  }
+
+  .loadMoreButton {
+    width: 33%;
   }
 }
 

@@ -74,7 +74,7 @@ class Header extends Component {
                             {/* temp */}
                             <ul className='user-options hide' id='user-options'>
                                 {(this.props.isAuthenticated) ? ( 
-                                    <li className='user-card' id='user-card' onClick={() => this.props.onViewCollectionClick()}>Logged In As: {this.props.log_email}</li>
+                                    <li className='user-card' id='user-card' onClick={() => this.props.onViewCollectionClick()}>Logged In As: <br></br><br></br>{this.props.log_email}</li>
                                  ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
                                     <hr></hr>
