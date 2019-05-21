@@ -50,7 +50,7 @@ class FullScreen extends Component   {
     removeImageFromDatabase (event) {
         event.preventDefault();
 
-        alert('remove image clicked');
+        // alert('remove image clicked');
 
         let email = this.state.log_email;
         let image = event.target.value;
