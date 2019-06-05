@@ -27,6 +27,7 @@ class App extends Component {
       log_email: '',
       log_password: '',
       isAuthenticated: false,
+      user_ID: '',
       isRegistered: false,
       data: '',
       nextData: [],
@@ -43,6 +44,7 @@ class App extends Component {
       showFullScreenImage: false,
       fullScreenImage: '',
       fullscreenDataID: '',
+      photo_ID: '',
       showFooter: false,
       showInputInHeader: false,
       inputValueInHeader: ''
@@ -54,6 +56,7 @@ class App extends Component {
     this.handleSignInChange = this.handleSignInChange.bind(this);
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.setCookie = this.setCookie.bind(this);
+    this.setCookieID = this.setCookieID.bind(this);
     this.onRegisterSubmit = this.onRegisterSubmit.bind(this);
     this.onViewCollectionClick = this.onViewCollectionClick.bind(this);
     this.onLogoutClick = this.onLogoutClick.bind(this);
@@ -78,9 +81,11 @@ componentDidMount() {
  // 
 }
 
+
 scrollWindow() {
   window.scrollTo(0, 0);
 }
+
 
 // handles click for sign in from header 
 onSignInMenuClick() {
@@ -190,13 +195,15 @@ onLoginSubmit(event) {
     }).then(function(response){
       return response.json();
     }).then(function(data){
+      // console.log(data)
       this.setState({
-        isAuthenticated: true
+        isAuthenticated: true,
+        user_ID: data
       })
-    }.bind(this));
+      this.setCookie('username', this.state.log_email, 30);
+      this.setCookieID('idName', data, 30);
 
-    // calls setCookie function
-    this.setCookie('username', this.state.log_email, 30)
+    }.bind(this));
 }
 
 
@@ -209,8 +216,17 @@ setCookie(cname, cvalue, exdays) {
 }
 
 
-// retrieve a cookie
+setCookieID(idName, idValue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = idName + "=" + idValue + ";" + expires + ";path-/";
+}
+
+
+// retrieve username from cookie
 getCookie(cname) {
+  // console.log(document.cookie);
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
@@ -227,14 +243,39 @@ getCookie(cname) {
 }
 
 
-// verify a cookie
+// retrieve userID from cookie
+getCookieID(idName){
+  var id = idName + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(id) === 0) {
+      return c.substring(id.length, c.length);
+    }
+  }
+  return "";
+}
+
+
+// verify a cookies
 checkCookie() {
   var user= this.getCookie("username");
+  var id = this.getCookieID('idName');
+
   if (user !== "") {
     // updates state that user is logged in and set log_email value to user
     this.setState({
       isAuthenticated: true,
-      log_email: user
+      log_email: user,
+    })
+    // updates state with mongo user id
+  } if (id !== "") {
+    this.setState({
+      user_ID: id
     })
   } else {
     // user is not logged in, no cookie found
@@ -277,10 +318,12 @@ onRegisterSubmit(event) {
 onLogoutClick() {
   // sets current cookie to expired
   document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+  document.cookie = "idName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
   this.setState({
     isAuthenticated: false,
     log_email: '',
+    user_ID: '', 
     showUserCard: false
   }) 
   this.toggleLoginMenu();
@@ -311,7 +354,12 @@ onViewCollectionClick() {
   let user = this.state.log_email
 
   this.setState({
+    // new
+    loading: true,
     userCardLoading: true,
+    showFullScreenImage: false,
+    // end new
+    showUserCard: false,
     pageNum: 0,
     showCard: false, 
     userCollectionData: ''
@@ -334,13 +382,19 @@ onViewCollectionClick() {
         this.setState({
           // push each image to state array
           userCollectionData:  [...this.state.userCollectionData, 
-            {image: response[index].image, 
-             smallImage: response[index].smallImage}
+            {
+              image: response[index].image, 
+              smallImage: response[index].smallImage,
+              photo_ID: response[index]._id
+            }
           ]
         })
       }
+      // see data from user collection
+      console.log(response);
   }).then(response => this.setState((prevState) => {
         return {
+          loading: false,
           userCardLoading: false,
           showUserCard: true,
           showSignInPage: false,
@@ -474,21 +528,22 @@ handleChange(event) {
 }
 
 
-showFullScreenImage(image, smallImage, fullscreenDataID) {
+showFullScreenImage(image, smallImage, fullscreenDataID, photo_ID) {
   this.setState({
     showFullScreenImage: true,
     fullScreenImage: image,
     smallImage: smallImage,
-    fullscreenDataID: fullscreenDataID
+    fullscreenDataID: fullscreenDataID,
+    photo_ID: photo_ID.photo_ID
   })
-  
 }
 
 
 closeFullScreenImage() {
   this.setState({
     showFullScreenImage: false,
-    fullScreenImage: ''
+    fullScreenImage: '',
+    photo_ID: ''
   })
 }
 
@@ -561,6 +616,8 @@ render() {
               fullscreenDataID={this.state.fullscreenDataID}
               closeFullScreen={this.closeFullScreenImage}
               log_email={this.state.log_email}
+              user_ID={this.state.user_ID}
+              photo_ID={this.state.photo_ID}
             />
         ) : (null)}
       </div>

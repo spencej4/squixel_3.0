@@ -65,21 +65,34 @@ router.get('/getUserContent/:user', function (request, response, next) {
 // PUT request for adding image to db
 router.put('/add-image', function (request, response) {
   let email = request.body.email;
+  let user_ID = request.body.user_ID;
   let image = request.body.image;
   let smallImage = request.body.smallImage;
 
-  User.add_image(email, image, smallImage)
-  return response
+  User.add_image(email, image, smallImage, function(error, photo) {
+    if (error || !photo) {
+      var err = new Error('Problem adding photo to database');
+      err.status = 401;
+      return next(err)
+    } else {
+        response.json(photo);
+        console.log(`PHOTO ID FROM WITHIN API: ${photo}`);
+        return response 
+    }
+  });
 })
 
 
-// new / untested
+//PUT request to delete image from db
 router.put('/delete-image', function (request, response) {
   let email = request.body.email;
-  let image = request.body.image;
+  let photo_ID = request.body.photo_ID;
 
-  User.delete_image(email, image)
-  return response
+  console.log(`PHOTO ID FROM WITHIN API ON THE WAY TO MODEL: ${photo_ID}`);
+
+  User.delete_image( email, photo_ID );
+  // console.log(response);
+
 })
 
 

@@ -5,7 +5,8 @@ class FullScreen extends Component   {
     constructor(props) {
         super(props);
         this.state = {
-            log_email: this.props.log_email
+            log_email: this.props.log_email,
+            user_ID: this.props.user_ID
         }
         this.escFunction = this.escFunction.bind(this);
         this.addImageToDatabase = this.addImageToDatabase.bind(this);
@@ -25,7 +26,9 @@ class FullScreen extends Component   {
 
     addImageToDatabase (event) {
         event.preventDefault();
+
         let email = this.state.log_email;
+        let user_ID = this.state.user_ID;
         let image = event.target.value;
         let smallImage = this.props.smallImage;
 
@@ -38,26 +41,27 @@ class FullScreen extends Component   {
             },
             body: JSON.stringify({
               email: email,
+              user_ID: user_ID,
               image: image,
               smallImage: smallImage
             }) 
-        }).then(function(){
-            // enter message if you feel so inclined
-        });
+        }).then(response => response.json())
+            // get returned image ID from api and schema
+        .then(response => {
+            console.log(`PHOTO ID FROM WITHIN FULLSCREEN: ${response}`);
+        })
     }
+
 
     // new / untested
     removeImageFromDatabase (event) {
         event.preventDefault();
 
-        // alert('remove image clicked');
-
         let email = this.state.log_email;
         let image = event.target.value;
+        let photo_ID = this.props.photo_ID;
 
-        console.log(image);
-
-        fetch('/api/delete-image/',{
+        fetch('/api/delete-image',{
             method: 'PUT',
             mode: 'cors',
             headers: {
@@ -67,9 +71,9 @@ class FullScreen extends Component   {
               body: JSON.stringify({
                 email: email,
                 image: image,
+                photo_ID: photo_ID,
               }) 
           }).then(function(response){
-              // enter message if you feel so inclined
               console.log(response)
           });
     }

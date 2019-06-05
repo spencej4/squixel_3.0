@@ -17,6 +17,7 @@ class UserCard extends Component   {
       else {
         return (
           this.props.userCollectionData.map((item, id) => {
+            // console.log(item);
             //For landscape photos
           //   if (this.props.userCollectionData[id].width > this.props.userCollectionData[id].height){
               return (
@@ -27,11 +28,13 @@ class UserCard extends Component   {
                         let width = this.props.userCollectionData[id].width;
                         let height = this.props.userCollectionData[id].height;
                         let fullscreenData = this.props.userCollectionData[id];
-                        this.props.showFullScreenImage(image, width, height, fullscreenData)
+                        let photo_ID = this.props.userCollectionData[id].photo_ID;
+                        this.props.showFullScreenImage(image, width, height, fullscreenData, photo_ID);
                       }}
                   >
                     <img src={this.props.userCollectionData[id].smallImage} 
                         key={id} 
+                        photo_id={this.props.userCollectionData[id].photo_ID}
                         width={this.props.userCollectionData[id].width}
                         height={this.props.userCollectionData[id].height}
                         alt={"temp description"}

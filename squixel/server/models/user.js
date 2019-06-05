@@ -12,11 +12,15 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   }, 
-  content: {
-    type: Array,
-    
-}
+  // content: {
+  //   type: Array,  
+  // }
+  content: [{
+    image: String,
+    smallImage: String
+  }]
 });
+
 
 //authenticate input against database
 UserSchema.statics.authenticate = function (email, password, callback) {
@@ -61,27 +65,33 @@ UserSchema.statics.getUserContent = function (email, callback) {
 
 
 // add an image to database
-UserSchema.statics.add_image = function (email, image, smallImage) {
-  User.update({ email: email }, { $push: { content: {image, smallImage} }})
-    .exec(function(err, user){
-    console.log(`${image} has been added to your collection!`);
-  })
+UserSchema.statics.add_image = function (email, image, smallImage, callback) {
+  User.findOneAndUpdate(
+    { "email": email },
+    {"$push": { "content": { image, smallImage }}},
+    { upsert: true, new: true  }, 
+    function(res, doc) {
+        let photo_ID = doc.content[doc.content.length-1]._id;
+        console.log(`PHOTO ID: ${photo_ID}`);
+        return callback( null, photo_ID);
+    }
+  );
 }
 
-
-// new / untested
-// delete image from database
-
-// so, i seem to need to be able to create new image objects with unique id's, which will then be used by this delete method
-// trying to delete based on image string doesn't work
-UserSchema.statics.delete_image = function (email, image) {
-  User.findByIdAndRemove(image, function(err) {
-    if (err) {
-      console.log(err)
-    }else {
-      console.log('image has been deleted from your database');
+// here
+// successfully receives ID of photo to be deleted, from api
+UserSchema.statics.delete_image = function (email, photo_ID) {
+  // console.log(`PHOTO ID from within mongoose model : ${photo_ID}`);
+  // console.log(`EMAIL FROM from within mongoose model: ${email}`);
+  User.findOneAndUpdate(
+    {'email': email} ,
+    { "$pull": { "content": { _id: photo_ID }}},
+    {'new': true},
+    function(err, doc) {
+      console.log(`Error: ${err}`)
+      // console.log('doc', JSON.stringify(doc));
     }
-  })
+  )
 }
 
 

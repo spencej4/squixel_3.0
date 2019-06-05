@@ -70,6 +70,7 @@ class Card extends Component   {
            {/* empty div  */}
           </div>
         )
+        // return null
     }  
   }
 }
