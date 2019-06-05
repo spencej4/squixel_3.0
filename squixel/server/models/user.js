@@ -72,24 +72,24 @@ UserSchema.statics.add_image = function (email, image, smallImage, callback) {
     { upsert: true, new: true  }, 
     function(res, doc) {
         let photo_ID = doc.content[doc.content.length-1]._id;
-        console.log(`PHOTO ID: ${photo_ID}`);
+        // console.log(`PHOTO ID: ${photo_ID}`);
         return callback( null, photo_ID);
     }
   );
 }
 
-// here
-// successfully receives ID of photo to be deleted, from api
-UserSchema.statics.delete_image = function (email, photo_ID) {
+// delete image from database
+UserSchema.statics.delete_image = function (email, photo_ID, callback) {
   // console.log(`PHOTO ID from within mongoose model : ${photo_ID}`);
   // console.log(`EMAIL FROM from within mongoose model: ${email}`);
   User.findOneAndUpdate(
     {'email': email} ,
     { "$pull": { "content": { _id: photo_ID }}},
     {'new': true},
-    function(err, doc) {
+    function(err, res, doc) {
       console.log(`Error: ${err}`)
       // console.log('doc', JSON.stringify(doc));
+      return callback( null, 'image deleted');
     }
   )
 }

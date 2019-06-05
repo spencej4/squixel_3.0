@@ -76,7 +76,7 @@ router.put('/add-image', function (request, response) {
       return next(err)
     } else {
         response.json(photo);
-        console.log(`PHOTO ID FROM WITHIN API: ${photo}`);
+        // console.log(`PHOTO ID FROM WITHIN API: ${photo}`);
         return response 
     }
   });
@@ -88,11 +88,18 @@ router.put('/delete-image', function (request, response) {
   let email = request.body.email;
   let photo_ID = request.body.photo_ID;
 
-  console.log(`PHOTO ID FROM WITHIN API ON THE WAY TO MODEL: ${photo_ID}`);
+  // console.log(`PHOTO ID FROM WITHIN API ON THE WAY TO MODEL: ${photo_ID}`);
 
-  User.delete_image( email, photo_ID );
-  // console.log(response);
-
+  User.delete_image( email, photo_ID, function(error, photo) {
+    if (error || !photo) {
+      var err = new Error('Problem deleting photo from database');
+      err.status = 401;
+      return (err)
+    } else {
+        response.json(photo);
+        return response;
+    }
+  });
 })
 
 

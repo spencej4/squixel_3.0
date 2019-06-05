@@ -258,6 +258,18 @@ a {
   display: block;
 }
 
+.fadeIn {
+  opacity: 1;
+  /* rate at which the fullscreen images fade in */
+  transition: opacity 900ms;
+}
+
+.fadeOut {
+  opacity: 0;
+  /* rate at which the fullscreen images fade out */
+  transition: opacity 900ms;
+}
+
 .dd-login-menu {
   top: 57px;
   width: 100%;
@@ -444,7 +456,7 @@ input[type=text] {
   margin: 0;
 }
 
-.fullScreen {
+#fullScreen {
   width: 100vw;
   height: 100%;
   display: block;
@@ -963,7 +975,7 @@ input[type=text] {
     vertical-align: top;
   }
 
-  .fullscreen {
+  #fullscreen {
     width: 100vw;
     height: 100%;
     display: block;
@@ -1163,7 +1175,7 @@ input[type=text] {
     vertical-align: top;
   }
 
-  .fullscreen {
+  #fullscreen {
     top: 4%;
   }
 
@@ -1602,7 +1614,7 @@ input[type=text] {
     margin-top: 0;
   }
 
-  .fullscreen {
+  #fullscreen {
     width: 100%;
     /* height: 100vh; */
     height: 100%;

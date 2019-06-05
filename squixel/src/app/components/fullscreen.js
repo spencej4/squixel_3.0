@@ -45,10 +45,9 @@ class FullScreen extends Component   {
               image: image,
               smallImage: smallImage
             }) 
-        }).then(response => response.json())
-            // get returned image ID from api and schema
-        .then(response => {
-            console.log(`PHOTO ID FROM WITHIN FULLSCREEN: ${response}`);
+        }) .then(response => {
+            // close full screen
+            this.props.closeFullScreen();
         })
     }
 
@@ -73,9 +72,10 @@ class FullScreen extends Component   {
                 image: image,
                 photo_ID: photo_ID,
               }) 
-          }).then(function(response){
-              console.log(response)
-          });
+          }).then(response => {
+            // render user collection
+            this.props.onPhotoAdd_Or_Remove_Click();
+          })
     }
     
 
@@ -88,7 +88,7 @@ class FullScreen extends Component   {
     
     render () { 
         return (
-            <div className='fullscreen'>
+            <div id='fullscreen'>
                 <div className='fullscreenAside'>
                     <button className='closeFullScreenButton'
                         onClick={this.props.closeFullScreen}>X

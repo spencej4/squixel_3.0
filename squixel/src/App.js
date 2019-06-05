@@ -38,6 +38,7 @@ class App extends Component {
       userCardLoading: false, 
       showUserCard: false,
       showSearchInput: false,
+      showLandingSearchBar: true,
       value: '',
       signInValue: '',
       pageNum: 0,
@@ -67,6 +68,7 @@ class App extends Component {
     this.onInputSubmit = this.onInputSubmit.bind(this);
     this.showFullScreenImage = this.showFullScreenImage.bind(this);
     this.closeFullScreenImage = this.closeFullScreenImage.bind(this);
+    this.onPhotoAdd_Or_Remove_Click = this.onPhotoAdd_Or_Remove_Click.bind(this);
     this.onNextClick = this.onNextClick.bind(this);
     this.onPreviousClick = this.onPreviousClick.bind(this);
     this.scrollWindow = this.scrollWindow.bind(this);
@@ -143,7 +145,18 @@ onRegisterMenuClick() {
           loginOptions.classList.add('hide');
       } 
   }else if (this.state.isAuthenticated) {
-      if (this.state.loginMenuVisible === false) {
+      // here
+      if (this.state.loginMenuVisible === false && this.state.showUserCard) {
+        console.log('my condition ran');
+        this.setState({
+          loginMenuVisible: false
+        })
+        loginMenu.classList.add('hide');
+        loginMenu.classList.remove('show');
+        userOptions.classList.remove('show');;
+        userOptions.classList.add('hide');
+      }
+      else if (this.state.loginMenuVisible === false) {
         this.setState({
             loginMenuVisible: true
         })
@@ -356,6 +369,7 @@ onViewCollectionClick() {
   this.setState({
     // new
     loading: true,
+    showLandingSearchBar: false,
     userCardLoading: true,
     showFullScreenImage: false,
     // end new
@@ -391,9 +405,68 @@ onViewCollectionClick() {
         })
       }
       // see data from user collection
-      console.log(response);
   }).then(response => this.setState((prevState) => {
+        // this.closeFullScreenImage();
         return {
+          // showFullSreenImage: false,
+          showLandingSearchBar: false,
+          loading: false,
+          userCardLoading: false,
+          showUserCard: true,
+          showSignInPage: false,
+          showFooter: false,
+          showInputInHeader: false
+        } 
+  }))
+}
+
+// closes fullscreen, retrieves images from user db collection
+onPhotoAdd_Or_Remove_Click() {
+  this.toggleLoginMenu();
+  let user = this.state.log_email
+
+  this.setState({
+    loading: true,
+    showLandingSearchBar: false,
+    userCardLoading: true,
+    // showFullScreenImage: false,
+    showUserCard: false,
+    pageNum: 0,
+    showCard: false, 
+    userCollectionData: ''
+  });
+
+  fetch('/api/getUserContent/' + user,{
+      method: 'GET',
+      mode: "cors",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }, 
+      credentials: "same-origin",
+  })
+  .then(response => response.json())
+  // get returned images from user's database
+  .then(response => {
+      //iterate through return for images
+      for (var index in response) {
+        this.setState({
+          // push each image to state array
+          userCollectionData:  [...this.state.userCollectionData, 
+            {
+              image: response[index].image, 
+              smallImage: response[index].smallImage,
+              photo_ID: response[index]._id
+            }
+          ]
+        })
+      }
+      // see data from user collection
+  }).then(response => this.setState((prevState) => {
+        this.closeFullScreenImage();
+        return {
+          showFullSreenImage: false,
+          showLandingSearchBar: false,
           loading: false,
           userCardLoading: false,
           showUserCard: true,
@@ -540,11 +613,19 @@ showFullScreenImage(image, smallImage, fullscreenDataID, photo_ID) {
 
 
 closeFullScreenImage() {
+  let fullScreen = document.getElementById('fullscreen');
+  fullScreen.classList.add('fadeOut');
+
   this.setState({
-    showFullScreenImage: false,
     fullScreenImage: '',
     photo_ID: ''
   })
+
+  setTimeout(() => { 
+    this.setState({
+      showFullScreenImage: false,
+    })
+  }, 600);
 }
 
 
@@ -555,10 +636,12 @@ render() {
             onSignInMenuClick={this.onSignInMenuClick}
             onRegisterMenuClick={this.onRegisterMenuClick}
             toggleLoginMenu={this.toggleLoginMenu}
+            loginMenuVisible={this.state.loginMenuVisible}
             showSignInPage={this.state.showSignInPage}
             showRegisterPage={this.state.showRegisterPage}
             isAuthenticated={this.state.isAuthenticated}
             log_email={this.state.log_email}
+            showLandingSearchBar={this.state.showLandingSearchBar}
             onViewCollectionClick={this.onViewCollectionClick}
             onLogoutClick={this.onLogoutClick}
             showSearchInput={this.state.showSearchInput}
@@ -586,7 +669,7 @@ render() {
               onRegisterSubmit={this.onRegisterSubmit}
               isRegistered={this.state.isRegistered}
          /> ) : (null)}
-        {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage ) ? ( 
+        {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage && this.state.showLandingSearchBar) ? ( 
             <Landing /> 
         ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
@@ -618,6 +701,8 @@ render() {
               log_email={this.state.log_email}
               user_ID={this.state.user_ID}
               photo_ID={this.state.photo_ID}
+              onViewCollectionClick={this.onViewCollectionClick}
+              onPhotoAdd_Or_Remove_Click={this.onPhotoAdd_Or_Remove_Click}
             />
         ) : (null)}
       </div>
