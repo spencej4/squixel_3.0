@@ -1035,7 +1035,7 @@ input[type=text] {
     font-weight: 100;
     z-index: 0;
   }
-
+  /* original */
   .add-to-db {
     display: block;
     position: relative;
@@ -1047,8 +1047,25 @@ input[type=text] {
     font-weight: 100;
     z-index: 0;
   }
+  /* new */
+  .add-to-db {
+    display: block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    color: black;
+    background-color: lightgrey;
+    border: none;
+    cursor: pointer;
+    font-size: 3em;
+    font-weight: 100;
+    z-index: 0;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+}
 
-  .remove-from-db {
+  /* original */
+  /* .remove-from-db {
     display: block;
     position: relative;
     color: white;
@@ -1058,6 +1075,27 @@ input[type=text] {
     font-size: 3em;
     font-weight: 100;
     z-index: 0;
+  } */
+  /* new */
+  .remove-from-db {
+    display: block;
+    width: 60px;
+    height: 60px;
+    /* color: white; */
+    border: none;
+    cursor: pointer;
+    font-size: 3em;
+    font-weight: 100;
+    z-index: 0;
+    background-color: lightgrey;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db:hover,
+  .remove-from-db:hover {
+    transition: background-color 0.5s ease;
+    background-color: rgb(217, 138, 220);
   }
 
   .footer {
