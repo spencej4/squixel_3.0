@@ -1036,7 +1036,7 @@ input[type=text] {
     z-index: 0;
   }
   /* original */
-  .add-to-db {
+  /* .add-to-db {
     display: block;
     position: relative;
     color: white;
@@ -1046,7 +1046,7 @@ input[type=text] {
     font-size: 3em;
     font-weight: 100;
     z-index: 0;
-  }
+  } */
   /* new */
   .add-to-db {
     display: block;
@@ -1718,6 +1718,39 @@ input[type=text] {
   .loadMoreButton {
     margin: 50px 15px 145px 15px;
     width: 33%;
+  }
+
+  .add-to-db {
+    display: block;
+    top: 117px;
+    right: -12px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    color: black;
+    background-color: lightgrey;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 100;
+    z-index: 0;
+    border-radius: 50%;
+}
+  /* new */
+  .remove-from-db {
+    display: block;
+    top: 165px;
+    right: -12px;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: 100;
+    z-index: 0;
+    background-color: lightgrey;
+    border-radius: 50%;
   }
 }
 
