@@ -1035,61 +1035,39 @@ input[type=text] {
     font-weight: 100;
     z-index: 0;
   }
-  /* original */
-  /* .add-to-db {
-    display: block;
-    position: relative;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 3em;
-    font-weight: 100;
-    z-index: 0;
-  } */
-  /* new */
-  .add-to-db {
-    display: block;
-    position: relative;
-    width: 60px;
-    height: 60px;
-    color: black;
-    background-color: lightgrey;
-    border: none;
-    cursor: pointer;
-    font-size: 3em;
-    font-weight: 100;
-    z-index: 0;
-    border-radius: 50%;
-    transition: background-color 0.5s ease;
-}
 
-  /* original */
-  /* .remove-from-db {
+  .add-to-db {
+    padding-top: -35px;
+    width: 60px;
+    height: 60px;
     display: block;
     position: relative;
     color: white;
-    background: none;
-    border: none;
+    background-color: rgba(201, 201, 201, 0.5);
     cursor: pointer;
     font-size: 3em;
     font-weight: 100;
     z-index: 0;
-  } */
-  /* new */
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    border: 1px solid white;
+  }
+  
   .remove-from-db {
+    margin-top: 15px;
     display: block;
     width: 60px;
     height: 60px;
-    /* color: white; */
     border: none;
     cursor: pointer;
     font-size: 3em;
     font-weight: 100;
     z-index: 0;
-    background-color: lightgrey;
+    color: white;
+    background-color: rgba(201, 201, 201, 0.5);
     border-radius: 50%;
     transition: background-color 0.5s ease;
+    border: 1px solid white;
   }
 
   .add-to-db:hover,
@@ -1722,14 +1700,14 @@ input[type=text] {
     width: 40px;
     height: 40px;
     position: absolute;
-    color: black;
-    background-color: lightgrey;
-    border: none;
+    color: white;
+    background-color: rgba(201, 201, 201, 0.5);
     cursor: pointer;
     font-size: 2em;
     font-weight: 100;
     z-index: 0;
     border-radius: 50%;
+    border: 1px solid white;
   }
 
   .remove-from-db {
@@ -1739,13 +1717,14 @@ input[type=text] {
     width: 40px;
     height: 40px;
     position: absolute;
-    border: none;
     cursor: pointer;
     font-size: 2em;
     font-weight: 100;
     z-index: 0;
-    background-color: lightgrey;
+    color: white;
+    background-color: rgba(201, 201, 201, 0.5);
     border-radius: 50%;
+    border: 1px solid white;
   }
 }
 
