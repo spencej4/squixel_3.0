@@ -124,7 +124,7 @@ onRegisterMenuClick() {
 
     let loginOptions = document.getElementById('login-options');
     let userOptions = document.getElementById('user-options')
-    
+    // user not authenticated
     if (!this.state.isAuthenticated) {
       if (this.state.loginMenuVisible === false) {
           this.setState({
@@ -144,9 +144,9 @@ onRegisterMenuClick() {
           loginOptions.classList.remove('show');
           loginOptions.classList.add('hide');
       } 
+  // user authenticated
   }else if (this.state.isAuthenticated) {
-      // here
-      if (this.state.loginMenuVisible === false && this.state.showUserCard) {
+      if (this.state.loginMenuVisible && this.state.showUserCard) {
         console.log('my condition ran');
         this.setState({
           loginMenuVisible: false
