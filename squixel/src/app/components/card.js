@@ -9,7 +9,7 @@ class Card extends Component   {
   render () {
     // reset window to top
     if (!this.props.showSearchInput) {
-      window.scrollTo(0, 0) 
+      // window.scrollTo(0, 0) 
     }
     
     if (this.props.loading === false) {

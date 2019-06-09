@@ -42,7 +42,7 @@ class App extends Component {
       value: '',
       signInValue: '',
       pageNum: 0,
-      showFullScreenImage: false,
+      fullScreenImageVisible: false,
       fullScreenImage: '',
       fullscreenDataID: '',
       photo_ID: '',
@@ -334,10 +334,16 @@ onLogoutClick() {
   document.cookie = "idName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
   this.setState({
+    showLandingSearchBar: true,
+    showSignInPage: false,
+    showRegisterPage: false,
+    showSearchInput: false,
+    showCard: false,
     isAuthenticated: false,
     log_email: '',
     user_ID: '', 
-    showUserCard: false
+    showUserCard: false,
+    showFooter: false,
   }) 
   this.toggleLoginMenu();
 }
@@ -367,12 +373,10 @@ onViewCollectionClick() {
   let user = this.state.log_email
 
   this.setState({
-    // new
     loading: true,
     showLandingSearchBar: false,
     userCardLoading: true,
     showFullScreenImage: false,
-    // end new
     showUserCard: false,
     pageNum: 0,
     showCard: false, 
@@ -422,7 +426,7 @@ onViewCollectionClick() {
 
 // closes fullscreen, retrieves images from user db collection
 onPhotoAdd_Or_Remove_Click() {
-  this.toggleLoginMenu();
+  // this.toggleLoginMenu();
   let user = this.state.log_email
 
   this.setState({
@@ -601,9 +605,9 @@ handleChange(event) {
 }
 
 
-showFullScreenImage(image, smallImage, fullscreenDataID, photo_ID) {
+showFullScreenImage(image, smallImage, fullscreenDataID, photo_ID,) {
   this.setState({
-    showFullScreenImage: true,
+    fullScreenImageVisible: true,
     fullScreenImage: image,
     smallImage: smallImage,
     fullscreenDataID: fullscreenDataID,
@@ -623,9 +627,9 @@ closeFullScreenImage() {
 
   setTimeout(() => { 
     this.setState({
-      showFullScreenImage: false,
+      fullScreenImageVisible: false,
     })
-  }, 600);
+  }, 1000);
 }
 
 
@@ -636,7 +640,7 @@ render() {
             onSignInMenuClick={this.onSignInMenuClick}
             onRegisterMenuClick={this.onRegisterMenuClick}
             toggleLoginMenu={this.toggleLoginMenu}
-            loginMenuVisible={this.state.loginMenuVisible}
+            // loginMenuVisible={this.state.loginMenuVisible}
             showSignInPage={this.state.showSignInPage}
             showRegisterPage={this.state.showRegisterPage}
             isAuthenticated={this.state.isAuthenticated}
@@ -685,13 +689,14 @@ render() {
               photos={this.state.photos}
               showFullScreen={this.state.showFullScreen}
               showFullScreenImage={this.showFullScreenImage}
+              fullScreenImageVisible={this.state.fullScreenImageVisible}
               fullScreenImage={this.state.fullScreenImage}
               showFooter={this.state.showFooter}
               onPreviousClick={this.onPreviousClick}
               onNextClick={this.onNextClick}
               showSearchInput={this.state.showSearchInput}
             />
-        {this.state.showFullScreenImage ? (
+        {this.state.fullScreenImageVisible ? (
             <FullScreen 
               isAuthenticated={this.state.isAuthenticated}
               photo={this.state.fullScreenImage} 
