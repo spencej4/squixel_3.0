@@ -380,7 +380,8 @@ onViewCollectionClick() {
     showUserCard: false,
     pageNum: 0,
     showCard: false, 
-    userCollectionData: ''
+    userCollectionData: '',
+    showFooter: false,
   });
 
   fetch('/api/getUserContent/' + user,{
