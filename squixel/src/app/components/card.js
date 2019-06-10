@@ -6,8 +6,10 @@ class Card extends Component   {
     window.scrollTo(0, 0) 
   }
 
-  componentDidMount() { };
-
+  componentDidMount() { 
+    window.scrollTo(0, 0);
+  }
+  
   render () {
     // reset window to top
     if (!this.props.showSearchInput ) {
