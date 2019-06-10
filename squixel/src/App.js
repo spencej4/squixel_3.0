@@ -34,6 +34,7 @@ class App extends Component {
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
+      cardRendered: false,
       userCollectionData: '',
       userCardLoading: false, 
       showUserCard: false,
@@ -508,6 +509,7 @@ onInputSubmit(event) {
           this.setState((prevState) => {
             return {
               loading: false,
+              cardRendered: true,
               error: 'Error when retrieving'
             }
           });
@@ -683,6 +685,7 @@ render() {
               showCard={this.state.showCard}
               data={this.state.data}
               loading={this.state.loading}
+              cardRendered={this.state.cardRendered}
               userCollectionData={this.state.userCollectionData}
               showUserCard={this.state.showUserCard}
               userCardLoading={this.state.userCardLoading}

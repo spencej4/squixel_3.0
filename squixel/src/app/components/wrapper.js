@@ -16,6 +16,7 @@ class Wrapper extends Component {
               <Card 
                   data={this.props.data}
                   loading={this.props.loading}
+                  cardRendered={this.props.cardRendered}
                   photos={this.props.photos}
                   showFullScreen={this.props.showFullScreen}
                   showFullScreenImage={this.props.showFullScreenImage}
