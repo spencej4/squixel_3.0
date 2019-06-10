@@ -499,6 +499,7 @@ onInputSubmit(event) {
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           return {
+            cardRendered: true,
             data: json.results,
             loading: false,
             showFooter: true,
@@ -509,7 +510,6 @@ onInputSubmit(event) {
           this.setState((prevState) => {
             return {
               loading: false,
-              cardRendered: true,
               error: 'Error when retrieving'
             }
           });
