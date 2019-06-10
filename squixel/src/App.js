@@ -34,7 +34,6 @@ class App extends Component {
       imagesArrrayNext: [],
       loading: false,
       showCard: false,
-      cardRendered: false,
       userCollectionData: '',
       userCardLoading: false, 
       showUserCard: false,
@@ -86,10 +85,7 @@ componentDidMount() {
 
 
 scrollWindow() {
-  if (!this.state.cardRendered) {
-    alert(`scrollWindow ran: ${this.state.cardRendered} `);
-    window.scrollTo(0, 0);
-  }
+  window.scrollTo(0, 0);
 }
 
 
@@ -494,19 +490,16 @@ onInputSubmit(event) {
           loading: true,
           showSearchInput: false,
           pageNum: 0,
-          cardRendered: false,
           showCard: true, 
           showInputInHeader: true,
           showFooter: false,
       });
-      // alert(`Before scrollWindow: ${this.state.cardRendered}`);
-      // this.scrollWindow();
+      
 
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           return {
-            // cardRendered: true,
             data: json.results,
             loading: false,
             showFooter: true,
@@ -521,8 +514,6 @@ onInputSubmit(event) {
             }
           });
         });
-
-        // alert(`After unsplash api returned: ${this.state.cardRendered}`);
 }
 
 
@@ -530,11 +521,9 @@ onInputSubmit(event) {
 onNextClick() {
       this.setState({
         loading: true,
-        // cardRendered: true,
         showSearchInput: false,
         showFooter: false
       });
-      // this.scrollWindow();
 
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum + 1}`, 30)
         .then(response => response.json())
@@ -543,7 +532,6 @@ onNextClick() {
             showSearchInput: false,
             data: json.results,
             loading: false,
-            // cardRendered: false,
             showFooter: true,
             showCard: true,
             pageNum: this.state.pageNum + 1
@@ -564,11 +552,9 @@ onNextClick() {
 onPreviousClick() {
     this.setState({
       loading: true,
-      // cardRendered: true,
       showSearchInput: false,
       showFooter: false
     });
-    // this.scrollWindow();
 
     unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum - 1}`, 30)
       .then(response => response.json())
@@ -577,7 +563,6 @@ onPreviousClick() {
           showSearchInput: false,
           data: json.results,
           loading: false,
-          // cardRendered: false,
           showFooter: true,
           showCard: true,
           pageNum: this.state.pageNum - 1
