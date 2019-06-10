@@ -86,7 +86,9 @@ componentDidMount() {
 
 
 scrollWindow() {
-  window.scrollTo(0, 0);
+  if (this.state.cardRendered) {
+    window.scrollTo(0, 0);
+  }
 }
 
 
@@ -491,10 +493,13 @@ onInputSubmit(event) {
           loading: true,
           showSearchInput: false,
           pageNum: 0,
+          cardRendered: false,
           showCard: true, 
           showInputInHeader: true,
           showFooter: false,
       });
+      this.scrollWindow();
+
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
@@ -685,7 +690,6 @@ render() {
               showCard={this.state.showCard}
               data={this.state.data}
               loading={this.state.loading}
-              cardRendered={this.state.cardRendered}
               userCollectionData={this.state.userCollectionData}
               showUserCard={this.state.showUserCard}
               userCardLoading={this.state.userCardLoading}
