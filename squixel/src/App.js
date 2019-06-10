@@ -86,7 +86,7 @@ componentDidMount() {
 
 
 scrollWindow() {
-  if (this.state.cardRendered) {
+  if (!this.state.cardRendered) {
     window.scrollTo(0, 0);
   }
 }
@@ -488,7 +488,8 @@ onPhotoAdd_Or_Remove_Click() {
 //captures input search value, calls API and returns JSON data
 onInputSubmit(event) {
       event.preventDefault();
-
+      this.scrollWindow();
+      
       this.setState({
           loading: true,
           showSearchInput: false,
