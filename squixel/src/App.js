@@ -87,6 +87,7 @@ componentDidMount() {
 
 scrollWindow() {
   if (!this.state.cardRendered) {
+    alert(`scrollWindow ran: ${this.state.cardRendered} `);
     window.scrollTo(0, 0);
   }
 }
@@ -499,13 +500,14 @@ onInputSubmit(event) {
           showInputInHeader: true,
           showFooter: false,
       });
+      alert(`Before scrollWindow: ${this.state.cardRendered}`);
       this.scrollWindow();
 
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           return {
-            cardRendered: true,
+            // cardRendered: true,
             data: json.results,
             loading: false,
             showFooter: true,
@@ -520,6 +522,8 @@ onInputSubmit(event) {
             }
           });
         });
+
+        alert(`After unsplash api returned: ${this.state.cardRendered}`);
 }
 
 

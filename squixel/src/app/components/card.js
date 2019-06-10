@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 
 class Card extends Component   {
 
-  componentDidMount() { 
-   
-  };
+  componentWillMount() {
+    window.scrollTo(0, 0) 
+  }
+
+  componentDidMount() { };
 
   render () {
     // reset window to top
