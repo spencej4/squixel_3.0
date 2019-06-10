@@ -488,8 +488,8 @@ onPhotoAdd_Or_Remove_Click() {
 //captures input search value, calls API and returns JSON data
 onInputSubmit(event) {
       event.preventDefault();
-      this.scrollWindow();
-      
+      // this.scrollWindow();
+
       this.setState({
           loading: true,
           showSearchInput: false,
@@ -527,9 +527,12 @@ onInputSubmit(event) {
 onNextClick() {
       this.setState({
         loading: true,
+        cardRendered: true,
         showSearchInput: false,
         showFooter: false
       });
+      this.scrollWindow();
+
       unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum + 1}`, 30)
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
@@ -537,6 +540,7 @@ onNextClick() {
             showSearchInput: false,
             data: json.results,
             loading: false,
+            cardRendered: false,
             showFooter: true,
             showCard: true,
             pageNum: this.state.pageNum + 1
@@ -557,9 +561,12 @@ onNextClick() {
 onPreviousClick() {
     this.setState({
       loading: true,
+      cardRendered: true,
       showSearchInput: false,
       showFooter: false
     });
+    this.scrollWindow();
+
     unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum - 1}`, 30)
       .then(response => response.json())
       .then(json => this.setState((prevState) => {
@@ -567,6 +574,7 @@ onPreviousClick() {
           showSearchInput: false,
           data: json.results,
           loading: false,
+          cardRendered: false,
           showFooter: true,
           showCard: true,
           pageNum: this.state.pageNum - 1
