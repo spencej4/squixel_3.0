@@ -20,6 +20,8 @@ class Card extends Component   {
     } 
     
     if (this.props.loading === false) {
+        window.scrollTo(0, 0);
+        
         return (
           this.props.data.map((item, id) => {
             //For landscape photos
