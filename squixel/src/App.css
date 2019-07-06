@@ -1365,7 +1365,10 @@ input[type=text] {
 
   .sign-in-title {
     margin-top: 4%;
-    font-size: 38px;
+    /* font-size: 38px; */
+    font-size: 28px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
   }
 
   #sign-in-form {
@@ -1611,6 +1614,12 @@ input[type=text] {
     background-size: contain;
     cursor: pointer;
     z-index: 1;
+  }
+
+  .form-error {
+    top: 154px;
+    left: 22%;
+    position: absolute;
   }
 
   .emptyCollectionMessage {
