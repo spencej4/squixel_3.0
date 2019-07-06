@@ -11,6 +11,7 @@ class SignInPage extends Component {
                     (<SignInForm
                         handleSignInChange = {this.props.handleSignInChange}
                         onLoginSubmit = {this.props.onLoginSubmit}
+                        loginError= {this.props.loginError}
                         >
                     </SignInForm>) : <LoggedInMessage></LoggedInMessage>}
                 <div className='register right'>

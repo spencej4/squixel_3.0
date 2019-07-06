@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import SignInErrorMessage from './SignInErrorMessage';
 
 class SignInForm extends Component {
     
@@ -41,6 +42,11 @@ class SignInForm extends Component {
                                 />
                             </label>
                         </div>
+
+                        { this.props.loginError ? 
+                            <SignInErrorMessage></SignInErrorMessage>
+                        : null }
+
                         <div className='form-row'>
                             <button type='submit' className='submit-btn'>Sign In</button>
                         </div>

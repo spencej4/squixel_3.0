@@ -26,6 +26,7 @@ class App extends Component {
       loginMenuVisible: false,
       log_email: '',
       log_password: '',
+      loginError: false,
       isAuthenticated: false,
       user_ID: '',
       isRegistered: false,
@@ -98,7 +99,8 @@ onSignInMenuClick() {
     showRegisterPage: false,
     showCard: false,
     showFooter: false,
-    showInputInHeader: false
+    showInputInHeader: false,
+    loginError: false
   })
   this.toggleLoginMenu();
 }
@@ -206,16 +208,23 @@ onLoginSubmit(event) {
           password: this.state.log_password
         }) 
     }).then(function(response){
+      // could not authenticate user
+      if (response.status !== 200) {
+        this.setState({
+          // for alerting user of authentiation issue
+          loginError: true
+        })
+      }
       return response.json();
-    }).then(function(data){
-      // console.log(data)
-      this.setState({
-        isAuthenticated: true,
-        user_ID: data
-      })
-      this.setCookie('username', this.state.log_email, 30);
-      this.setCookieID('idName', data, 30);
-
+    }.bind(this))
+    .then(function(data){
+        this.setState({
+          isAuthenticated: true,
+          user_ID: data
+        })
+        this.setCookie('username', this.state.log_email, 30);
+        this.setCookieID('idName', data, 30);
+      
     }.bind(this));
 }
 
@@ -344,6 +353,7 @@ onLogoutClick() {
     user_ID: '', 
     showUserCard: false,
     showFooter: false,
+    loginError: false
   }) 
   this.toggleLoginMenu();
 }
@@ -411,9 +421,7 @@ onViewCollectionClick() {
       }
       // see data from user collection
   }).then(response => this.setState((prevState) => {
-        // this.closeFullScreenImage();
         return {
-          // showFullSreenImage: false,
           showLandingSearchBar: false,
           loading: false,
           userCardLoading: false,
@@ -670,6 +678,7 @@ render() {
               handleSignInChange={this.handleSignInChange}
               onLoginSubmit={this.onLoginSubmit}
               isAuthenticated={this.state.isAuthenticated}
+              loginError={this.state.loginError}
          /> ) : (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( 
             <RegisterPage 

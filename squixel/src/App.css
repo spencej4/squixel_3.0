@@ -245,8 +245,19 @@ a {
   background-image: url('../src/app/img/user-icon.png');
   background-size: contain;
   cursor: pointer;
-
   z-index: 1;
+}
+
+.form-error {
+  top: 200;
+  left: 25%;
+  position: absolute;
+}
+
+.error {
+  margin: 20px 0 0 0 ;
+  color: rgb(230, 124, 205);
+  font-size: 22px;
 }
 
 

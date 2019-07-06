@@ -40,7 +40,8 @@ UserSchema.statics.authenticate = function (email, password, callback) {
           // console.log(`User ID: ${user._id}   (from: schema)`);
           return callback(null, user);
         } else {
-          return callback(user._id);
+          return callback("this user could not be authenticated");
+          // return callback(user._id);
         }
       })
     });
