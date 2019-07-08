@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+// import ReactImageAppear from 'react-image-appear';
 
 class FullScreen extends Component   {
 
@@ -45,7 +46,7 @@ class FullScreen extends Component   {
               image: image,
               smallImage: smallImage
             }) 
-        }) .then(response => {
+        }).then(response => {
             // close full screen
             this.props.closeFullScreen();
         })
@@ -58,7 +59,7 @@ class FullScreen extends Component   {
 
         let email = this.state.log_email;
         let image = event.target.value;
-        let photo_ID = this.props.photo_ID;
+        let photo_ID = this.props.photo_ID.photo_ID;
 
         fetch('/api/delete-image',{
             method: 'PUT',
@@ -91,21 +92,21 @@ class FullScreen extends Component   {
             <div id='fullscreen'>
                 <div className='fullscreenAside'>
                     <button className='closeFullScreenButton'
-                        onClick={this.props.closeFullScreen}>X
+                            onClick={this.props.closeFullScreen}>X
                     </button>
                     {this.props.isAuthenticated ? (
                         <button 
                             className='add-to-db'
                             onClick={this.addImageToDatabase}
-                            value={this.props.photo}
-                        >+</button>
+                            value={this.props.photo}>+
+                        </button>
                     ) : (null)}
                     {this.props.isAuthenticated ? (
                         <button 
                             className='remove-from-db'
                             onClick={this.removeImageFromDatabase}
-                            value={this.props.photo}
-                        >-</button>
+                            value={this.props.photo}>-
+                        </button>
                     ) : (null)}
                 </div>
                 <img 
@@ -113,6 +114,14 @@ class FullScreen extends Component   {
                     className='fullScreenImage'
                     alt={this.props.photo.description}
                 />
+                {/* <ReactImageAppear 
+                        src={this.props.photo}
+                        animation="blurIn"
+                        animationDuration="1s"
+                        alt={this.props.alt}
+                        class = "fullScreenImage"
+                        loader = ""
+                    /> */}
             </div>
         )
     }
