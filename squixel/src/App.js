@@ -149,7 +149,6 @@ onRegisterMenuClick() {
   // user authenticated
   }else if (this.state.isAuthenticated) {
       if (this.state.loginMenuVisible && this.state.showUserCard) {
-        console.log('my condition ran');
         this.setState({
           loginMenuVisible: false
         })
@@ -248,7 +247,6 @@ setCookieID(idName, idValue, exdays) {
 
 // retrieve username from cookie
 getCookie(cname) {
-  // console.log(document.cookie);
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
@@ -618,13 +616,14 @@ handleChange(event) {
 }
 
 
-showFullScreenImage(image, smallImage, fullscreenDataID, photo_ID,) {
+showFullScreenImage(image, smallImage, fullscreenDataID, photo_id,) {
+  console.log(`Small Image: ${smallImage}`);
   this.setState({
     fullScreenImageVisible: true,
     fullScreenImage: image,
     smallImage: smallImage,
     fullscreenDataID: fullscreenDataID,
-    photo_ID: photo_ID.photo_ID
+    photo_ID: photo_id.photo_ID
   })
 }
 

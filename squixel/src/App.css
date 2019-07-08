@@ -14,38 +14,9 @@
   height: 0;
 }
 
-html,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
+html,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address, big, cite, code, del, dfn, em, img, ins, kbd,
+q, s, samp, small, 
 strike,
 strong,
 sub,
@@ -426,7 +397,7 @@ input[type=text] {
   position: relative
 }
 
-.wrapperDiv {
+ .wrapperDiv {
   height: 100%;
   padding-left: 5px;
   padding-right: 5px;
@@ -441,13 +412,13 @@ input[type=text] {
   -moz-column-gap: 5px;
   column-count: 2;
   column-gap: 5px;
-}
+} 
 
 .imgSmall {
-  width: auto;
+  width: auto; 
   height: auto;
   position: relative;
-  margin: 4px 2px 4px 2px;
+  /* margin: 4px 2px 4px 2px; */
   vertical-align: top;
 }
 
@@ -456,7 +427,7 @@ input[type=text] {
   height: auto;
   display: inline-block;
   /* give mobile images margins here */
-  margin: 0;
+  /* margin: 0; */
 }
 
 .portrait {
@@ -464,7 +435,7 @@ input[type=text] {
   height: auto;
   display: inline-block;
   /* give mobile images margins here */
-  margin: 0;
+  /* margin: 0; */
 }
 
 #fullScreen {
@@ -956,7 +927,7 @@ input[type=text] {
     -moz-column-gap: 5px;
     column-count: 4;
     column-gap: 10px;
-  }
+  } 
 
   .imgSmall {
     width: auto;
@@ -968,6 +939,7 @@ input[type=text] {
   }
 
   .landscape {
+    /* OG */
     width: 100%;
     height: auto;
     display: inline-block;
@@ -977,6 +949,7 @@ input[type=text] {
   }
 
   .portrait {
+    /* OG */
     width: 100%;
     height: auto;
     display: inline-block;
