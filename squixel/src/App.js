@@ -617,13 +617,12 @@ handleChange(event) {
 
 
 showFullScreenImage(image, smallImage, fullscreenDataID, photo_id,) {
-  console.log(`Small Image: ${smallImage}`);
   this.setState({
     fullScreenImageVisible: true,
     fullScreenImage: image,
     smallImage: smallImage,
     fullscreenDataID: fullscreenDataID,
-    photo_ID: photo_id.photo_ID
+    photo_ID: photo_id
   })
 }
 

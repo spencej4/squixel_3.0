@@ -2,22 +2,6 @@ import React, {Component} from 'react';
 import CardImage from './CardImage.js';
 
 class Card extends Component   {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loadedImageCount: 0
-    }
-    this.updateLoaded = this.updateLoaded.bind(this);
-  }
-
-  updateLoaded() {
-    console.log('updateLoaded called!');
-
-    this.setState(prevState => {
-      return {loadedImageCount: prevState.loadedImageCount + 1}
-    });
-  }
-  
   componentWillMount() {
     window.scrollTo(0, 0) 
   }
@@ -25,11 +9,7 @@ class Card extends Component   {
   componentDidMount() { 
     window.scrollTo(0, 0);
   }
-
-  componentWillUnmount() {
-  }
-
-
+  
   render () {  
     if (this.props.loading === false) { 
         return (
