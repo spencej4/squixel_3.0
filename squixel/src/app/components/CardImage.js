@@ -23,6 +23,7 @@ class CardImage extends Component   {
                     <ReactImageAppear 
                         src={this.props.img_src}
                         key={this.props.key}
+                        className={this.props.className}
                         animation="fadeIn"
                         animationDuration="1s"
                         alt={this.props.alt}
