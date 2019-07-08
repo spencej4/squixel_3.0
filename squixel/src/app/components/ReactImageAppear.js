@@ -64,7 +64,7 @@ class ReactImageAppear extends Component {
                         width: "100%", 
                         height: "auto",
                         verticalAlign: "top",
-                        margin: "5px 0 5px 0"
+                        margin: "7px 0 7px 0"
                     }
                 })
             };
