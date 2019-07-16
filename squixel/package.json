@@ -36,6 +36,7 @@
         "react": "^16.0.0",
         "react-ace": "^6.4.0",
         "react-dom": "^16.0.0",
+        "react-image-appear": "^1.1.20",
         "react-redux": "^5.0.6",
         "react-router-dom": "^4.2.2",
         "react-scripts": "^1.0.14",

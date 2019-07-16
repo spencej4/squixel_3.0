@@ -63,8 +63,8 @@ class ReactImageAppear extends Component {
                         animation: `${animation} ${animationDuration} ${easing}`,
                         width: "100%", 
                         height: "auto",
-                        verticalAlign: "top",
-                        margin: "7px 0 7px 0"
+                        // verticalAlign: "top",
+                        // margin: "7px 0 7px 0"
                     }
                 })
             };
