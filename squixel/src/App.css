@@ -1188,11 +1188,6 @@ input[type=text] {
 
 /* ---------------------------------------MOBILE--------------------------------------- */
 @media (min-width: 320px) and (max-width: 734px) {
-  .header {
-    -webkit-box-shadow: 0px 1px 11px rgba(100, 100, 100, 0.45);
-    -moz-box-shadow: 0px 1px 11px rgba(100, 100, 100, 0.45);
-    box-shadow: 0px 1px 11px rgba(100, 100, 100, 0.45);
-  }
   .logo {
     left: 2.5%;
   }
