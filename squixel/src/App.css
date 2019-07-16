@@ -456,7 +456,7 @@ input[type=text] {
 .lds-ellipsis {
   display: inline-block;
   position: relative;
-  width: 64px;
+  width: 55px;
   height: 64px;
 }
 
@@ -1214,7 +1214,11 @@ input[type=text] {
     margin-left: 15px;
     font-size: 1.2em;
     color: rgb(244, 118, 208);
-    margin-top: 80%;
+    margin-top: 75%;
+  }
+
+  .lds-ellipsis {
+    width: 52px;
   }
 
   .lds-ellipsis div {
