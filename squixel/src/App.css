@@ -1214,7 +1214,7 @@ input[type=text] {
     margin-left: 15px;
     font-size: 1.2em;
     color: rgb(244, 118, 208);
-    margin-top: 70%;
+    margin-top: 80%;
   }
 
   .lds-ellipsis div {
@@ -1222,7 +1222,7 @@ input[type=text] {
     /* top: 257px; */
     width: 11px;
     height: 11px;
-    margin-top: 15px;
+    margin-top: 10px;
     border-radius: 50%;
     background: rgb(244, 118, 208);
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
