@@ -1679,14 +1679,13 @@ input[type=text] {
     display: block;
     top: 117px;
     right: -12px;
-    /* width: 1em; */
-    width: 0;
-    height: 1.5em;
+    width: 40px;
+    height: 40px;
     position: absolute;
     color: white;
     background-color: rgba(201, 201, 201, 0.5);
     cursor: pointer;
-    font-size: 2em;
+    font-size: 15px;
     font-weight: 100;
     z-index: 0;
     border-radius: 50%;
