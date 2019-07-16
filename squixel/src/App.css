@@ -1679,7 +1679,8 @@ input[type=text] {
     display: block;
     top: 117px;
     right: -12px;
-    width: 1em;
+    /* width: 1em; */
+    width: 0;
     height: 1.5em;
     position: absolute;
     color: white;
