@@ -34,14 +34,14 @@ db.once('open', function () {
 })
 
 //use sessions for tracking logins
-app.use(session({
-    secret: 'work hard',
-    resave: true,
-    saveUninitialized: false,
-    store: new MongoStore({
-      mongooseConnection: db
-    })
-  }));
+// app.use(session({
+//     secret: 'work hard',
+//     resave: true,
+//     saveUninitialized: false,
+//     store: new MongoStore({
+//       mongooseConnection: db
+//     })
+//   }));
 
 //use sessions for tracking logins
 app.use(cookieParser('secret'));
