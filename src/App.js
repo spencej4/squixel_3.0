@@ -81,11 +81,26 @@ class App extends Component {
     this.createImageIDArray = this.createImageIDArray.bind(this);
     this.createUserImageIDArray = this.createUserImageIDArray.bind(this);
     this.compareImageIDs = this.compareImageIDs.bind(this);
+
+    // testing 04/17/20
+    this.isMobileDevice=this.isMobileDevice.bind(this);
   }
+
+// tesing 04/17/20
+isMobileDevice() {
+  if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
+    alert('this is a mobile device')
+  }else {
+    alert(' this is a desktop device');
+  }
+  // return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
 
 
 componentWillMount() {
   this.checkCookie();
+  // tesing 04/17/20
+  this.isMobileDevice();
 }
 
 
@@ -424,6 +439,8 @@ toggleLoginPage() {
 
 // retrieves and displays user photo collection
 onViewCollectionClick(source) {
+  console.log(source);
+
   if (source == 'loginMenu'){
     this.toggleLoginMenu();
   }
@@ -820,6 +837,7 @@ render() {
               onLoginSubmit={this.onLoginSubmit}
               isAuthenticated={this.state.isAuthenticated}
               loginError={this.state.loginError}
+              // building 04/17/20
               onViewCollectionClick={this.onViewCollectionClick}
               loading={this.state.loading}
          /> ) : (null)}
