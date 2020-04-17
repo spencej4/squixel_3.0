@@ -1481,6 +1481,14 @@ input[type=text]::placeholder {
     line-height: 1;
   }
 
+  .add-to-db-overlay-collected {
+    display: none
+  }
+
+  .add-to-db-overlay {
+    display: none;
+  }
+
   #user-card {
     height: 71px;
     cursor: none;
