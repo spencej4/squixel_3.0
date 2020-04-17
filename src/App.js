@@ -89,9 +89,9 @@ class App extends Component {
 // tesing 04/17/20
 isMobileDevice() {
   if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
-    alert('this is a mobile device')
+    // alert('this is a mobile device')
   }else {
-    alert(' this is a desktop device');
+    // alert(' this is a desktop device');
   }
   // return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
