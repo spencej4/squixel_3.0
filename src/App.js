@@ -81,26 +81,12 @@ class App extends Component {
     this.createImageIDArray = this.createImageIDArray.bind(this);
     this.createUserImageIDArray = this.createUserImageIDArray.bind(this);
     this.compareImageIDs = this.compareImageIDs.bind(this);
-
-    // testing 04/17/20
-    this.isMobileDevice=this.isMobileDevice.bind(this);
   }
 
-// tesing 04/17/20
-isMobileDevice() {
-  if ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) {
-    // alert('this is a mobile device')
-  }else {
-    // alert(' this is a desktop device');
-  }
-  // return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
-}
 
 
 componentWillMount() {
   this.checkCookie();
-  // tesing 04/17/20
-  this.isMobileDevice();
 }
 
 
@@ -284,9 +270,7 @@ onLoginSubmit(event) {
       
     }.bind(this));
 
-    // testing 09/11/20
     this.createUserImageIDArray();
-    // end testing 09/11/20
 }
 
 
