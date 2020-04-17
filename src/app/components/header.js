@@ -8,6 +8,8 @@ import DisplaySearchInput from './displaySearchInput';
 class Header extends Component {
     
     render() {
+        let source = 'loginMenu';
+
         return (
             <Router>
                 <div className='header'>
@@ -83,13 +85,15 @@ class Header extends Component {
                             </ul>
                             <ul className='user-options hide' id='user-options' onMouseLeave={() => this.props.closeLoginMenu()}>
                                 {(this.props.isAuthenticated) ? ( 
-                                    <li className='user-card' id='user-card' onClick={() => this.props.onViewCollectionClick()}>Logged In As: <br></br><br></br>{this.props.log_email}</li>
+                                    <li className='user-card' 
+                                        id='user-card' 
+                                        onClick={() => this.props.onViewCollectionClick()}>Logged In As: <br></br><br></br>{this.props.log_email}</li>
                                  ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
                                     <hr></hr>
                                     ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
-                                    <li className='login-option' onClick={() => this.props.onViewCollectionClick()}>View My Collection</li>
+                                    <li className='login-option' onClick={() => this.props.onViewCollectionClick(source)}>View My Collection</li>
                                  ) : (null)} 
                                 {(this.props.isAuthenticated) ? ( 
                                     <hr></hr>

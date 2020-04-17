@@ -659,6 +659,28 @@ input[type=text]::placeholder {
     color: grey;
   }
 
+  .sign-in-success {
+   width: 48%;
+   height: 100%;
+   display: inline-block;
+   border-right: 1px solid #d9d9d9;
+   background-color: white;
+   text-align: center;
+   color: grey;
+  }
+
+  .view-collection-button-container {
+    top: 15%;
+    left: 11%;
+    width: 30%;
+    padding: 0;
+    height: auto;
+    position: absolute;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+  }
+
   .sign-in-title {
     font-size: 28px;
     font-family: 'Oswald', sans-serif;
@@ -1484,6 +1506,27 @@ input[type=text]::placeholder {
     display: block;
     border-right: 1px solid grey;
     background-color: white;
+    text-align: center;
+  }
+
+  .sign-in-success {
+    width: 100%;
+    height: 20%;
+    display: block;
+    background-color: white;
+    text-align: center;
+    color: grey;
+  }
+
+  .view-collection-button-container {
+    top: 15%;
+    left: 2%;
+    position: relative;
+    padding: 0;
+    height: auto;
+    position: absolute;
+    -ms-flex-align: center;
+    align-items: center;
     text-align: center;
   }
 

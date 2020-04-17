@@ -423,8 +423,12 @@ toggleLoginPage() {
 
 
 // retrieves and displays user photo collection
-onViewCollectionClick() {
-  this.toggleLoginMenu();
+onViewCollectionClick(source) {
+  console.log(source);
+
+  if (source == 'loginMenu'){
+    this.toggleLoginMenu();
+  }
   let user = this.state.log_email
 
   this.setState({
@@ -811,30 +815,6 @@ render() {
           showCard = {this.state.showCard}
           showUserCard = {this.state.showUserCard}
       /> ): (null)}
-        {/* <Header 
-            onSignInMenuClick={this.onSignInMenuClick}
-            onRegisterMenuClick={this.onRegisterMenuClick}
-            toggleLoginMenu={this.toggleLoginMenu}
-            closeLoginMenu={this.closeLoginMenu}
-            showSignInPage={this.state.showSignInPage}
-            showRegisterPage={this.state.showRegisterPage}
-            isAuthenticated={this.state.isAuthenticated}
-            log_email={this.state.log_email}
-            showLandingSearchBar={this.state.showLandingSearchBar}
-            onViewCollectionClick={this.onViewCollectionClick}
-            onLogoutClick={this.onLogoutClick}
-            showSearchInput={this.state.showSearchInput}
-            handleChange={this.handleChange}
-            onInputSubmit={this.onInputSubmit}
-            onSearchClick={this.onSearchClick}
-            onCloseSearchClick={this.onCloseSearchClick}
-            onClearSearchInputClick={this.onClearSearchInputClick}
-            closeSearch={this.closeSearch}
-            showInputInHeader={this.state.showInputInHeader}
-            inputValue = {this.state.value}
-            showCard = {this.state.showCard}
-            showUserCard = {this.state.showUserCard}
-        /> */}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? (
             <SignInPage 
               toggleLoginPage= {this.toggleLoginPage}
@@ -842,6 +822,8 @@ render() {
               onLoginSubmit={this.onLoginSubmit}
               isAuthenticated={this.state.isAuthenticated}
               loginError={this.state.loginError}
+              onViewCollectionClick={this.onViewCollectionClick}
+              loading={this.state.loading}
          /> ) : (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( 
             <RegisterPage 
