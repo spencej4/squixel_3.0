@@ -140,20 +140,6 @@ a {
   text-decoration: none;
 }
 
-/* .searchButton {
-  top: 6px;
-  right: 76px;
-  width: 32px;
-  height: 32px;
-  margin-top: 5px;
-  background-image: url('../src/app/img/search-50.png');
-  background-size: contain;
-  cursor: pointer;
-  display: inline-block;
-  position: absolute;
-  z-index: 10;
-} */
-
 .closeSearchButton {
   top: 302px;
   right: 28px;
@@ -225,11 +211,8 @@ a {
 .dd-login-menu {
   top: 57px;
   width: 100%;
-  /* change to narrower width for desktop */
-  /* height: 104px; */
   height: 100vh;
   position: absolute;
-  /* background-color: white; */
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
 }
@@ -250,7 +233,6 @@ a {
 }
 
 
-/* temp */
 .user-options {
   top: 0;
   right: 0;
@@ -361,13 +343,10 @@ input[type=text]::placeholder {
 .searchScreenHeader {
   width: 100vw;
   height: 40px;
-  /* height: 100vh; */
   top: -10px;
   left: 0;
-  /* padding: 349px 0 25px; */
   display: block;
   position: absolute;
-  /* background-color: rgba(39,39,39,.9); */
   content: contain;
   text-align: left;
   color: #fff;
@@ -429,7 +408,6 @@ input[type=text]::placeholder {
   column-gap: 5px;
 } 
 
-/* new 01/25/20 */
 .imgSmallOverlay {
   width: 250px; 
   height: 250px;
@@ -518,7 +496,6 @@ input[type=text]::placeholder {
 
 .lds-ellipsis div {
   position: absolute;
-  /* top: 127px; */
   width: 11px;
   height: 11px;
   margin-top: 20px;
@@ -772,12 +749,10 @@ input[type=text]::placeholder {
     width: 100%;
     height: 45px;
     margin-top: 80px;
-    /* background-color: none; */
     color: black;
     border: 1px solid black;
     text-transform: uppercase;
     font-size: 14px;
-    /* outline: none; */
     transition: background-color .2s ease-in-out,border .2s ease-in-out,color .2s ease-in-out;
     cursor: pointer;
   }
@@ -806,7 +781,6 @@ input[type=text]::placeholder {
     background: rgba(0, 0, 0, 0.5);
   }
 
-  /* revised 03/30/20 */
   .search-form {
     top: 18px;;
     left: calc(50% - 300px);
@@ -836,21 +810,6 @@ input[type=text]::placeholder {
     color: #fff;
   }
 
-
-/* .searchButton {
-    top: 6px;
-    right: 144px;
-    width: 32px;
-    height: 32px;
-    margin-top: 5px;
-    background-image: url('../src/app/img/search-50.png');
-    background-size: contain;
-    cursor: pointer;
-    display: inline-block;
-    position: absolute;
-    z-index: 10;
-} */
-
   .emptyCollectionMessage {
     width: 100%;
     height: 100%;
@@ -868,7 +827,6 @@ input[type=text]::placeholder {
     width: 100%;
     height: 100vh;
     background: url('https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=14d1045387c8116077bf8725732e8cd7&auto=format&fit=crop&w=1920') center center / cover no-repeat;
-    /* background: url('https://images.unsplash.com/photo-1528909257635-429e04fab8d4?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjI4NTMwfQ') center center / cover no-repeat; */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -940,7 +898,6 @@ input[type=text]::placeholder {
   .searchScreen li:nth-of-type(2) {
     margin: -0.2% 10% 0 0;
     top: 0px;
-    /* float the close search button to the right  */
     float: right;
     position: relative;
   }
@@ -1046,7 +1003,6 @@ input[type=text]::placeholder {
     width: 50px;
     height: 50px;
     top: 10%;
-    /* right: 15%; */
     clear: both;
     display: block;
     position: relative;
@@ -1151,7 +1107,6 @@ input[type=text]::placeholder {
     display: block;
     float: right;
     position: absolute;
-    /* color: white; */
     background-color: lightgreen;
     cursor: pointer;
     font-size: 12px;
@@ -1306,7 +1261,6 @@ input[type=text]::placeholder {
     position: relative;
     margin: 10px 2px;
     vertical-align: top;
-    /* new 01/31/20 */
     z-index: 0;
   }
 
@@ -1411,7 +1365,6 @@ input[type=text]::placeholder {
 
   .lds-ellipsis div {
     position: absolute;
-    /* top: 257px; */
     width: 11px;
     height: 11px;
     margin-top: 10px;
@@ -1423,11 +1376,8 @@ input[type=text]::placeholder {
   .dd-login-menu {
     top: 57px;
     width: 100%;
-    /* change to narrower width for desktop */
-    /* height: 104px; */
     height: 100vh;
     position: absolute;
-    /* background-color: white; */
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 10;
   }
@@ -1459,8 +1409,6 @@ input[type=text]::placeholder {
     top: 0;
     width: 100%;
     height: 205px;
-    /* position: absolute; */
-    /* padding-top: 1px; */
     background-color: white;
   }
 
@@ -1481,12 +1429,12 @@ input[type=text]::placeholder {
     line-height: 1;
   }
 
-  .add-to-db-overlay-collected {
-    display: none
-  }
-
   .add-to-db-overlay {
     display: none;
+  }
+
+  .add-to-db-overlay-collected {
+    display: none
   }
 
   #user-card {
@@ -1540,7 +1488,6 @@ input[type=text]::placeholder {
 
   .sign-in-title {
     margin-top: 4%;
-    /* font-size: 38px; */
     font-size: 28px;
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
@@ -1548,11 +1495,9 @@ input[type=text]::placeholder {
 
   #sign-in-form {
     top: 134px;
-    /* width: 98%; */
     height: auto;
     padding: 0 2% 0 2%;
     position: absolute;
-    /* display: flex; */
     align-items: center;
     text-align: left;
   }
@@ -1724,7 +1669,6 @@ input[type=text]::placeholder {
     height: 35px;
     padding-top: 5px;
     text-align: left;
-    /* change back to inline-block to get search term to dislay on mobile */
     display: none;
     position: absolute;
     font-weight: 100;
@@ -1740,7 +1684,6 @@ input[type=text]::placeholder {
     color: grey;;
     letter-spacing: 4px;
   }
-  /* end displayed search term at top after search */
 
   .searchButton {
     top: 6px;
