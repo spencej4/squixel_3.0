@@ -424,8 +424,6 @@ toggleLoginPage() {
 
 // retrieves and displays user photo collection
 onViewCollectionClick(source) {
-  console.log(source);
-
   if (source == 'loginMenu'){
     this.toggleLoginMenu();
   }
