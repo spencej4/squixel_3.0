@@ -776,12 +776,6 @@ closeFullScreenImage() {
     smallImage: '',
     imageID: '',
   })
-
-  setTimeout(() => { 
-    this.setState({
-      fullScreenImageVisible: false,
-    })
-  }, 1000);
 }
 
 
