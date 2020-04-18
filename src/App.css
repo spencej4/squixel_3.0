@@ -79,7 +79,14 @@ button:focus {
   display: block;
   position: fixed;
   z-index: 2;
-  background-image: url("../src/app/img/header-bg.jpg");
+  /* header testing 04/17/20 */
+  /* original 04/17/20 */
+  /* background-image: url("../src/app/img/header-bg.jpg"); */
+  
+  /* new 04/17/20 */
+  background-image: url("../src/app/img/Mystic.png");
+  /* background-color: #eee; */
+  /* end new 04/17/20 */
   background-size: 116%;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 100;
@@ -119,7 +126,11 @@ a:link {
 }
 
 a {
-  color: white;
+  /* header testing 04/17/20 */
+  /* original 04/17/20 */
+  /* color: white; */
+  /* new 04/17/20 */
+  color: black;
 }
 
 .logo {
@@ -169,7 +180,20 @@ a {
   width: 41px;
   height: 41px;
   margin-top: 5px;
-  background-image: url('../src/app/img/user-icon.png');
+  /* testing header 04/17/20 */
+  /* original 04/17/20 */
+  /* background-image: url('../src/app/img/user-icon.png'); */
+  background-image: url('../src/app/img/user-icon-mobile.png');
+  background-size: contain;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.dd-login-button-logged-in {
+  width: 41px;
+  height: 41px;
+  margin-top: 5px;
+  background-image: url('../src/app/img/user-icon-mobile-logged-in.png');
   background-size: contain;
   cursor: pointer;
   z-index: 1;
@@ -768,22 +792,26 @@ input[type=text]::placeholder {
   }
 
   .centered-search-input {
-    width: 555px;
+    width: 30vw;
     height: 40px;
     line-height: 45px;
     padding: 0 5px;
-    border: none;
+    border: 1px solid transparent;
     background-color: transparent;
     font-size: 14px;
     border-radius: 45px;
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .centered-search-input:hover {
+    border: 1px solid lightgrey;
   }
 
   .search-form {
-    top: 18px;;
-    left: calc(50% - 300px);
+    top: 16px;;
+    left: 227px;
     position: absolute;
     display: flex;
     align-items: center;
@@ -857,7 +885,7 @@ input[type=text]::placeholder {
   }
 
   a:link {
-    margin-left: 2em;
+    margin-left: 14%;
     letter-spacing: 8px;
   }
 
@@ -892,7 +920,7 @@ input[type=text]::placeholder {
     padding-left: 2.9em;
     color: white;
     font-weight: 100;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.1px;
   }
 
   .searchScreen li:nth-of-type(2) {
@@ -925,7 +953,6 @@ input[type=text]::placeholder {
     cursor: pointer;
     font-size: 1.7em;
     font-weight: 100;
-    opacity: 0.5;
   }
   /* end new 03/30/20 */
 
@@ -1094,7 +1121,7 @@ input[type=text]::placeholder {
   }
 
   .add-to-db-overlay:hover {
-    background-image: url(/static/media/header-bg.513fff3c.jpg);
+    background-image: url("../src/app/img/header-bg.jpg");
     background-size: cover;
   }
 
@@ -1117,7 +1144,7 @@ input[type=text]::placeholder {
   }
 
   .add-to-db-overlay-collected:hover {
-    background-image: url(/static/media/header-bg.513fff3c.jpg);
+    background-image: url("../src/app/img/header-bg.jpg");
     background-size: cover;
   }
     
@@ -1728,7 +1755,17 @@ input[type=text]::placeholder {
     width: 41px;
     height: 41px;
     margin-top: 5px;
-    background-image: url('../src/app/img/user-icon.png');
+    background-image: url('../src/app/img/user-icon-mobile.png');
+    background-size: contain;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  .dd-login-button-logged-in {
+    width: 41px;
+    height: 41px;
+    margin-top: 5px;
+    background-image: url('../src/app/img/user-icon-mobile-logged-in.png');
     background-size: contain;
     cursor: pointer;
     z-index: 1;

@@ -63,11 +63,22 @@ class Header extends Component {
                         /> ) : (null)
                         }
 
+                        {(!this.props.isAuthenticated) ? ( 
+                            <div className='dd-login-title'>
+                                <div className='dd-login-button'
+                                    onClick={this.props.toggleLoginMenu}>
+                                </div>
+                            </div>
+                        ) : (null)}
+                          
 
-                        <div className='dd-login-title'>
-                            <div className='dd-login-button'
-                            onClick={this.props.toggleLoginMenu}></div>
-                        </div>
+                        {(this.props.isAuthenticated) ? ( 
+                            <div className='dd-login-title'>
+                                <div className='dd-login-button-logged-in'
+                                    onClick={this.props.toggleLoginMenu}>
+                                </div>
+                            </div>
+                        ) : (null)}
                        
 
                         <div className='dd-login-menu hide' id='dd-login-menu' >
