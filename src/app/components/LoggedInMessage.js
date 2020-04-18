@@ -13,7 +13,7 @@ class LoggedInMessage extends Component {
                 <div className='view-collection-button-container'>
                     <div className='form-row'>
                         <button type='button' 
-                                className='action-btn' 
+                                className='submit-btn' 
                                 onClick={() => this.props.onViewCollectionClick(source)}>View Collection
                         </button>
                     </div> 
