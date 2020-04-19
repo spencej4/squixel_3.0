@@ -70,7 +70,8 @@ router.put('/add-image', function (request, response) {
   let smallImage = request.body.smallImage;
   let imageID = request.body.imageID
 
-  // console.log(`imageID to add, received by API: ${imageID}`)
+  console.log('===========================================================')
+  console.log(`imageID to add: ${imageID} (received by API)`);
 
   User.add_image(email, image, smallImage, imageID, function(error, imageID) {
     if (error || !imageID) {
@@ -79,8 +80,8 @@ router.put('/add-image', function (request, response) {
       return (err)
     } else {
         response.json(imageID);
-        // console.log('--------------------------------------')
-        // console.log(`imageID retrieved by API: ${imageID}`);
+        console.log(`imageID deleted: ${imageID} (retrieved by API)`);
+        console.log('===========================================================')
 
         // receives imageID response from user.js
         // console.log(`response from within API: ${response}`);
@@ -95,7 +96,8 @@ router.put('/delete-image', function (request, response) {
   let email = request.body.email
   let imageID = request.body.imageID;
 
-  // console.log(`imageID to delete, received by API: ${imageID}`)
+  console.log('===========================================================')
+  console.log(`imageID to delete: ${imageID} (received by API)`)
 
   User.delete_image( email, imageID, function(error, photo_ID) {
     if (error || !imageID) {
@@ -104,7 +106,8 @@ router.put('/delete-image', function (request, response) {
       return (err)
     } else {
         response.json(imageID);
-        // console.log(`imageID deleted. Response from UserScema to API!!: ${imageID}`);
+        console.log(`imageID deleted: ${imageID} (retrieved by API)`);
+        console.log('===========================================================')
         return response;
     }
   });

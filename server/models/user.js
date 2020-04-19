@@ -77,8 +77,7 @@ UserSchema.statics.add_image = function (email, image, smallImage, imageID, call
     { upsert: true, new: true  }, 
     function(res, doc) {
         let imageID = doc.content[doc.content.length-1].imageID;
-        // console.log('--------------------------------------')
-        // console.log(`user added image: ${imageID} (UserSchema)`);
+        console.log(`user added image: ${imageID} (UserSchema)`);
         return callback(null, imageID);
     }
   );
@@ -111,8 +110,7 @@ UserSchema.statics.delete_image = function (email, imageID, callback) {
     { $pull: { content: { imageID: imageID }} },
     { new: true },
     function(err, response, doc) {
-      // console.log('--------------------------------------')
-      // console.log(`user deleted image: ${imageID} (UserSchema)`);
+      console.log(`user deleted image: ${imageID} (UserSchema)`);
       return callback(null, imageID);
     }
   )

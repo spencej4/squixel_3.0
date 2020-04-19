@@ -29,7 +29,9 @@ class FullScreen extends Component   {
         let email = this.state.log_email;
         let image = event.target.value;
         let smallImage = this.props.smallImage;
-        let imageID =this.props.fullscreenImage_ID;
+        // let imageID =this.props.fullscreenImage_ID;
+        let imageID =this.props.imageID;
+        
 
         fetch('/api/add-image/',{
             method: 'PUT',
@@ -48,6 +50,7 @@ class FullScreen extends Component   {
             // close full screen
             this.props.closeFullScreen();
             this.props.createUserImageIDArray();
+            return response.json();
         })
     }
 
@@ -78,9 +81,11 @@ class FullScreen extends Component   {
             this.props.createUserImageIDArray();
 
             return response.json();
-        }).then(function(data){
-            // console.log(data)
         })
+        // delete?
+        // .then(function(data){
+        //     console.log(data)
+        // })
     }
     
 

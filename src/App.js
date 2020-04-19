@@ -485,7 +485,7 @@ onPhotoAdd_Or_Remove_Click() {
     showUserCard: false,
     pageNum: 0,
     showCard: false, 
-    userCollectionData: ''
+    userCollectionData: '', 
   });
 
   fetch('/api/getUserContent/' + user,{
@@ -508,10 +508,8 @@ onPhotoAdd_Or_Remove_Click() {
             {
               image: response[index].image, 
               smallImage: response[index].smallImage,
-              // original 04/15/20
-              // will need to adapt this to read the image id from unsplash in order to 
-              // work with the (upcoming) new findOneAndUpdate function in  userSchema
-              photo_ID: response[index]._id
+              photo_ID: response[index]._id,
+              imageID: response[index].imageID
             }
           ]
         })
