@@ -79,14 +79,7 @@ button:focus {
   display: block;
   position: fixed;
   z-index: 2;
-  /* header testing 04/17/20 */
-  /* original 04/17/20 */
-  /* background-image: url("../src/app/img/header-bg.jpg"); */
-  
-  /* new 04/17/20 */
   background-image: url("../src/app/img/Mystic.png");
-  /* background-color: #eee; */
-  /* end new 04/17/20 */
   background-size: 116%;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 100;
@@ -126,10 +119,6 @@ a:link {
 }
 
 a {
-  /* header testing 04/17/20 */
-  /* original 04/17/20 */
-  /* color: white; */
-  /* new 04/17/20 */
   color: black;
 }
 
@@ -302,69 +291,7 @@ hr {
   opacity: 0.4;
 }
 
-.coffeeImage {
-  width: 45%;
-  height: 45%;
-  right: 0;
-  bottom: 20%;
-  position: absolute;
-  background-image: url('../src/app/img/landing.jpeg');
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-/* original...delete after integrating .searchScreenHeader */
-/* then address mobile */
-.searchScreen {
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  padding: 349px 0 25px 0;
-  display: block;
-  position: absolute;
-  background-color: rgba(39, 39, 39, 0.90);
-  content: contain;
-  text-align: left;
-  color: white;
-  z-index: 3;
-}
-
-input[type=text] {
-  font-size: 1.4em;
-  padding-left: 0.3em;
-  color: grey;
-  letter-spacing: 0.2px;
-}
-
-input[type=text]::placeholder {
-  color: lightgrey;
-  opacity: 0.8;
-}
-
-.searchScreen p {
-  margin-left: 8px;
-  font-size: 2em;
-  font-weight: 100;
-  letter-spacing: 8px;
-}
-
-.searchScreen li {
-  display: inline-block;
-}
-
-.searchScreen li:nth-of-type(2) {
-  margin: -1% 9% 0 0;
-  top: 0px;
-  float: right;
-  position: relative;
-}
-/* end original...delete after integrating .searchScreenHeader */
-
-/* new 03/30/20 */
-/* to replace .searchScreen */
-/* then address mobile */
-.searchScreenHeader {
+.headerSearch {
   width: 100vw;
   height: 40px;
   top: -10px;
@@ -376,25 +303,6 @@ input[type=text]::placeholder {
   color: #fff;
   z-index: 3;
 }
-
-.searchScreen p {
-  margin-left: 8px;
-  font-size: 2em;
-  font-weight: 100;
-  letter-spacing: 8px;
-}
-
-.searchScreen li {
-  display: inline-block;
-}
-
-.searchScreen li:nth-of-type(2) {
-  margin: -1% 9% 0 0;
-  top: 0px;
-  float: right;
-  position: relative;
-}
-/* end new 03/30/20 */
 
 .searchBar {
   width: 93%;
@@ -609,7 +517,7 @@ input[type=text]::placeholder {
 }
 
 /* ------------------------------------------------------------------------Desktop--------------------------------------------------------------------- */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 734px) {
   body {
     font-weight: 100;
   }
@@ -634,6 +542,46 @@ input[type=text]::placeholder {
     -webkit-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
     -moz-box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
     box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
+  }
+
+  .landing-message {
+    width: 58%;
+    height: 300px;
+    margin-top: 20%;
+    margin-left: calc(45% / 2 - 44px);
+    position: absolute;
+    display: block;
+    /* background-color: rgba(0,0,0,.5); */
+    /* border: 1px solid hotpink; */
+  }
+  
+  .landing-logo {
+    top: 0;
+    width: 100%;
+    height: 60px;
+    text-align: left;
+  }
+  
+  h1.landing-logo {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: rgb(209, 214, 226);
+    font-family: "Helvetica Neue";
+  }
+  
+  .landing-text {
+    margin-top: 16px;
+    text-align: left;
+    margin-bottom: 24px;
+    line-height: 28px;
+  }
+  
+  .landing-text p {
+    font-weight: 400;
+    font-size: 18px;
+    color: rgb(209, 214, 226);
+    font-family: "Helvetica Neue";
   }
 
   .sign-in-page {
@@ -786,12 +734,53 @@ input[type=text]::placeholder {
     color: rgba(230, 127, 209, 1);
   }
 
-  /* deactivated for desktop 04/01/20 */
-  .centered-search-bar {
+  .centered-search-bar-mobile {
     display: none;
   }
 
-  .centered-search-input {
+  .landing-search-bar {
+    left: 0;
+    height: 60px;
+    display: block;
+  }
+
+  /* re-activated for desktop 04/18/20 */
+  .centered-search-bar-landing {
+    width: 100vw;
+    height: 60px;
+    left: 0;
+    padding: 349px 0 25px 0;
+    display: block;
+    position: absolute;
+    content: contain;
+    text-align: left;
+    color: white;
+    z-index: 3;
+  }
+
+  /* testing 04/18/20 */
+  .centered-search-input-landing {
+    width: 62vw;
+    height: 40px;
+    line-height: 45px;
+    padding: 0 5px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background-color: rgba(213, 216, 227, 1);
+    color: black;
+  }
+
+  input[type=text]::placeholder {
+    color: lightgrey;
+    opacity: 0.8;
+  }
+
+
+  /* new 04/18/20 */
+  .header-search-input {
     width: 30vw;
     height: 40px;
     line-height: 45px;
@@ -805,25 +794,40 @@ input[type=text]::placeholder {
     background: rgba(0, 0, 0, 0.1);
   }
 
-  .centered-search-input:hover {
+  .header-search-input:hover {
     border: 1px solid lightgrey;
   }
 
-  .search-form {
-    top: 16px;;
+  .search-form-header {
+    top: 16px;
     left: 227px;
     position: absolute;
     display: flex;
     align-items: center;
   }
 
-  .search-form.icon {
+  #form-landing{
+    width: 62vw;
+  }
+
+  .search-form-landing {
+    top: 16px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+  }
+
+  .search-form-landing.icon {
     width: 45px;
     height: 20px;
   }
 
   .icon.icon-search {
-    background: url('../src/app/img/searchIcon.png') center/contain no-repeat;
+    background: url('../src/app/img/search-icon.png') center/contain no-repeat;
+  }
+
+  .icon.icon-search-landing{
+    background: url('../src/app/img/search-icon-dark.png') center/contain no-repeat;
   }
 
   .icon {
@@ -850,11 +854,19 @@ input[type=text]::placeholder {
     position: absolute;
   }
 
+  .landing-overlay {
+    width: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba( 0,0,0, .4);
+    position: absolute;
+  }
+
   .landing {
     width: 100%;
     width: 100%;
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=14d1045387c8116077bf8725732e8cd7&auto=format&fit=crop&w=1920') center center / cover no-repeat;
+    background-image: url('../src/app/img/skyline.JPEG');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -872,34 +884,8 @@ input[type=text]::placeholder {
     color: rgba(48, 46, 46, 0.518);
   }
 
-  .coffeeImage {
-    width: 45%;
-    height: 45%;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    background-image: url('../src/app/img/landing.jpeg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
-
   a:link {
     margin-left: 14%;
-    letter-spacing: 8px;
-  }
-
-  .searchScreen {
-    padding-top: 15px;
-  }
-
-  .searchScreen p {
-    margin-left: 2.2em;
-    font-size: 2em;
-    font-weight: 100;
-  }
-
-  .searchScreen li p:first-of-type {
     letter-spacing: 8px;
   }
 
@@ -918,29 +904,20 @@ input[type=text]::placeholder {
   input[type=text] {
     font-size: 1.5em;
     padding-left: 2.9em;
-    color: white;
     font-weight: 100;
     letter-spacing: 0.1px;
   }
 
-  .searchScreen li:nth-of-type(2) {
-    margin: -0.2% 10% 0 0;
-    top: 0px;
-    float: right;
-    position: relative;
+  .header-search-input input {
+    color: white !important;
+  }
+
+  .centered-search-input-landing input {
+    color: black !important;
   }
 
   .closeSearchButton {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    position: relative;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 2em;
-    font-weight: 100;
+    display: none;
   }
 
   /* new 03/30/20 */
@@ -1247,21 +1224,9 @@ input[type=text]::placeholder {
     width: 95.4vw;
   }
 
-  .searchScreen p {
-    margin-left: 3.5em;
-  }
-
   input[type=text] {
     padding-left: 4.7em;
     font-weight: 100;
-    color: white;
-  }
-
-  .searchScreen li:nth-of-type(2) {
-    margin: -0.1% 7.2% 0 0;
-    top: 0px;
-    float: right;
-    position: relative;
   }
 
   /* //images */
@@ -1347,10 +1312,18 @@ input[type=text]::placeholder {
     padding-top: 20px;
   }
 
+  .landing-overlay {
+    width: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba( 0,0,0, .4);
+    position: absolute;
+  }
+
   .landing {
     width: 100%;
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1496309732348-3627f3f040ee?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=14d1045387c8116077bf8725732e8cd7&auto=format&fit=crop&w=1920');
+    background-image: url('../src/app/img/skyline.JPEG');
     background-position:  center; 
     background-repeat: no-repeat;
     opacity: 0.95;
@@ -1361,7 +1334,53 @@ input[type=text]::placeholder {
     text-align: center;
   }
 
-  .searchScreenHeader {
+  .header-search-input {
+    display: none;
+  }
+
+  .landing-message {
+    width: 100%;
+    height: 200px;
+    margin-top: 34%;
+    padding-left: 12px;
+    position: absolute;
+    display: block;
+  }
+  
+  .landing-logo {
+    top: 0;
+    width: 100%;
+    height: 60px;
+    text-align: left;
+  }
+  
+  h1.landing-logo {
+    font-size: 47px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: rgb(209, 214, 226);
+    font-family: "Helvetica Neue";
+  }
+  
+  .landing-text {
+    margin-top: 0px;
+    text-align: left;
+    margin-bottom: 24px;
+    line-height: 34px;
+  }
+  
+  .landing-text p {
+    font-weight: 400;
+    font-size: 20px;
+    color: rgb(209, 214, 226);
+    font-family: "Helvetica Neue";
+  }
+
+  .landing-search-bar {
+    display: none;
+  }
+
+  .headerSearch {
     display: none;
   }
 
@@ -1622,7 +1641,8 @@ input[type=text]::placeholder {
     color: rgba(230, 127, 209, 1);
   }
 
-  .centered-search-bar {
+  /* testing for mobile 04/18/20 */
+  .centered-search-bar-mobile {
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -1636,7 +1656,7 @@ input[type=text]::placeholder {
     z-index: 3;
   }
 
-  .centered-search-input {
+  .centered-search-input-mobile {
     width: 95vw;
     height: 50px;
     line-height: 45px;
@@ -1650,7 +1670,7 @@ input[type=text]::placeholder {
     background: rgba(0, 0, 0, 0.5);
   }
 
-  .search-form {
+  .search-form-mobile {
     top: calc(30%);
     position: absolute;
     display: flex;
@@ -1658,13 +1678,13 @@ input[type=text]::placeholder {
     margin-bottom: 40px;
   }
 
-  .search-form.icon {
+  .search-form-mobile.icon {
     width: 45px;
     height: 20px;
   }
 
   .icon.icon-search {
-    background: url('../src/app/img/searchIcon.png') center/contain no-repeat;
+    background: url('../src/app/img/search-icon.png') center/contain no-repeat;
   }
 
   .icon {
@@ -1682,7 +1702,6 @@ input[type=text]::placeholder {
   input[type=text] {
     font-size: 16px;
     padding-left: 3.2em;
-    color: lightgrey;
     letter-spacing: 0.2px;
     width: 84vw;
   }

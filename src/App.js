@@ -7,7 +7,6 @@ import RegisterPage from './app/components/registerPage';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
-// import Footer from './app/components/footer';
 import Wrapper from './app/components/wrapper';
 
 const unsplash = new Unsplash({
@@ -84,17 +83,12 @@ class App extends Component {
   }
 
 
-
 componentWillMount() {
   this.checkCookie();
 }
 
 
 componentDidMount() {
-  // doesn't work yet
-  // if (this.state.isAuthenticated && (this.state.userImageIDArray == [])) {
-  //   this.createUserImageIDArray();
-  // }
 }
 
 
@@ -118,10 +112,8 @@ onSignInMenuClick() {
   this.toggleLoginMenu();
 }
 
-// new 04/09/20
+// user clicked 'Sign In' from card hover button
 redirectedOnSignInClick() {
-  // console.log('redirect sign in ran');
-
   this.setState({
     showSignInPage: true,
     showRegisterPage: false,
@@ -131,7 +123,6 @@ redirectedOnSignInClick() {
     loginError: false
   })
 }
-// end new 04/09/20
 
 
 // handles click for register from header
@@ -423,8 +414,6 @@ toggleLoginPage() {
 
 // retrieves and displays user photo collection
 onViewCollectionClick(source) {
-  console.log(source);
-
   if (source == 'loginMenu'){
     this.toggleLoginMenu();
   }
@@ -827,7 +816,10 @@ render() {
               isRegistered={this.state.isRegistered}
          /> ) : (null)}
         {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage && this.state.showLandingSearchBar) ? ( 
-            <Landing /> 
+            <Landing
+              handleChange={this.handleChange}
+              onInputSubmit={this.onInputSubmit}
+            ></Landing> 
         ) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
             <Wrapper 

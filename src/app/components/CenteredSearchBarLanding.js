@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CenteredSearchBar extends Component {
+class CenteredSearchBarLanding extends Component {
     
     constructor(props) {
         super(props);
@@ -23,19 +23,15 @@ class CenteredSearchBar extends Component {
     
     render() {
         return (
-            <div className='centered-search-bar'>
-                <button className='closeSearchButton' onClick={() =>
-                        this.props.onCloseSearchClick()}>X
-                </button>
-
-                <form id='form' className='search-form'
+            <div className='centered-search-bar-landing'>
+                <form id='form-landing' className='search-form-landing'
                     action = ""
                     method = ""
                     onSubmit={(event) => this.props.onInputSubmit(event)}
                 >
-                    <div className='icon icon-search'></div>
-                    <input className='centered-search-input' 
-                        autoFocus='autofocus'
+                    <div className='icon icon-search-landing'></div>
+                    <input className='centered-search-input-landing' 
+                        // autoFocus='autofocus'
                         type='text'
                         value={this.props.value}
                         onChange={this.props.handleChange}
@@ -46,4 +42,4 @@ class CenteredSearchBar extends Component {
     }
 }
 
-export default CenteredSearchBar
+export default CenteredSearchBarLanding

@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
-import SearchBar from './searchbar';
-import CenteredSearchBar from './CenteredSearchBar';
+import HeaderSearchBar from './headerSearchBar';
+import CenteredSearchBarMobile from './CenteredSearchBarMobile';
 import DisplaySearchInput from './displaySearchInput';
 
 
 class Header extends Component {
+
     
     render() {
+
         let source = 'loginMenu';
 
         return (
@@ -43,7 +45,7 @@ class Header extends Component {
                         } */}
 
                         {/* new header searchbar 03/31/20 */}
-                        <SearchBar 
+                        <HeaderSearchBar 
                             inputValue={this.props.inputValue}
                             // onCloseSearchClick={() => this.props.onCloseSearchClick()}
                             closeSearch={() => this.props.closeSearch()}
@@ -55,12 +57,12 @@ class Header extends Component {
 
                         {/* keep CenteredSearchBar around for mobile only... */}
                         {/* {(this.props.showSearchInput && this.props.showLandingSearchBar && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage && !this.props.showUserCard) ? (  */}
-                            {(this.props.showSearchInput) ? ( 
-                        <CenteredSearchBar
-                            handleChange={(e) => this.props.handleChange(e)}
-                            onInputSubmit={(e) => this.props.onInputSubmit(e)}
-                            onCloseSearchClick={() => this.props.onCloseSearchClick()}
-                        /> ) : (null)
+                        {(this.props.showSearchInput) ? ( 
+                            <CenteredSearchBarMobile
+                                handleChange={(e) => this.props.handleChange(e)}
+                                onInputSubmit={(e) => this.props.onInputSubmit(e)}
+                                onCloseSearchClick={() => this.props.onCloseSearchClick()}
+                            /> ) : (null)
                         }
 
                         {(!this.props.isAuthenticated) ? ( 
