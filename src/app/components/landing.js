@@ -46,6 +46,9 @@ class Landing extends Component   {
                   ></CenteredSearchBarLanding>
                 </div>
               ) : <null></null>}
+              <div className='landing-footer'>
+                <p className='copyright-symbol'>©<p></p> Copyright 2020 Spencer Jack</p>
+              </div>
             </div>
           </div>
         </div>
