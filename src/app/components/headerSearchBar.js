@@ -50,7 +50,7 @@ class HeaderSearchBar extends Component {
                     >
                         <div className='icon icon-search'></div>
                         <input className='header-search-input' 
-                            autoFocus='autofocus'
+                            // autoFocus='autofocus'
                             type='text'
                             placeholder="Search free high-resolution photos"
                             // value={this.props.value}

@@ -31,7 +31,7 @@ class CenteredSearchBarLanding extends Component {
                 >
                     <div className='icon icon-search-landing'></div>
                     <input className='centered-search-input-landing' 
-                        // autoFocus='autofocus'
+                        autoFocus='autofocus'
                         type='text'
                         value={this.props.value}
                         onChange={this.props.handleChange}
