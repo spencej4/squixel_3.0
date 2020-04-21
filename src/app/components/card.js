@@ -12,6 +12,8 @@ class Card extends Component   {
   
   render () {  
     if (this.props.loading === false) { 
+        this.props.scrollWindow();
+        
         return (
               this.props.data.map((item, id) => {
                 //For landscape photos

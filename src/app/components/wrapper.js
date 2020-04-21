@@ -28,6 +28,7 @@ class Wrapper extends Component {
                   redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                   createUserImageIDArray={this.props.createUserImageIDArray}
                   imageMatchesArray={this.props.imageMatchesArray}
+                  scrollWindow={this.props.scrollWindow}
               />
             </div>
           ) : (null)

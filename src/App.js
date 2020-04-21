@@ -999,6 +999,7 @@ render() {
               redirectedOnSignInClick={this.redirectedOnSignInClick}
               createUserImageIDArray={this.createUserImageIDArray}
               imageMatchesArray={this.state.imageMatchesArray}
+              scrollWindow={this.scrollWindow}
             />
         {this.state.fullScreenImageVisible ? (
             <FullScreen 
