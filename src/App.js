@@ -4,10 +4,14 @@ import Unsplash from 'unsplash-js';
 import Header from './app/components/header';
 import SignInPage from './app/components/signInPage';
 import RegisterPage from './app/components/registerPage';
+import DisplaySearchInput from './app/components/displaySearchInput';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
 import Wrapper from './app/components/wrapper';
+
+
+
 
 const unsplash = new Unsplash({
   applicationId: "923e03b3d8e1b91345512fe194223858801d195497f62ccbc83d4b21fe8620ee",
@@ -42,6 +46,10 @@ class App extends Component {
       showSearchInput: false,
       showLandingSearchBar: true,
       value: '',
+      searchValueToDisplay: '',
+      // testing 04/19/20
+      relatedSearchTags: [],
+      // end testing 04/19/20
       signInValue: '',
       pageNum: 0,
       fullScreenImageVisible: false,
@@ -71,6 +79,10 @@ class App extends Component {
     this.closeSearch = this.closeSearch.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onInputSubmit = this.onInputSubmit.bind(this);
+    this.onRelatedSearchClick = this.onRelatedSearchClick.bind(this);
+    // testing
+    this.renderRelatedSearch = this.renderRelatedSearch.bind(this);
+    // end testing
     this.showFullScreenImage = this.showFullScreenImage.bind(this);
     this.closeFullScreenImage = this.closeFullScreenImage.bind(this);
     this.onPhotoAdd_Or_Remove_Click = this.onPhotoAdd_Or_Remove_Click.bind(this);
@@ -88,8 +100,8 @@ componentWillMount() {
 }
 
 
-componentDidMount() {
-}
+// componentDidMount() {
+// }
 
 
 scrollWindow() {
@@ -234,7 +246,6 @@ onLoginSubmit(event) {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-
         },
         credentials: "same-origin",
         body: JSON.stringify({
@@ -599,31 +610,44 @@ compareImageIDs() {
   })
 } 
 
-
-//captures input search value, calls API and returns JSON data
-onInputSubmit(event) {
-      event.preventDefault();
-
-      this.setState({
-          loading: true,
-          showSearchInput: false,
-          pageNum: 0,
-          showCard: true, 
-          showInputInHeader: true,
-          showFooter: false,
-      });
-
-      unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
+renderRelatedSearch() {
+    // alert('renderRelatedSearch ran');
+    this.setState({
+      searchValueToDisplay: this.state.value,
+    })
+    
+    fetch(`https://wordassociations-word-associations-v1.p.rapidapi.com/json/search?type=stimulus&indent=yes&pos=noun&limit=10&lang=en&text=${this.state.value}&apikey=b3c7a91c-1e7f-4cf8-8f2f-b58eed372482`, {
+        "method": "GET",
+        "headers": {
+          "x-rapidapi-host": "wordassociations-word-associations-v1.p.rapidapi.com",
+          "x-rapidapi-key": "b6fd4d44ebmshad1f7c7baf1ccacp1cf9fajsnd5b64b449378"
+        }
+      })
+      .then(response => response.json())
+      .then(json => this.setState((prevState) => {
+        json.response[0].items.map((item, id) => {
+          let relatedTerm = item.item
+          this.setState(prevState => ({
+            relatedSearchTags: [...prevState.relatedSearchTags, relatedTerm]
+          }))
+        })
+      }))
+      .catch(err => {
+        console.log(err);
+    });
+  
+    // // get request for Unsplash API
+    unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           return {
             data: json.results,
             loading: false,
             showFooter: true,
-            pageNum: this.state.pageNum + 1
+            pageNum: this.state.pageNum + 1,
           }
         }, () => this.createImageIDArray()))
-       
+      
         .catch((error) => {
           this.setState((prevState) => {
             return {
@@ -631,12 +655,137 @@ onInputSubmit(event) {
               error: 'Error when retrieving'
             }
           });
-        });
-
+      });
 }
 
 
-//user clicks next, calls API and returns JSON data
+// captures input search value, calls API and returns JSON data
+onRelatedSearchClick(value) {
+      this.setState({
+        value: value,
+        loading: true,
+        showSearchInput: false,
+        pageNum: 0,
+        showCard: true, 
+        showInputInHeader: true,
+        showFooter: false,
+        // searchValueToDisplay: this.state.value,
+        // testing 04/20/20
+        relatedSearchTags: []
+        // end testing 04/20/20
+        }, () => {
+          this.renderRelatedSearch()
+        }
+      )
+
+      // creates related search terms based on search input value
+      // uses Word Associations API via RapidAPI
+      // fetch(`https://wordassociations-word-associations-v1.p.rapidapi.com/json/search?type=stimulus&indent=yes&pos=noun&limit=10&lang=en&text=${this.state.value}&apikey=b3c7a91c-1e7f-4cf8-8f2f-b58eed372482`, {
+      //   "method": "GET",
+      //   "headers": {
+      //     "x-rapidapi-host": "wordassociations-word-associations-v1.p.rapidapi.com",
+      //     "x-rapidapi-key": "b6fd4d44ebmshad1f7c7baf1ccacp1cf9fajsnd5b64b449378"
+      //   }
+      // })
+      // .then(response => response.json())
+      // .then(json => this.setState((prevState) => {
+      //   json.response[0].items.map((item, id) => {
+      //     let relatedTerm = item.item
+      //     this.setState(prevState => ({
+      //       relatedSearchTags: [...prevState.relatedSearchTags, relatedTerm]
+      //     }))
+      //   })
+      // }))
+      // .catch(err => {
+      //   console.log(err);
+      // });
+      
+      // // get request for Unsplash API
+      // unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
+      //   .then(response => response.json())
+      //   .then(json => this.setState((prevState) => {
+      //     return {
+      //       data: json.results,
+      //       loading: false,
+      //       showFooter: true,
+      //       pageNum: this.state.pageNum + 1,
+      //     }
+      //   }, () => this.createImageIDArray()))
+       
+      //   .catch((error) => {
+      //     this.setState((prevState) => {
+      //       return {
+      //         loading: false,
+      //         error: 'Error when retrieving'
+      //       }
+      //     });
+      //   });
+}
+
+
+// user clicks relatedSearchOptions 
+onInputSubmit(event) {
+  event.preventDefault();
+
+  this.setState({
+      loading: true,
+      showSearchInput: false,
+      pageNum: 0,
+      showCard: true, 
+      showInputInHeader: true,
+      showFooter: false,
+      searchValueToDisplay: this.state.value,
+      // testing 04/20/20
+      relatedSearchTags: []
+      // end testing 04/20/20
+  });
+
+  // creates related search terms based on search input value
+  // uses Word Associations API via RapidAPI
+  fetch(`https://wordassociations-word-associations-v1.p.rapidapi.com/json/search?type=stimulus&indent=yes&pos=noun&limit=10&lang=en&text=${this.state.value}&apikey=b3c7a91c-1e7f-4cf8-8f2f-b58eed372482`, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "wordassociations-word-associations-v1.p.rapidapi.com",
+      "x-rapidapi-key": "b6fd4d44ebmshad1f7c7baf1ccacp1cf9fajsnd5b64b449378"
+    }
+  })
+  .then(response => response.json())
+  .then(json => this.setState((prevState) => {
+    json.response[0].items.map((item, id) => {
+      let relatedTerm = item.item
+      this.setState(prevState => ({
+        relatedSearchTags: [...prevState.relatedSearchTags, relatedTerm]
+      }))
+    })
+  }))
+  .catch(err => {
+    console.log(err);
+  });
+  
+  // get request for Unsplash API
+  unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
+    .then(response => response.json())
+    .then(json => this.setState((prevState) => {
+      return {
+        data: json.results,
+        loading: false,
+        showFooter: true,
+        pageNum: this.state.pageNum + 1,
+      }
+    }, () => this.createImageIDArray()))
+   
+    .catch((error) => {
+      this.setState((prevState) => {
+        return {
+          loading: false,
+          error: 'Error when retrieving'
+        }
+      });
+    });
+}
+
+
+// user clicks next, calls API and returns JSON data
 onNextClick() {
       this.setState({
         loading: true,
@@ -669,7 +818,7 @@ onNextClick() {
 }
   
 
-//user clicks previous, calls API and returns JSON data
+// user clicks previous, calls API and returns JSON data
 onPreviousClick() {
     this.setState({
       loading: true,
@@ -681,8 +830,6 @@ onPreviousClick() {
       .then(response => response.json())
       .then(json => this.setState((prevState) => {
         return {
-          // here 03/30/20
-          // change this to 'true' to keep search term in searchbar on next/previous page clicks
           showSearchInput: false,
           data: json.results,
           loading: false,
@@ -733,6 +880,7 @@ closeSearch () {
 }
 
 
+
 //sets state to input value of search field 
 handleChange(event) {
   event.preventDefault();
@@ -772,29 +920,29 @@ render() {
         
         {(!this.state.fullScreenImageVisible) ? (
           <Header 
-          onSignInMenuClick={this.onSignInMenuClick}
-          onRegisterMenuClick={this.onRegisterMenuClick}
-          toggleLoginMenu={this.toggleLoginMenu}
-          closeLoginMenu={this.closeLoginMenu}
-          showSignInPage={this.state.showSignInPage}
-          showRegisterPage={this.state.showRegisterPage}
-          isAuthenticated={this.state.isAuthenticated}
-          log_email={this.state.log_email}
-          showLandingSearchBar={this.state.showLandingSearchBar}
-          onViewCollectionClick={this.onViewCollectionClick}
-          onLogoutClick={this.onLogoutClick}
-          showSearchInput={this.state.showSearchInput}
-          handleChange={this.handleChange}
-          onInputSubmit={this.onInputSubmit}
-          onSearchClick={this.onSearchClick}
-          onCloseSearchClick={this.onCloseSearchClick}
-          onClearSearchInputClick={this.onClearSearchInputClick}
-          closeSearch={this.closeSearch}
-          showInputInHeader={this.state.showInputInHeader}
-          inputValue = {this.state.value}
-          showCard = {this.state.showCard}
-          showUserCard = {this.state.showUserCard}
-      /> ): (null)}
+              onSignInMenuClick={this.onSignInMenuClick}
+              onRegisterMenuClick={this.onRegisterMenuClick}
+              toggleLoginMenu={this.toggleLoginMenu}
+              closeLoginMenu={this.closeLoginMenu}
+              showSignInPage={this.state.showSignInPage}
+              showRegisterPage={this.state.showRegisterPage}
+              isAuthenticated={this.state.isAuthenticated}
+              log_email={this.state.log_email}
+              showLandingSearchBar={this.state.showLandingSearchBar}
+              onViewCollectionClick={this.onViewCollectionClick}
+              onLogoutClick={this.onLogoutClick}
+              showSearchInput={this.state.showSearchInput}
+              handleChange={this.handleChange}
+              onInputSubmit={this.onInputSubmit}
+              onSearchClick={this.onSearchClick}
+              onCloseSearchClick={this.onCloseSearchClick}
+              onClearSearchInputClick={this.onClearSearchInputClick}
+              closeSearch={this.closeSearch}
+              showInputInHeader={this.state.showInputInHeader}
+              inputValue = {this.state.value}
+              showCard = {this.state.showCard}
+              showUserCard = {this.state.showUserCard}
+            /> ): (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? (
             <SignInPage 
               toggleLoginPage= {this.toggleLoginPage}
@@ -805,20 +953,25 @@ render() {
               // building 04/17/20
               onViewCollectionClick={this.onViewCollectionClick}
               loading={this.state.loading}
-         /> ) : (null)}
+              /> ) : (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showRegisterPage) ? ( 
             <RegisterPage 
               toggleLoginPage={this.toggleLoginPage}
               handleSignInChange={this.handleSignInChange}
               onRegisterSubmit={this.onRegisterSubmit}
               isRegistered={this.state.isRegistered}
-         /> ) : (null)}
+            /> ) : (null)}
         {(!this.state.showCard  && !this.state.showUserCard && !this.state.showSignInPage && !this.state.showRegisterPage && this.state.showLandingSearchBar) ? ( 
             <Landing
               handleChange={this.handleChange}
               onInputSubmit={this.onInputSubmit}
-            ></Landing> 
-        ) : (null)}
+            />) : (null)}
+        {(this.state.showCard) ? (
+            <DisplaySearchInput
+              searchValueToDisplay={this.state.searchValueToDisplay}
+              relatedSearchTags={this.state.relatedSearchTags}
+              onRelatedSearchClick={this.onRelatedSearchClick}
+            />) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
             <Wrapper 
               isAuthenticated={this.state.isAuthenticated}
