@@ -34,9 +34,9 @@ class Landing extends Component   {
                 <h1 className='landing-logo'>Squixel</h1>
               </div>
               <div className='landing-text'>
-                <p>The photography source for freely usable images.
+                <p>The creative source for inspiration.
                     <br></br>
-                    Utilizing API from Unsplash.com</p>
+                    Powered by your imagination.</p>
               </div>
               {(!this.state.isMobileDevice) ? ( 
                 <div className='landing-search-bar'>
