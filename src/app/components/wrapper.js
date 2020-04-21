@@ -10,7 +10,7 @@ class Wrapper extends Component {
 
     render() {
       // if no data (due to no results from search), don't render Wrapper
-      if (this.props.data == '' || this.props.data == 'undefined' || this.props.data == []) {
+      if ((this.props.data == '' || this.props.data == 'undefined' || this.props.data == []) && (!this.props.showUserCard)) {
         return (
           null
         )
