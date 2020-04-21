@@ -47,9 +47,7 @@ class App extends Component {
       showLandingSearchBar: true,
       value: '',
       searchValueToDisplay: '',
-      // testing 04/19/20
       relatedSearchTags: [],
-      // end testing 04/19/20
       signInValue: '',
       pageNum: 0,
       fullScreenImageVisible: false,
@@ -80,9 +78,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.onInputSubmit = this.onInputSubmit.bind(this);
     this.onRelatedSearchClick = this.onRelatedSearchClick.bind(this);
-    // testing
     this.renderRelatedSearch = this.renderRelatedSearch.bind(this);
-    // end testing
     this.showFullScreenImage = this.showFullScreenImage.bind(this);
     this.closeFullScreenImage = this.closeFullScreenImage.bind(this);
     this.onPhotoAdd_Or_Remove_Click = this.onPhotoAdd_Or_Remove_Click.bind(this);
@@ -677,49 +673,6 @@ onRelatedSearchClick(value) {
           this.renderRelatedSearch()
         }
       )
-
-      // creates related search terms based on search input value
-      // uses Word Associations API via RapidAPI
-      // fetch(`https://wordassociations-word-associations-v1.p.rapidapi.com/json/search?type=stimulus&indent=yes&pos=noun&limit=10&lang=en&text=${this.state.value}&apikey=b3c7a91c-1e7f-4cf8-8f2f-b58eed372482`, {
-      //   "method": "GET",
-      //   "headers": {
-      //     "x-rapidapi-host": "wordassociations-word-associations-v1.p.rapidapi.com",
-      //     "x-rapidapi-key": "b6fd4d44ebmshad1f7c7baf1ccacp1cf9fajsnd5b64b449378"
-      //   }
-      // })
-      // .then(response => response.json())
-      // .then(json => this.setState((prevState) => {
-      //   json.response[0].items.map((item, id) => {
-      //     let relatedTerm = item.item
-      //     this.setState(prevState => ({
-      //       relatedSearchTags: [...prevState.relatedSearchTags, relatedTerm]
-      //     }))
-      //   })
-      // }))
-      // .catch(err => {
-      //   console.log(err);
-      // });
-      
-      // // get request for Unsplash API
-      // unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
-      //   .then(response => response.json())
-      //   .then(json => this.setState((prevState) => {
-      //     return {
-      //       data: json.results,
-      //       loading: false,
-      //       showFooter: true,
-      //       pageNum: this.state.pageNum + 1,
-      //     }
-      //   }, () => this.createImageIDArray()))
-       
-      //   .catch((error) => {
-      //     this.setState((prevState) => {
-      //       return {
-      //         loading: false,
-      //         error: 'Error when retrieving'
-      //       }
-      //     });
-      //   });
 }
 
 
@@ -766,13 +719,23 @@ onInputSubmit(event) {
   unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
     .then(response => response.json())
     .then(json => this.setState((prevState) => {
+      // testing 04.21.20
+      if (json.results == '' || json.results == 'undefined' || json.results == []) {
+        console.log('json results are invalid');
+
+        return {
+          data: [],
+          loading: false,
+        }
+      }else {
+      // end testing 04/21/20
       return {
         data: json.results,
         loading: false,
         showFooter: true,
         pageNum: this.state.pageNum + 1,
       }
-    }, () => this.createImageIDArray()))
+    }}, () => this.createImageIDArray()))
    
     .catch((error) => {
       this.setState((prevState) => {
@@ -880,7 +843,6 @@ closeSearch () {
 }
 
 
-
 //sets state to input value of search field 
 handleChange(event) {
   event.preventDefault();
@@ -971,6 +933,8 @@ render() {
               searchValueToDisplay={this.state.searchValueToDisplay}
               relatedSearchTags={this.state.relatedSearchTags}
               onRelatedSearchClick={this.onRelatedSearchClick}
+              data={this.state.data}
+              loading={this.state.loading}
             />) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}
             <Wrapper 

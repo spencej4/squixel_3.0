@@ -11,7 +11,7 @@ class Card extends Component   {
   }
   
   render () {  
-    if (this.props.loading === false) {         
+    if (this.props.loading === false) { 
         return (
               this.props.data.map((item, id) => {
                 //For landscape photos

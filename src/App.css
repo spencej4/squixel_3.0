@@ -654,6 +654,19 @@ hr {
     color: black;
   }
 
+  .noResultsContainer {
+    width: 100%;
+    height: 40px;
+    margin-top: 27px;
+    display: block;
+    position:relative;
+    overflow: hidden;
+  }
+  
+  .no-results-message {
+    font-size: 35px;
+  }
+
   .sign-in-page {
     width: 100vw;
     height: 100%;
@@ -1476,6 +1489,19 @@ hr {
   /* related search options */
   .relatedSearchContainer {
     display: none
+  }
+
+  .noResultsContainer {
+    width: 100%;
+    height: 40px;
+    margin-top: 27px;
+    display: block;
+    position:relative;
+    overflow: hidden;
+  }
+
+  .no-results-message {
+    font-size: 35px;
   }
 
   .landing-search-bar {

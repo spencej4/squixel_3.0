@@ -9,6 +9,12 @@ class Wrapper extends Component {
   }
 
     render() {
+      // if no data (due to no results from search), don't render Wrapper
+      if (this.props.data == '' || this.props.data == 'undefined' || this.props.data == []) {
+        return (
+          null
+        )
+      } else {
       return (
         <div className='body-container'>
           {this.props.showCard ? (
@@ -55,6 +61,7 @@ class Wrapper extends Component {
         </div>
       );
     }  
+  }
 }
 
 export default Wrapper
