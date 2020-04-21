@@ -1045,7 +1045,7 @@ hr {
     display: block;
     position: relative;
     text-align: center;
-    margin: 40px auto 0 auto;
+    margin: 74px auto 0 auto;
     padding: 0 10px;
     -webkit-column-count: 4;
     -webkit-column-gap: 5px;
@@ -1984,7 +1984,7 @@ hr {
   }
 
   .wrapperDiv {
-    padding-top: 45px;
+    padding-top: 49px;
     margin: 0 auto;
   }
 
