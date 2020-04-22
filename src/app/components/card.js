@@ -12,8 +12,10 @@ class Card extends Component   {
   
   render () {  
     if (this.props.loading === false) { 
+      console.log(this.props.data);
         return (
-              this.props.data.map((item, id) => {
+              this.props.data.map((item, id) => { 
+                // console.log(item.user);
                 //For landscape photos
                 if (this.props.data[id].width > this.props.data[id].height){
                   return (

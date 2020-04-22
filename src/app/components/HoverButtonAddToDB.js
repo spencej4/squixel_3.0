@@ -13,39 +13,6 @@ class HoverButtonAddToDB extends Component   {
         this.removeImageFromDatabase = this.removeImageFromDatabase.bind(this); 
         this.redirectToSignIn = this.redirectToSignIn.bind(this);           
   }
-
-    // original 04/13/20
-    // addImageToDatabase (event) {
-    //     event.stopPropagation();
-    //     event.preventDefault();
-
-    //     let email = this.props.log_email;
-    //     let image = this.state.image;
-    //     let smallImage = this.state.smallImage;
-    //     let imageID =this.props.imageID;
-
-    //     fetch('/api/add-image/',{
-    //         method: 'PUT',
-    //         mode: 'cors',
-    //         headers: {
-    //           'Accept': 'application/json',
-    //           'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //           email: email,
-    //           image: image,
-    //           smallImage: smallImage,
-    //           imageID: imageID
-    //         }) 
-    //     }).then(response => {
-    //         // here...need to get response from api fetch, in order to get the photo_ID of a newly added image to the db
-    //         // getting a response object...yaay...maybe now parse it to get the photo_ID
-    //         console.log(`response from within HoverButtonAddToDB: ${response}`)
-    //         this.props.createUserImageIDArray();
-    //     })
-    // }
-
-    // testing 04/13/20
     
     addImageToDatabase (event) {
         event.stopPropagation();
@@ -89,37 +56,6 @@ class HoverButtonAddToDB extends Component   {
     }
 
 
-    // original 04/13/20
-    // removeImageFromDatabase (event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-
-    //     let email = this.state.log_email;
-    //     let image = event.target.value;
-    //     // need photo_ID...in order to be able to delete image from db...trust me it's the most straightforward way
-    //     let photo_ID = this.props.photo_ID;
-
-    //     fetch('/api/delete-image',{
-    //         method: 'PUT',
-    //         mode: 'cors',
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             'Content-Type': 'application/json',
-    //           },
-    //           body: JSON.stringify({
-    //             email: email,
-    //             image: image,
-    //             photo_ID: photo_ID,
-    //           }) 
-    //       }).then(response => {
-    //         // response.json()
-    //         // rebuild userImageIDArray
-    //         this.props.createUserImageIDArray();
-    //       })
-    // }
-
-    // testing 04/13/20
-
     removeImageFromDatabase (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -128,7 +64,6 @@ class HoverButtonAddToDB extends Component   {
         let email = this.state.log_email;
         let image = event.target.value;
         let imageID = this.props.imageID;
-
         // console.log(`imageID from within hoverButton removeImage function: ${imageID}`)
 
         fetch('/api/delete-image',{

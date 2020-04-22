@@ -858,8 +858,12 @@ hr {
     position: absolute;
     content: contain;
     text-align: left;
-    color: white;
+    color: rgba(0, 0, 0, 0.1);
     z-index: 3;
+  }
+
+  .centered-search-bar-landing input[type=text]::placeholder {
+    color: rgb(67,67,67);
   }
 
   /* testing 04/18/20 */

@@ -33,6 +33,7 @@ class CenteredSearchBarLanding extends Component {
                     <input className='centered-search-input-landing' 
                         autoFocus='autofocus'
                         type='text'
+                        placeholder="Search free high-resolution photos"
                         value={this.props.value}
                         onChange={this.props.handleChange}
                     />
