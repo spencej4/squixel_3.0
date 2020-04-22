@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { BrowserRouter as Router, Link} from 'react-router-dom';
 import HeaderSearchBar from './headerSearchBar';
 import CenteredSearchBarMobile from './CenteredSearchBarMobile';
-import DisplaySearchInput from './displaySearchInput';
 
 
 class Header extends Component {
@@ -21,49 +20,25 @@ class Header extends Component {
                         </div>
                     </div>
 
-                        {/* delete DisplaySearchInput after integrating SearchBar as only means of search */}
-                        {/* {this.props.showInputInHeader ? 
-                            <DisplaySearchInput
-                                inputValue={this.props.inputValue}
-                            /> : null } */}
+                    <div className='searchButton' 
+                        onClick={this.props.onSearchClick}>
+                    </div>   
 
-                        <div className='searchButton' 
-                            onClick={this.props.onSearchClick}>
-                        </div>   
+                    <HeaderSearchBar 
+                        inputValue={this.props.inputValue}
+                        closeSearch={() => this.props.closeSearch()}
+                        handleChange={(event) =>this.props.handleChange(event)}
+                        onInputSubmit={(event) => this.props.onInputSubmit(event)}
+                        onClearSearchInputClick={(event) => this.props.onClearSearchInputClick(event)}
+                    /> 
 
-                        {/* original header from 03/31/20 */}
-                        {/* needed to have search icon clicked to appear...see newer SearchBar below... */}
-                        {/* {this.props.showSearchInput ? 
-                            <SearchBar 
-                                onCloseSearchClick={() => this.props.onCloseSearchClick()}
-                                closeSearch={() => this.props.closeSearch()}
-                                handleChange={(event) =>this.props.handleChange(event)}
-                                onInputSubmit={(event) => this.props.onInputSubmit(event)}
-                                onClearSearchInputClick={() => this.props.onClearSearchInputClick()}
-                            /> 
-                            : null
-                        } */}
-
-                        {/* new header searchbar 03/31/20 */}
-                        <HeaderSearchBar 
-                            inputValue={this.props.inputValue}
-                            // onCloseSearchClick={() => this.props.onCloseSearchClick()}
-                            closeSearch={() => this.props.closeSearch()}
-                            handleChange={(event) =>this.props.handleChange(event)}
-                            onInputSubmit={(event) => this.props.onInputSubmit(event)}
-                            onClearSearchInputClick={(event) => this.props.onClearSearchInputClick(event)}
-                        /> 
-
-
-                        {/* keep CenteredSearchBar around for mobile only... */}
-                        {/* {(this.props.showSearchInput && this.props.showLandingSearchBar && !this.props.showCard && !this.props.showSignInPage && !this.props.showRegisterPage && !this.props.showUserCard) ? (  */}
-                        {(this.props.showSearchInput) ? ( 
-                            <CenteredSearchBarMobile
-                                handleChange={(e) => this.props.handleChange(e)}
-                                onInputSubmit={(e) => this.props.onInputSubmit(e)}
-                                onCloseSearchClick={() => this.props.onCloseSearchClick()}
-                            /> ) : (null)
-                        }
+                    {(this.props.showSearchInput) ? ( 
+                    <CenteredSearchBarMobile
+                        handleChange={(e) => this.props.handleChange(e)}
+                        onInputSubmit={(e) => this.props.onInputSubmit(e)}
+                        onCloseSearchClick={() => this.props.onCloseSearchClick()}
+                    /> ) : (null)
+                    }
 
                         {(!this.props.isAuthenticated) ? ( 
                             <div className='dd-login-title'>

@@ -12,7 +12,7 @@ class DisplaySearchInput extends Component {
                     </div>
                 </div>
             )
-        } else if (this.props.data == '' || this.props.data == 'undefined' || this.props.data == []) {
+        } else if (this.props.data === '' || this.props.data === 'undefined' || this.props.data === []) {
             return (
                 <div className='inputContainer'>
                     <div className='input-term'>

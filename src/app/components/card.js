@@ -71,11 +71,8 @@ class Card extends Component   {
         ) 
     }else {
         return ( 
-          <div>
-           {/* empty div  */}
-          </div>
+          null
         )
-        // return null
     }  
   }
 }

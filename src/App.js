@@ -209,7 +209,6 @@ toggleLoginMenu() {
 // closes menu when user mouses out
 closeLoginMenu() {
   let loginMenu = document.getElementById('dd-login-menu');
-  let loginOptions = document.getElementById('login-options');
   let userOptions = document.getElementById('user-options')
 
   this.setState({
@@ -421,7 +420,7 @@ toggleLoginPage() {
 
 // retrieves and displays user photo collection
 onViewCollectionClick(source) {
-  if (source == 'loginMenu'){
+  if (source === 'loginMenu'){
     this.toggleLoginMenu();
   }
   let user = this.state.log_email
@@ -720,7 +719,7 @@ onInputSubmit(event) {
     .then(response => response.json())
     .then(json => this.setState((prevState) => {
       // testing 04.21.20
-      if (json.results == '' || json.results == 'undefined' || json.results == []) {
+      if (json.results === '' || json.results === 'undefined' || json.results === []) {
         console.log('json results are invalid');
 
         return {

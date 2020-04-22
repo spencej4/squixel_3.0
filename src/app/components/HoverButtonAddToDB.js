@@ -40,19 +40,7 @@ class HoverButtonAddToDB extends Component   {
             this.props.createUserImageIDArray();
 
             return response.json();
-        }).then(function(data){
-            // won't need this...
-            // sends image id from db to parent app.js
-            // this.props.addImageID(data)
-
-        }.bind(this))
-        .then(function() {
-            // this.setState({
-            //     photo_ID: this.props.photo_ID_state
-            // })
-            // console.log(`photo_ID from props within in hoverbuttonaddtodb ${this.props.photo_ID_state}`);
-        }.bind(this))
-        
+        });
     }
 
 

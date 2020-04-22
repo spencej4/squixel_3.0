@@ -36,8 +36,6 @@ class CardImage extends Component   {
 
    
     render () {
-        let imageID = this.props.id.id;
-
         return (
             <div 
               className='imgSmall' 
