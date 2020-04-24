@@ -12,7 +12,6 @@ class SignInPage extends Component {
                         handleSignInChange = {this.props.handleSignInChange}
                         onLoginSubmit = {this.props.onLoginSubmit}
                         loginError= {this.props.loginError}
-                        // building 04/17/20
                         onViewCollectionClick= {this.props.onViewCollectionClick}
                         loading={this.props.loading}
                         >

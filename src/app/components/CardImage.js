@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import ReactImageAppear from './ReactImageAppear';
-import HoverButtonAddToDB from './HoverButtonAddToDB';
+import ImageInfoOverlay from './ImageInfoOverlay';
 
 
 class CardImage extends Component   {
-  // new 01/25/20
   constructor(props) {
         super(props);
         this.state = {
@@ -29,9 +28,13 @@ class CardImage extends Component   {
 
 
     mouseLeave = () => {
-      this.setState({ 
-        isMouseInside: false 
-      });
+      // allows imageInfoOverlay time to fade out using css opacity
+      setTimeout(function(){ 
+        this.setState({ 
+          isMouseInside: false 
+        }); 
+      }, 250);
+     
     }
 
    
@@ -43,7 +46,6 @@ class CardImage extends Component   {
               key={this.props.id.id}
               smallImage = {this.props.smallImage}
               imageID = {this.props.imageID}
-
               onClick={() => {
                 this.props.showFullScreenImage(this.props.image, this.props.smallImage, this.props.imageID)}}
               onMouseEnter={() => this.mouseEnter()} 
@@ -52,20 +54,25 @@ class CardImage extends Component   {
               imageMatchesArray={this.props.imageMatchesArray}
             >       
 
-              {this.state.isMouseInside ? <HoverButtonAddToDB
-                  isAuthenticated={this.props.isAuthenticated}
-                  redirectedOnSignInClick={this.props.redirectedOnSignInClick}
-                  imageID = {this.props.imageID}
-                  log_email={this.props.log_email}
-                  user_ID={this.props.user_ID}
-                  image = {this.props.image}
-                  smallImage = {this.props.smallImage}
-                  value={this.props.photo}
-                  src={this.props.photo}
-                  createUserImageIDArray={this.props.createUserImageIDArray}
-                  imageMatchesArray={this.props.imageMatchesArray}
-                ></HoverButtonAddToDB> : null}
+                {this.state.isMouseInside ? (
+                  <ImageInfoOverlay
+                    photographerProfileImageSmall={this.props.photographerProfileImageSmall}
+                    photographerUsername={this.props.photographerUsername}
 
+                    // to pass to HoverButtonAddToDB
+                    isAuthenticated={this.props.isAuthenticated}
+                    redirectedOnSignInClick={this.props.redirectedOnSignInClick}
+                    imageID = {this.props.imageID}
+                    log_email={this.props.log_email}
+                    user_ID={this.props.user_ID}
+                    image = {this.props.image}
+                    smallImage = {this.props.smallImage}
+                    value={this.props.photo}
+                    src={this.props.photo}
+                    createUserImageIDArray={this.props.createUserImageIDArray}
+                    imageMatchesArray={this.props.imageMatchesArray}
+                  ></ImageInfoOverlay> 
+                ) : null}  
 
                 <ReactImageAppear 
                   src={this.props.img_src}

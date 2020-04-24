@@ -24,7 +24,8 @@ class CenteredSearchBarLanding extends Component {
     render() {
         return (
             <div className='centered-search-bar-landing'>
-                <form id='form-landing' className='search-form-landing'
+                <form id='form-landing' 
+                    className='search-form-landing'
                     action = ""
                     method = ""
                     onSubmit={(event) => this.props.onInputSubmit(event)}

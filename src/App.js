@@ -12,12 +12,13 @@ import Wrapper from './app/components/wrapper';
 
 
 
-
+// Application's secretKey and callbackUrl as defined in the API documentation:
 const unsplash = new Unsplash({
   applicationId: "923e03b3d8e1b91345512fe194223858801d195497f62ccbc83d4b21fe8620ee",
   secret: "758ab9e393d801809a873282179ccfc6791f243d108bf0525a09a73261abd443",
   callbackUrl: "https://localhost:3000"
 });
+
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,8 @@ class App extends Component {
       inputValueInHeader: '',
       image: '',
       cardOverlayActive: false,
+
+      photographer: ''
     }
     this.onSignInMenuClick = this.onSignInMenuClick.bind(this);
     this.redirectedOnSignInClick = this.redirectedOnSignInClick.bind(this);
@@ -96,8 +99,8 @@ componentWillMount() {
 }
 
 
-// componentDidMount() {
-// }
+componentDidMount() {
+}
 
 
 scrollWindow() {
@@ -687,9 +690,7 @@ onInputSubmit(event) {
       showInputInHeader: true,
       showFooter: false,
       searchValueToDisplay: this.state.value,
-      // testing 04/20/20
       relatedSearchTags: []
-      // end testing 04/20/20
   });
 
   // creates related search terms based on search input value
@@ -718,7 +719,6 @@ onInputSubmit(event) {
   unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
     .then(response => response.json())
     .then(json => this.setState((prevState) => {
-      // testing 04.21.20
       if (json.results === '' || json.results === 'undefined' || json.results === []) {
         console.log('json results are invalid');
 
@@ -727,7 +727,6 @@ onInputSubmit(event) {
           loading: false,
         }
       }else {
-      // end testing 04/21/20
       return {
         data: json.results,
         loading: false,
@@ -735,7 +734,6 @@ onInputSubmit(event) {
         pageNum: this.state.pageNum + 1,
       }
     }}, () => this.createImageIDArray()))
-   
     .catch((error) => {
       this.setState((prevState) => {
         return {
@@ -751,7 +749,6 @@ onInputSubmit(event) {
 onNextClick() {
       this.setState({
         loading: true,
-        // here 03/30/20
         // change this to 'true' to keep search term in searchbar on next/previous page clicks
         showSearchInput: false,
         showFooter: false
@@ -784,6 +781,7 @@ onNextClick() {
 onPreviousClick() {
     this.setState({
       loading: true,
+      // change this to 'true' to keep search term in searchbar on next/previous page clicks
       showSearchInput: false,
       showFooter: false
     });

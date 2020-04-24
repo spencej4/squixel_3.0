@@ -48,11 +48,9 @@ class HoverButtonAddToDB extends Component   {
         event.preventDefault();
         event.stopPropagation();
 
-
         let email = this.state.log_email;
         let image = event.target.value;
         let imageID = this.props.imageID;
-        // console.log(`imageID from within hoverButton removeImage function: ${imageID}`)
 
         fetch('/api/delete-image',{
             method: 'PUT',
@@ -68,13 +66,10 @@ class HoverButtonAddToDB extends Component   {
               }) 
           }).then(response => {
             // rebuild userImageIDArray
-           this.props.createUserImageIDArray();
+            this.props.createUserImageIDArray();
 
             return response.json();
-        }).then(function(data){
-            // console.log('delete image call worked from HoverButtonAddToDB.js')
-            // console.log(data)
-        })
+        });
     }
 
     redirectToSignIn(event) {
@@ -85,7 +80,6 @@ class HoverButtonAddToDB extends Component   {
 
 
     render () {
-        // if else statements new 04/09/20
         if (this.props.isAuthenticated){
             if(this.props.imageMatchesArray.includes(this.props.imageID)){
                 return(
@@ -110,7 +104,6 @@ class HoverButtonAddToDB extends Component   {
                     </button>
                 )
             }
-            // new 04/09/20
         }else if(!this.props.isAuthenticated){
             return (
                 <button className='add-to-db-overlay'
@@ -119,8 +112,6 @@ class HoverButtonAddToDB extends Component   {
                     value={this.props.photo}
                     src={this.props.photo}
                 >
-                    {/* <p className='largeButton'>+</p> */}
-                    {/* new 04/09/20 */}
                     <p className='normalButtonRedirect'>Sign In</p>
                 </button>
             )

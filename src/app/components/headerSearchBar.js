@@ -39,29 +39,26 @@ class HeaderSearchBar extends Component {
             clearInputFieldButton = "";
         }
 
-            return (
-                // orignal <div className='searchScreen'>
-                <div className='headerSearch'>
-                    <form id="form-header"
-                          className='search-form-header'
-                          action = " "
-                          method = " "
-                          onSubmit={(event) => this.props.onInputSubmit(event)}
-                    >
-                        <div className='icon icon-search'></div>
-                        <input className='header-search-input' 
-                            // autoFocus='autofocus'
-                            type='text'
-                            placeholder="Search free high-resolution photos"
-                            // value={this.props.value}
-                            value={this.props.inputValue}
-                            onChange={(event) => this.props.handleChange(event)}
-                        />
-                        {clearInputFieldButton}
-                    </form>
-                </div>
-                
-            )
+        return (
+            <div className='headerSearch'>
+                <form id="form-header"
+                        className='search-form-header'
+                        action = " "
+                        method = " "
+                        onSubmit={(event) => this.props.onInputSubmit(event)}
+                >
+                    <div className='icon icon-search'></div>
+                    <input className='header-search-input' 
+                        // autoFocus='autofocus'
+                        type='text'
+                        placeholder="Search free high-resolution photos"
+                        value={this.props.inputValue}
+                        onChange={(event) => this.props.handleChange(event)}
+                    />
+                    {clearInputFieldButton}
+                </form>
+            </div>
+        )
     }
 }
 

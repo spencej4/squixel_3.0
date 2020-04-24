@@ -12,7 +12,7 @@ class Card extends Component   {
   
   render () {  
     if (this.props.loading === false) { 
-      console.log(this.props.data);
+      // console.log(this.props.data);
         return (
               this.props.data.map((item, id) => { 
                 // console.log(item.user);
@@ -39,6 +39,8 @@ class Card extends Component   {
                       redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                       createUserImageIDArray={this.props.createUserImageIDArray}
                       imageMatchesArray={this.props.imageMatchesArray}
+                      photographerProfileImageSmall={this.props.data[id].user.profile_image.small}
+                      photographerUsername={this.props.data[id].user.name}
                     />
                   )
                 //For Portrait photos
@@ -64,7 +66,10 @@ class Card extends Component   {
                       redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                       createUserImageIDArray={this.props.createUserImageIDArray}
                       imageMatchesArray={this.props.imageMatchesArray}
+                      photographerProfileImageSmall={this.props.data[id].user.profile_image.small}
+                      photographerUsername={this.props.data[id].user.name}
                     />
+
                   )
                 }
               })
