@@ -4,7 +4,8 @@ import Unsplash from 'unsplash-js';
 import Header from './app/components/header';
 import SignInPage from './app/components/signInPage';
 import RegisterPage from './app/components/registerPage';
-import DisplaySearchInput from './app/components/displaySearchInput';
+import HeadDisplaySearchInput from './app/components/HeadDisplaySearchInput';
+import HeadDisplayUserCollection from './app/components/HeadDisplayUserCollection';
 import Landing from './app/components/landing';
 import Loading from './app/components/loading';
 import FullScreen from './app/components/fullscreen';
@@ -42,6 +43,7 @@ class App extends Component {
       loading: false,
       showCard: false,
       userCollectionData: '',
+      userCollectionName: 'Your Collection',
       userCardLoading: false, 
       showUserCard: false,
       showSearchInput: false,
@@ -433,11 +435,12 @@ onViewCollectionClick(source) {
     showLandingSearchBar: false,
     userCardLoading: true,
     showFullScreenImage: false,
-    showUserCard: false,
+    showUserCard: true,
     pageNum: 0,
     showCard: false, 
     userCollectionData: '',
     showFooter: false,
+    value: ''
   });
 
   fetch('/api/getUserContent/' + user,{
@@ -455,7 +458,7 @@ onViewCollectionClick(source) {
       //iterate through return for images
       for (var index in response) {
         this.setState({
-          // push each image to state array
+          //push each image to state array
           userCollectionData:  [...this.state.userCollectionData, 
             {
               image: response[index].image, 
@@ -466,6 +469,7 @@ onViewCollectionClick(source) {
           ]
         })
       }
+      
       // see data from user collection
   }).then(response => this.setState((prevState) => {
         return {
@@ -687,10 +691,11 @@ onInputSubmit(event) {
       showSearchInput: false,
       pageNum: 0,
       showCard: true, 
+      showUserCard: false,
       showInputInHeader: true,
       showFooter: false,
       searchValueToDisplay: this.state.value,
-      relatedSearchTags: []
+      relatedSearchTags: [],
   });
 
   // creates related search terms based on search input value
@@ -719,16 +724,19 @@ onInputSubmit(event) {
   unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum}` , 30) 
     .then(response => response.json())
     .then(json => this.setState((prevState) => {
-      if (json.results === '' || json.results === 'undefined' || json.results === []) {
+      if (json.results.length === 0) {
         console.log('json results are invalid');
 
         return {
           data: [],
           loading: false,
+          showFooter: false,
+          value: ''
         }
       }else {
       return {
         data: json.results,
+        value: '',
         loading: false,
         showFooter: true,
         pageNum: this.state.pageNum + 1,
@@ -926,11 +934,17 @@ render() {
               onInputSubmit={this.onInputSubmit}
             />) : (null)}
         {(this.state.showCard) ? (
-            <DisplaySearchInput
+            <HeadDisplaySearchInput
               searchValueToDisplay={this.state.searchValueToDisplay}
               relatedSearchTags={this.state.relatedSearchTags}
               onRelatedSearchClick={this.onRelatedSearchClick}
               data={this.state.data}
+              loading={this.state.loading}
+            />) : (null)}
+        {(this.state.showUserCard) ? (
+            <HeadDisplayUserCollection
+              userCollectionName={this.state.userCollectionName}
+              userCollectionData={this.state.userCollectionData}
               loading={this.state.loading}
             />) : (null)}
         {this.state.loading ? ( <Loading /> ) : (null)}

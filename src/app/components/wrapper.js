@@ -10,7 +10,7 @@ class Wrapper extends Component {
 
     render() {
       // if no data (due to no results from search), don't render Wrapper
-      if ((this.props.data === '' || this.props.data === 'undefined' || this.props.data === []) && (!this.props.showUserCard)) {
+      if ((this.props.data.length === 0) && (!this.props.showUserCard)) {
         return (
           null
         )
@@ -38,7 +38,8 @@ class Wrapper extends Component {
             </div>
           ) : (null)
           } 
-          {this.props.showUserCard && !this.props.loading && !this.props.showCard && this.props.isAuthenticated ? (
+          {this.props.showUserCard && !this.props.loading && !this.props.showCard && this.props.isAuthenticated
+           && (this.props.userCollectionData.length !== 0) ? (
             <div className='wrapperDiv'>
               <UserCard 
                   userCollectionData={this.props.userCollectionData}

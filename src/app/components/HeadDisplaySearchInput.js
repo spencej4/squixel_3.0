@@ -1,18 +1,15 @@
 import React, {Component} from 'react';
 import RelatedSearchOptions from './relatedSearchOptions.js';
 
-class DisplaySearchInput extends Component {
+class HeadDisplaySearchInput extends Component {
     render() {
         let searchTerm = (this.props.searchValueToDisplay.charAt(0).toUpperCase() + this.props.searchValueToDisplay.slice(1));
         if (this.props.loading) {
             return (
-                <div className='inputContainer'>
-                    <div className='input-term'>
-                        <p><span className='display-input-value'>{searchTerm}</span></p>
-                    </div>
-                </div>
+                null
             )
-        } else if (this.props.data === '' || this.props.data === 'undefined' || this.props.data === []) {
+        } else 
+        if (this.props.data.length === 0) {
             return (
                 <div className='inputContainer'>
                     <div className='input-term'>
@@ -24,7 +21,7 @@ class DisplaySearchInput extends Component {
                     </div>
                 </div>
             )
-        }else {
+        }else if (this.props.data !== '' || this.props.data !== 'undefined' || this.props.data !== []) {
             return (
                 <div className='inputContainer'>
                     <div className='input-term'>
@@ -43,4 +40,4 @@ class DisplaySearchInput extends Component {
     }
 }
 
-export default DisplaySearchInput;
+export default HeadDisplaySearchInput;

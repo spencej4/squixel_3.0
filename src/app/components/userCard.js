@@ -9,12 +9,6 @@ class UserCard extends Component   {
     }
 
     if (this.props.userCardLoading === false) {
-      if(this.props.data === null) {
-        return ( 
-          <div className='emptyCollectionMessage'>Your collection is empty</div>
-        )
-      }
-      else {
         let userCollectionArray = this.props.userCollectionData;
         // to reverse order of images
         // let userCollectionArray = this.props.userCollectionData.reverse();
@@ -22,7 +16,6 @@ class UserCard extends Component   {
 
         return (
             userCollection.map((item, id) => {
-              
               return (
                 <div className='imgSmall' 
                       key={id}
@@ -50,8 +43,7 @@ class UserCard extends Component   {
                 </div>
               )
           })
-        )
-      }
+        )   
     }  
   }
 }
