@@ -49,6 +49,8 @@ class App extends Component {
       showSearchInput: false,
       showLandingSearchBar: true,
       value: '',
+      nextValue: '',
+      prevValue: '',
       searchValueToDisplay: '',
       relatedSearchTags: [],
       signInValue: '',
@@ -60,7 +62,7 @@ class App extends Component {
       inputValueInHeader: '',
       image: '',
       cardOverlayActive: false,
-
+      showCardOverlay: true,
       photographer: ''
     }
     this.onSignInMenuClick = this.onSignInMenuClick.bind(this);
@@ -93,6 +95,8 @@ class App extends Component {
     this.createImageIDArray = this.createImageIDArray.bind(this);
     this.createUserImageIDArray = this.createUserImageIDArray.bind(this);
     this.compareImageIDs = this.compareImageIDs.bind(this);
+    // testing 04/26/20
+    this.toggleImageOverlay = this.toggleImageOverlay.bind(this);
   }
 
 
@@ -612,6 +616,7 @@ compareImageIDs() {
   })
 } 
 
+
 renderRelatedSearch() {
     // alert('renderRelatedSearch ran');
     this.setState({
@@ -695,6 +700,8 @@ onInputSubmit(event) {
       showInputInHeader: true,
       showFooter: false,
       searchValueToDisplay: this.state.value,
+      nextValue: this.state.value,
+      prevValue: this.state.value,
       relatedSearchTags: [],
   });
 
@@ -762,7 +769,7 @@ onNextClick() {
         showFooter: false
       });
 
-      unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum + 1}`, 30)
+      unsplash.search.photos(`${this.state.nextValue}`, `${this.state.pageNum + 1}`, 30)
         .then(response => response.json())
         .then(json => this.setState((prevState) => {
           return {
@@ -794,7 +801,7 @@ onPreviousClick() {
       showFooter: false
     });
 
-    unsplash.search.photos(`${this.state.value}`, `${this.state.pageNum - 1}`, 30)
+    unsplash.search.photos(`${this.state.prevValue}`, `${this.state.pageNum - 1}`, 30)
       .then(response => response.json())
       .then(json => this.setState((prevState) => {
         return {
@@ -881,6 +888,22 @@ closeFullScreenImage() {
 }
 
 
+// testing 04/26/20
+toggleImageOverlay() {
+  if (this.state.showCardOverlay) {
+    console.log('showCardOverlay toggled false')
+    this.setState({
+      showCardOverlay: false
+    })
+  } else if (!this.state.showCardOverlay) {
+    console.log('showCardOverlay toggled true')
+    this.setState({
+      showCardOverlay: true
+    })
+  }
+}
+
+
 render() {
     return (
       <div className="App">
@@ -909,6 +932,9 @@ render() {
               inputValue = {this.state.value}
               showCard = {this.state.showCard}
               showUserCard = {this.state.showUserCard}
+
+              // testing 04/26/20
+              toggleImageOverlay = {this.toggleImageOverlay}
             /> ): (null)}
          {(!this.state.showCard && !this.state.showUserCard && this.state.showSignInPage) ? (
             <SignInPage 
@@ -974,6 +1000,8 @@ render() {
               redirectedOnSignInClick={this.redirectedOnSignInClick}
               createUserImageIDArray={this.createUserImageIDArray}
               imageMatchesArray={this.state.imageMatchesArray}
+              // testing 04/26/20
+              showCardOverlay={this.state.showCardOverlay}
             />
         {this.state.fullScreenImageVisible ? (
             <FullScreen 

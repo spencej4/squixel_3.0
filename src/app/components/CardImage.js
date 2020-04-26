@@ -54,7 +54,7 @@ class CardImage extends Component   {
               imageMatchesArray={this.props.imageMatchesArray}
             >       
 
-                {this.state.isMouseInside ? (
+                {this.state.isMouseInside && this.props.showCardOverlay ? (
                   <ImageInfoOverlay
                     photographerProfileImageSmall={this.props.photographerProfileImageSmall}
                     photographerUsername={this.props.photographerUsername}

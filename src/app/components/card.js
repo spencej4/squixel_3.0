@@ -41,6 +41,9 @@ class Card extends Component   {
                       imageMatchesArray={this.props.imageMatchesArray}
                       photographerProfileImageSmall={this.props.data[id].user.profile_image.small}
                       photographerUsername={this.props.data[id].user.name}
+
+                      // testing 04/26/20
+                      showCardOverlay={this.props.showCardOverlay}
                     />
                   )
                 //For Portrait photos
@@ -68,6 +71,9 @@ class Card extends Component   {
                       imageMatchesArray={this.props.imageMatchesArray}
                       photographerProfileImageSmall={this.props.data[id].user.profile_image.small}
                       photographerUsername={this.props.data[id].user.name}
+
+                      // testing 04/26/20
+                      showCardOverlay={this.props.showCardOverlay}
                     />
 
                   )

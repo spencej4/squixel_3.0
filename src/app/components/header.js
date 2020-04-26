@@ -4,9 +4,7 @@ import HeaderSearchBar from './headerSearchBar';
 import CenteredSearchBarMobile from './CenteredSearchBarMobile';
 
 
-class Header extends Component {
-
-    
+class Header extends Component {  
     render() {
 
         let source = 'loginMenu';
@@ -57,6 +55,21 @@ class Header extends Component {
                             </div>
                         ) : (null)}
                        
+                       {/* testing 04/25/20 */}
+                       {(this.props.isAuthenticated) ? ( 
+                            <div className='switch-container'>
+                                <label className='switch'>
+                                    <input type ='checkbox'
+                                           onChange={this.props.toggleImageOverlay}
+                                    ></input>
+                                        <div className='switch-btn'>
+                                            <div className='switch-btn-off'><p>Off</p></div>
+                                            <div className='switch-btn-on'><p>On</p></div>
+                                        </div>
+                                </label>
+                            </div>
+                         ) : (null)}
+                        {/* end testing */}
 
                         <div className='dd-login-menu hide' id='dd-login-menu' >
                             <ul className='login-options hide' id='login-options' onMouseLeave={() => this.props.closeLoginMenu()}>

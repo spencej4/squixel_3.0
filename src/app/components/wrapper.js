@@ -34,6 +34,9 @@ class Wrapper extends Component {
                   redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                   createUserImageIDArray={this.props.createUserImageIDArray}
                   imageMatchesArray={this.props.imageMatchesArray}
+
+                  // testing 04/26/20
+                  showCardOverlay={this.props.showCardOverlay}
               />
             </div>
           ) : (null)

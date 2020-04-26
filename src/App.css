@@ -56,6 +56,7 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   line-height: 1;
+  background-color: #FFF;
 }
 
 input:focus,
@@ -67,6 +68,7 @@ button:focus {
 
 .App {
   text-align: center;
+  background-color: #FFF;
 }
 
 .header {
@@ -146,6 +148,11 @@ a {
   font-size: 2em;
   display: inline-block;
   text-decoration: none;
+}
+
+.logoFont a {
+  margin-left: 28px;
+  letter-spacing: 8px;
 }
 
 .closeSearchButton {
@@ -444,7 +451,7 @@ hr {
   position: absolute;
   width: 11px;
   height: 11px;
-  margin-top: 20px;
+  margin-top: 15px;
   border-radius: 50%;
   /* background: rgb(244, 118, 208); */
   background: rgb(120, 128, 153);
@@ -563,6 +570,69 @@ hr {
     box-shadow: 0px 3px 5px rgba(100, 100, 100, 0.49);
   }
 
+  /* testing 04/25/20 */
+  .switch-container {
+    top: -9px;
+    right: 109px;
+    position: absolute;
+  }
+
+  .switch-btn {
+    width: 80px;
+    height: 40px;
+    /* background: #e5e5e5; */
+    position: relative;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: inset 0 3px 10px rgba(0,0,0, .3);
+  }
+
+  .switch-btn:before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(#FFF, #f2f2f2);
+    left: 2px;
+    top: 2px;
+    transition: all 150ms ease-out;
+    border-radius: 50%;
+    box-shadow: 0 8px 6px -4px rgba(0,0,0, .25);
+    z-index: 3
+  }
+
+  .switch {
+    opacity: 0;
+  }
+
+  .switch-btn-on {
+    top: 14px;
+    right: 18px;
+    position: absolute;
+  }
+
+  .switch-btn-on p, .switch-btn-off p {
+    font-size: 11px;
+    z-index: 2;
+  }
+
+  .switch-btn-off {
+    top: 14px;
+    left: 16px;
+    position: absolute;
+  }
+
+  input[type=checkbox]:checked + .switch-btn:before {
+    left: 42px;
+  }
+
+  /* doesn't work...should change background color of switch when checked. */
+  input[type=checkbox]:checked  .switch-btn{
+    background: rgb(#47CBBF);
+  }
+  /* end testing 04/25/20 */
+
+
   /* testing 04/19/20 */
   .input-term {
     width: 100%;
@@ -587,8 +657,8 @@ hr {
   .landing-message {
     width: 58%;
     height: 300px;
-    margin-top: 20%;
-    margin-left: calc(45% / 2 - 44px);
+    margin-top: 237px;
+    margin-left: calc(51% / 2 - 36px);
     position: absolute;
     display: block;
     /* background-color: rgba(0,0,0,.5); */
@@ -605,21 +675,21 @@ hr {
   h1.landing-logo {
     font-size: 42px;
     font-weight: 700;
-    letter-spacing: 4px;
+    letter-spacing: 1px;
     color: rgb(209, 214, 226);
     font-family: "Helvetica Neue";
   }
   
   .landing-text {
-    margin-top: 16px;
+    margin-top: 3px;
     text-align: left;
     margin-bottom: 24px;
-    line-height: 28px;
+    line-height: 25px;
   }
   
   .landing-text p {
     font-weight: 400;
-    font-size: 18px;
+    font-size: 17px;
     color: rgb(209, 214, 226);
     font-family: "Helvetica Neue";
   }
@@ -877,12 +947,12 @@ hr {
 
   /* testing 04/18/20 */
   .centered-search-input-landing {
-    width: 62vw;
-    height: 40px;
+    width: 50.3vw;
+    height: 46px;
     line-height: 45px;
     padding: 0 5px;
     border: 1px solid transparent;
-    border-radius: 0;
+    border-radius: 5px;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -928,7 +998,7 @@ hr {
   }
 
   .search-form-landing {
-    top: 16px;
+    top: -2px;
     position: absolute;
     display: flex;
     align-items: center;
@@ -974,15 +1044,14 @@ hr {
   .landing-overlay {
     width: 100%;
     width: 100%;
-    height: 100vh;
+    height: 644px;
     background-color: rgba( 0,0,0, .4);
     position: absolute;
   }
 
   .landing {
     width: 100%;
-    width: 100%;
-    height: 100vh;
+    height: 644px;
     background-image: url('../src/app/img/succulent.jpeg');
     background-position: center;
     background-repeat: no-repeat;
@@ -1001,8 +1070,8 @@ hr {
     color: rgba(48, 46, 46, 0.518);
   }
 
-  a:link {
-    margin-left: 14%;
+  .logoFont a {
+    margin-left: 30px;
     letter-spacing: 8px;
   }
 
@@ -1019,7 +1088,7 @@ hr {
   }
 
   input[type=text] {
-    font-size: 1.5em;
+    font-size: 1em;
     padding-left: 2.9em;
     font-weight: 100;
     letter-spacing: 0.1px;
@@ -1515,6 +1584,10 @@ hr {
     display: none;
   }
 
+  .switch-btn-on, .switch-btn-off {
+    display: none;
+  }
+
   .landing-message {
     width: 100%;
     height: 200px;
@@ -1651,7 +1724,7 @@ hr {
     position: absolute;
     width: 11px;
     height: 11px;
-    margin-top: 10px;
+    margin-top: 18px;
     border-radius: 50%;
     /* background: rgb(244, 118, 208); */
     background: rgb(120, 128, 153);
@@ -1943,6 +2016,10 @@ hr {
     padding-left: 3.2em;
     letter-spacing: 0.2px;
     width: 84vw;
+  }
+
+  input[type=checkbox] {
+    display: none;
   }
 
   
