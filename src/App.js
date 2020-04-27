@@ -676,10 +676,9 @@ onRelatedSearchClick(value) {
         showCard: true, 
         showInputInHeader: true,
         showFooter: false,
-        // searchValueToDisplay: this.state.value,
-        // testing 04/20/20
-        relatedSearchTags: []
-        // end testing 04/20/20
+        relatedSearchTags: [],
+        nextValue: value,
+        prevValue: value
         }, () => {
           this.renderRelatedSearch()
         }
