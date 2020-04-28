@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AddToDBFullscreen from './AddToDBFullScreen';
+import AddToDBFullscreen from './AddToDBFullscreen';
 
 class FullScreen extends Component   {
     constructor(props) {
