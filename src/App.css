@@ -424,10 +424,9 @@ hr {
 }
 
 .closeFullScreenButton {
-  margin: -6px 0 15px 0;
-  padding: 0;
-  top: 10%;
-  left: 95%;
+  top: 0;
+  right: -5px;
+  float: right;
   display: block;
   position: relative;
   color: white;
@@ -676,7 +675,7 @@ hr {
     font-size: 42px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
   }
   
@@ -690,7 +689,7 @@ hr {
   .landing-text p {
     font-weight: 400;
     font-size: 17px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
   }
 
@@ -702,7 +701,7 @@ hr {
   .copyright-symbol {
     font-weight: 100;
     font-size: 20px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
     display: inline-block;
   }
@@ -710,7 +709,7 @@ hr {
   .landing-footer p {
     font-weight: 200;
     font-size: 18px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
     display: inline-block;
   }
@@ -956,7 +955,7 @@ hr {
     font-size: 14px;
     display: flex;
     align-items: center;
-    background-color: rgba(213, 216, 227, 1);
+    background-color: #FFF;
     color: black;
   }
 
@@ -1224,6 +1223,7 @@ hr {
     z-index: 0;
   }
 
+  /* old */
   .add-to-db {
     padding-top: -35px;
     width: 60px;
@@ -1261,6 +1261,9 @@ hr {
     transition: background-color 0.5s ease;
     background-color: rgb(217, 138, 220);
   }
+  /* end old */
+
+
 
   .add-to-db-overlay {
     top: 20px;
@@ -1280,7 +1283,25 @@ hr {
     transition: background-color 0.5s ease;
   }
 
-  .add-to-db-overlay:hover {
+  .add-to-db-overlay-fullscreen {
+    top: 59px;
+    right: 52px;
+    padding-top: -15px;
+    width: 90px;
+    height: 30px;
+    display: block;
+    float: right;
+    position: absolute;
+    color: white;
+    background-color: rgba(201, 201, 201, 0.5);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db-overlay:hover, .add-to-db-overlay-fullscreen:hover {
     background-image: url("../src/app/img/header-bg.jpg");
     background-size: cover;
   }
@@ -1302,7 +1323,24 @@ hr {
     transition: background-color 0.5s ease;
   }
 
-  .add-to-db-overlay-collected:hover {
+  .add-to-db-overlay-collected-fullscreen {
+    top: 59px;
+    right: 52px;
+    padding-top: -15px;
+    width: 120px;
+    height: 30px;
+    display: block;
+    float: right;
+    position: absolute;
+    background-color: lightgreen;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db-overlay-collected:hover, .add-to-db-overlay-fullscreen:hover {
     background-image: url("../src/app/img/header-bg.jpg");
     background-size: cover;
   }
@@ -1608,7 +1646,7 @@ hr {
     font-size: 47px;
     font-weight: 400;
     letter-spacing: 1px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
   }
   
@@ -1621,7 +1659,7 @@ hr {
   .landing-text p {
     font-weight: 400;
     font-size: 20px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
   }
 
@@ -1633,7 +1671,7 @@ hr {
   .copyright-symbol {
     font-weight: 100;
     font-size: 20px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
     display: inline-block;
   }
@@ -1641,7 +1679,7 @@ hr {
   .landing-footer p {
     font-weight: 100;
     font-size: 18px;
-    color: rgb(209, 214, 226);
+    color: #FFF;
     font-family: "Helvetica Neue";
     display: inline-block;
   }
@@ -2245,6 +2283,106 @@ hr {
     background-color: rgba(201, 201, 201, 0.5);
     border-radius: 50%;
     border: 1px solid white;
+  }
+
+
+  /* testing 04/28/20 */
+  .add-to-db-overlay-fullscreen {
+    top: 82px;
+    right: -6px;
+    padding-top: -15px;
+    width: 90px;
+    height: 30px;
+    display: block;
+    float: right;
+    position: absolute;
+    color: white;
+    background-color: rgba(201, 201, 201, 0.5);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db-overlay-collected {
+    top: 20px;
+    right: 15px;
+    padding-top: -15px;
+    width: 120px;
+    height: 30px;
+    display: block;
+    float: right;
+    position: absolute;
+    background-color: lightgreen;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db-overlay-collected-fullscreen {
+    top: 82px;
+    right: -6px;
+    padding-top: -15px;
+    width: 120px;
+    height: 30px;
+    display: block;
+    float: right;
+    position: absolute;
+    background-color: lightgreen;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+  }
+
+  .add-to-db-overlay-collected:hover, .add-to-db-overlay-fullscreen:hover {
+    background-image: url("../src/app/img/header-bg.jpg");
+    background-size: cover;
+  }
+    
+  .largeButton{
+    left: 7px;
+    font-weight: 300;
+    font-size: 24px;
+    bottom: 2px;
+    position: absolute;
+    opacity: .9;
+    color: white;
+  }
+
+  .largeButtonCollected{
+    width: 23px;
+    height: 23px;
+    top:0;
+    left: 7px;
+    position: absolute;
+    background-image: url("../src/app/img/checkmark.png");
+  }
+
+  .normalButton {
+    top: 4px;
+    right: 13px;
+    font-weight: 100;
+    padding-top: -30px;
+    font-size: 15px;
+    position: absolute;
+    opacity: .9;
+    color: white;
+  }
+
+  .normalButtonRedirect {
+    top: 4px;
+    right: 21px;
+    font-weight: 100;
+    padding-top: -30px;
+    font-size: 15px;
+    position: absolute;
+    opacity: .9;
+    color: white;
   }
 }
 

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import HoverButtonAddToDB from './HoverButtonAddToDB';
+import AddToDBHover from './AddToDBHover';
 
 class ImageInfoOverlay extends Component   {
     render() {
         return (
             <div className='image_info_overlay_container fade'>
 
-                <HoverButtonAddToDB
+                <AddToDBHover
                     isAuthenticated={this.props.isAuthenticated}
                     redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                     imageID = {this.props.imageID}
@@ -18,12 +18,19 @@ class ImageInfoOverlay extends Component   {
                     src={this.props.photo}
                     createUserImageIDArray={this.props.createUserImageIDArray}
                     imageMatchesArray={this.props.imageMatchesArray}
-                ></HoverButtonAddToDB>
+                    imageMatchesArrayUser={this.props.imageMatchesArrayUser}
+                    showUserCard={this.props.showUserCard}
+                    onViewCollectionClick={this.props.onViewCollectionClick}
 
+                    removedImageUpdateState={this.props.removedImageUpdateState}
+                ></AddToDBHover>
+
+                
                 <div className='photographer_profile_photo_container'>
                     <img className='photographer_profile_photo' src={this.props.photographerProfileImageSmall}></img>
                 </div>
                 <p className='photographer_userName'>{this.props.photographerUsername}</p>
+                
             </div>
         )
     }

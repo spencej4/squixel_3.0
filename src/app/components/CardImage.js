@@ -9,6 +9,7 @@ class CardImage extends Component   {
         this.state = {
             log_email: this.props.log_email,
             user_ID: this.props.user_ID,
+            // isMouseInside: false
         } 
   }
 
@@ -58,15 +59,13 @@ class CardImage extends Component   {
                   <ImageInfoOverlay
                     photographerProfileImageSmall={this.props.photographerProfileImageSmall}
                     photographerUsername={this.props.photographerUsername}
-
-                    // to pass to HoverButtonAddToDB
                     isAuthenticated={this.props.isAuthenticated}
                     redirectedOnSignInClick={this.props.redirectedOnSignInClick}
-                    imageID = {this.props.imageID}
+                    imageID={this.props.imageID}
                     log_email={this.props.log_email}
                     user_ID={this.props.user_ID}
-                    image = {this.props.image}
-                    smallImage = {this.props.smallImage}
+                    image= {this.props.image}
+                    smallImage={this.props.smallImage}
                     value={this.props.photo}
                     src={this.props.photo}
                     createUserImageIDArray={this.props.createUserImageIDArray}

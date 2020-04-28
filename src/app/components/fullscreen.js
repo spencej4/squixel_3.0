@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AddToDBFullscreen from './AddToDBFullScreen';
 
 class FullScreen extends Component   {
     constructor(props) {
@@ -82,10 +83,6 @@ class FullScreen extends Component   {
 
             return response.json();
         })
-        // delete?
-        // .then(function(data){
-        //     console.log(data)
-        // })
     }
     
 
@@ -100,7 +97,8 @@ class FullScreen extends Component   {
         return (
             <div id='fullscreen'>
                 <div className='fullscreenAside'>
-                    <button className='closeFullScreenButton'
+                    {/* original */}
+                    {/* <button className='closeFullScreenButton'
                             onClick={this.props.closeFullScreen}>X
                     </button>
                     {this.props.isAuthenticated ? (
@@ -116,12 +114,38 @@ class FullScreen extends Component   {
                             onClick={this.removeImageFromDatabase}
                             value={this.props.photo}>-
                         </button>
-                    ) : (null)}
+                    ) : (null)} */}
+                    {/* end original */}
+
+                    {/* testing 04/27/20 */}
+                    <button className='closeFullScreenButton'
+                            onClick={this.props.closeFullScreen}>X
+                    </button>
+
+                    <AddToDBFullscreen
+                        isAuthenticated={this.props.isAuthenticated}
+                        redirectedOnSignInClick={this.props.redirectedOnSignInClick}
+                        imageID = {this.props.imageID}
+                        log_email={this.props.log_email}
+                        user_ID={this.props.user_ID}
+                        image = {this.props.image}
+                        smallImage = {this.props.smallImage}
+                        value={this.props.photo}
+                        src={this.props.photo}
+                        createUserImageIDArray={this.props.createUserImageIDArray}
+                        imageMatchesArray={this.props.imageMatchesArray}
+                        showUserCard={this.props.showUserCard}
+                        imageMatchesArrayUser={this.props.imageMatchesArrayUser}
+                        removedImageUpdateState={this.props.removedImageUpdateState}
+                        closeFullScreen={this.props.closeFullScreen}
+                    ></AddToDBFullscreen>
+
                 </div>
                 <img 
                     src={this.props.photo}
                     className='fullScreenImage'
                     alt={this.props.photo.description}
+                    imageID = {this.props.imageID}
                 />
             </div>
         )

@@ -37,6 +37,7 @@ class Wrapper extends Component {
 
                   // testing 04/26/20
                   showCardOverlay={this.props.showCardOverlay}
+                  showUserCard={this.props.showUserCard}
               />
             </div>
           ) : (null)
@@ -52,6 +53,16 @@ class Wrapper extends Component {
                   showFullScreenImage={this.props.showFullScreenImage}
                   fullScreenImage={this.props.fullScreenImage}
                   showSearchInput={this.props.showSearchInput}
+                  showCardOverlay={this.props.showCardOverlay}
+                  isAuthenticated={this.props.isAuthenticated}
+                  showUserCard={this.props.showUserCard}
+                  redirectedOnSignInClick={this.props.redirectedOnSignInClick}
+                  imageMatchesArrayUser={this.props.imageMatchesArrayUser}
+                  log_email={this.props.log_email}
+                  user_ID={this.props.user_ID}
+                  onViewCollectionClick={this.props.onViewCollectionClick}
+                  createUserImageIDArray={this.props.createUserImageIDArray}
+                  removedImageUpdateState={this.props.removedImageUpdateState}
               />
             </div>
             ) : (null)

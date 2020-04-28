@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class HoverButtonAddToDB extends Component   {
+class AddToDBFullscreen extends Component   {
   constructor(props) {
         super(props);
         this.state = {
@@ -66,7 +66,9 @@ class HoverButtonAddToDB extends Component   {
               }) 
           }).then(response => {
             // rebuild userImageIDArray
+            this.props.removedImageUpdateState(imageID);
             this.props.createUserImageIDArray();
+            this.props.closeFullScreen();
 
             return response.json();
         });
@@ -80,10 +82,10 @@ class HoverButtonAddToDB extends Component   {
 
 
     render () {
-        if (this.props.isAuthenticated){
-            if(this.props.imageMatchesArray.includes(this.props.imageID)){
+        if (this.props.isAuthenticated && this.props.showUserCard) {
+            if(this.props.imageMatchesArrayUser.includes(this.props.imageID)){
                 return(
-                    <button className='add-to-db-overlay-collected'
+                    <button className='add-to-db-overlay-collected-fullscreen'
                         onClick={this.removeImageFromDatabase}
                         value={this.props.photo}
                         src={this.props.photo}
@@ -94,7 +96,31 @@ class HoverButtonAddToDB extends Component   {
                 )
             }else {
                 return(
-                    <button className='add-to-db-overlay'
+                    <button className='add-to-db-overlay-fullscreen'
+                        onClick={this.addImageToDatabase}
+                        value={this.props.photo}
+                        src={this.props.photo}
+                    >
+                        <p className='largeButton'>+</p>
+                        <p className='normalButton'>Collect</p>
+                    </button>
+                )
+            }
+        }else if (this.props.isAuthenticated && !this.props.showUserCard){
+            if(this.props.imageMatchesArray.includes(this.props.imageID)){
+                return(
+                    <button className='add-to-db-overlay-collected-fullscreen'
+                        onClick={this.removeImageFromDatabase}
+                        value={this.props.photo}
+                        src={this.props.photo}
+                    >
+                        <img className='largeButtonCollected' src='data:image/png;base64,R0lGODlhFAAUAIAAAP///wAAACH5BAEAAAAALAAAAAAUABQAAAIRhI+py+0Po5y02ouz3rz7rxUAOw=='></img>
+                        <p className='normalButton'>Remove</p>
+                    </button>
+                )
+            }else {
+                return(
+                    <button className='add-to-db-overlay-fullscreen'
                         onClick={this.addImageToDatabase}
                         value={this.props.photo}
                         src={this.props.photo}
@@ -106,7 +132,7 @@ class HoverButtonAddToDB extends Component   {
             }
         }else if(!this.props.isAuthenticated){
             return (
-                <button className='add-to-db-overlay'
+                <button className='add-to-db-overlay-fullscreen'
                     onClick={(event) => this.redirectToSignIn(event)}
                     redirectedOnSignInClick={this.props.redirectedOnSignInClick}
                     value={this.props.photo}
@@ -119,4 +145,4 @@ class HoverButtonAddToDB extends Component   {
     }
 }
 
-export default HoverButtonAddToDB
+export default AddToDBFullscreen

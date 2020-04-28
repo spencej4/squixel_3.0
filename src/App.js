@@ -63,7 +63,9 @@ class App extends Component {
       image: '',
       cardOverlayActive: false,
       showCardOverlay: true,
-      photographer: ''
+      photographer: '',
+      //testing 04/27/20
+      imageMatchesArrayUser: []
     }
     this.onSignInMenuClick = this.onSignInMenuClick.bind(this);
     this.redirectedOnSignInClick = this.redirectedOnSignInClick.bind(this);
@@ -95,8 +97,9 @@ class App extends Component {
     this.createImageIDArray = this.createImageIDArray.bind(this);
     this.createUserImageIDArray = this.createUserImageIDArray.bind(this);
     this.compareImageIDs = this.compareImageIDs.bind(this);
-    // testing 04/26/20
     this.toggleImageOverlay = this.toggleImageOverlay.bind(this);
+    this.compareUserImageIDs = this.compareUserImageIDs.bind(this);
+    this.removedImageUpdateState=this.removedImageUpdateState.bind(this);
   }
 
 
@@ -486,8 +489,25 @@ onViewCollectionClick(source) {
           showInputInHeader: false
         } 
   }))
+  // testing 04/27/20
+  .then(() => this.createUserImageIDArray()) 
 }
 
+// deletes image from userCollectionData state, after image is confirmed deleted from userDB
+// called by AddToDBHOver.js
+removedImageUpdateState(imageID) {
+  var removeThisImage = this.state.userCollectionData.map(function(item) { return item.imageID; }).indexOf(imageID);
+
+  let updatedUserCollectionData = this.state.userCollectionData.filter( (item, index) => {
+    if(index !== removeThisImage){
+         return item;
+    }
+  });
+
+  this.setState({
+    userCollectionData: updatedUserCollectionData
+  })
+}
 
 // closes fullscreen, retrieves images from user db collection
 onPhotoAdd_Or_Remove_Click() {
@@ -579,7 +599,6 @@ createUserImageIDArray() {
 
   let user = this.state.log_email
 
-
   fetch('/api/getUserContent/' + user,{
     method: 'GET',
     mode: "cors",
@@ -599,20 +618,34 @@ createUserImageIDArray() {
             userImageIDArray.push(response[index].imageID)
           this.setState({userImageIDArray})
         }
-        this.createImageIDArray()
+        if(this.state.showUserCard) {
+          this.compareUserImageIDs()
+        }else {
+          this.createImageIDArray()
+        }
     })
 }
 
 
 // gets called by createImageIDArray function
 compareImageIDs() {
-  // use search term 'lingerie' in webpage for username of 'new@new.com' password is 'new'
-  // compares imageIDArray to userImageIDArray by id for matches
+  // compares imageIDArray to userImageIDArray by id for matches 
   this.setState({
     imageMatchesArray: []
   }, () => {
     let intersection = this.state.imageIDArray.filter(element => this.state.userImageIDArray.includes(element));
     this.setState({ imageMatchesArray: intersection }); 
+  })
+} 
+
+// gets called by createImageIDArray function
+compareUserImageIDs() {
+  // compares imageIDArray to userImageIDArrayUser by id for matches 
+  this.setState({
+    imageMatchesArrayUser: []
+  }, () => {
+    let intersection = this.state.userImageIDArray.filter(element => this.state.userImageIDArray.includes(element));
+    this.setState({ imageMatchesArrayUser: intersection }); 
   })
 } 
 
@@ -869,7 +902,8 @@ showFullScreenImage(image, smallImage, imageID) {
     fullScreenImageVisible: true,
     fullScreenImage: image,
     smallImage: smallImage,
-    imageID: imageID
+    imageID: imageID,
+    image: image
   })
 }
 
@@ -883,6 +917,7 @@ closeFullScreenImage() {
     fullScreenImage: '',
     smallImage: '',
     imageID: '',
+    image: ''
   })
 }
 
@@ -999,8 +1034,11 @@ render() {
               redirectedOnSignInClick={this.redirectedOnSignInClick}
               createUserImageIDArray={this.createUserImageIDArray}
               imageMatchesArray={this.state.imageMatchesArray}
-              // testing 04/26/20
               showCardOverlay={this.state.showCardOverlay}
+              showUserCard={this.state.showUserCard}
+              imageMatchesArrayUser={this.state.imageMatchesArrayUser}
+
+              removedImageUpdateState={this.removedImageUpdateState}
             />
         {this.state.fullScreenImageVisible ? (
             <FullScreen 
@@ -1015,6 +1053,13 @@ render() {
               onPhotoAdd_Or_Remove_Click={this.onPhotoAdd_Or_Remove_Click}
               createUserImageIDArray={this.createUserImageIDArray}
               imageMatchesArray={this.state.imageMatchesArray}
+
+              // testing 04/27/20
+              redirectedOnSignInClick={this.props.redirectedOnSignInClick}
+              image={this.state.image}
+              showUserCard={this.state.showUserCard}
+              imageMatchesArrayUser={this.state.imageMatchesArrayUser}
+              removedImageUpdateState={this.removedImageUpdateState}
             />
         ) : (null)}
       </div>
