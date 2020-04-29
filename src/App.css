@@ -2176,9 +2176,9 @@ hr {
     height: auto;
     position: absolute;
 /* testing 04/29/20 */
-    width: auto;
+    /* width: auto;
     max-width: auto;
-    overflow: hidden;
+    overflow: hidden; */
   }
 
   .wrapperDiv {
