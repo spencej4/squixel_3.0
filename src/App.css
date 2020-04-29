@@ -2128,7 +2128,7 @@ hr {
     height: 57px;
     display: inline-block;
     position: absolute;
-    z-index: 10;
+    z-index: 2;
   }
   
   .dd-login-button {
