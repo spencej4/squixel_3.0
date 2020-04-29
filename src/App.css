@@ -1693,7 +1693,8 @@ hr {
     width: 100%;
     height: auto;
     margin-bottom: 0;
-    padding-left: 10px;
+    margin-left: 10px;
+    /* padding-left: 10px; */
     position: relative;
     display: block;
     text-align: left;
@@ -2174,11 +2175,19 @@ hr {
     width: 100%;
     height: auto;
     position: absolute;
+/* testing 04/29/20 */
+    width: auto;
+    max-width: auto;
+    overflow: hidden;
   }
 
   .wrapperDiv {
     padding-top: 49px;
     margin: 0 auto;
+/* testing 04.29/20 */
+    width: auto;
+    max-width: auto;
+    overflow: hidden;
   }
 
   .image_info_overlay_container {
