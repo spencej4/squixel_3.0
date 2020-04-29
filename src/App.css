@@ -2185,8 +2185,8 @@ hr {
     padding-top: 49px;
     margin: 0 auto;
 /* testing 04.29/20 */
-    width: auto;
-    max-width: auto;
+    width: 100vw;
+    max-width: 100vw;
     overflow: hidden;
   }
 
