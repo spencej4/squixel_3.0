@@ -76,7 +76,7 @@ button:focus {
   height: 45px;
   top: 0;
   left: 0;
-  margin: 0px 0px 20px 0px;
+  /* margin: 0px 0px 20px 0px; */
   padding-top: 12px;
   display: block;
   position: fixed;
@@ -151,7 +151,7 @@ a {
 }
 
 .logoFont a {
-  margin-left: 28px;
+  margin-left: 10px;
   letter-spacing: 8px;
 }
 
@@ -559,7 +559,7 @@ hr {
     height: 45px;
     top: 0;
     left: 0;
-    margin: 0px 0px 20px 0px;
+    /* margin: 0px 0px 20px 0px; */
     padding-top: 12px;
     background-size: 100%;
     display: block;
@@ -1070,7 +1070,7 @@ hr {
   }
 
   .logoFont a {
-    margin-left: 30px;
+    margin-left: 10px;
     letter-spacing: 8px;
   }
 
@@ -1588,18 +1588,14 @@ hr {
 /* ================                                  MOBILE                                     ======================*/
 /* ===================================================================================================================*/
 @media (min-width: 320px) and (max-width: 734px) {
-  .logo {
-    /* left: 2.5%; */
-  }
-
   .logoFont a {
     margin-left: 10px;
     letter-spacing: 8px;
   }
 
-  .App {
+  /* .App {
     padding-top: 20px;
-  }
+  } */
 
   .landing-overlay {
     width: 100%;
