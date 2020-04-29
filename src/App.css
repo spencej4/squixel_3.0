@@ -2003,15 +2003,21 @@ hr {
     content: contain;
     text-align: left;
     color: white;
+    background-color: rgba(0,0,0, 0.9);
     z-index: 3;
+  }
+
+  .centered-search-bar-mobile input[type=text] {
+    width: 99vw;
   }
 
   .centered-search-input-mobile {
     width: 95vw;
     height: 50px;
     line-height: 45px;
-    padding: 0 5px;
-    border: none;
+    /* padding: 0 5px; */
+    /* border: none; */
+    border: 1px solid white;
     background-color: transparent;
     font-size: 14px;
     border-radius: 45px;
@@ -2022,10 +2028,11 @@ hr {
 
   .search-form-mobile {
     top: calc(30%);
+    width: 100vw;
     position: absolute;
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
 
   .search-form-mobile.icon {
@@ -2096,12 +2103,12 @@ hr {
     cursor: pointer;
     display: inline-block;
     position: absolute;
-    z-index: 10;
+    z-index: 3;
   }
   
   .closeSearchButton {
-    top: 302px;
-    right: 28px;
+    top: 280px;
+    right: 47px;
     margin: 0;
     padding: 0;
     display: inline-block;
