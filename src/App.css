@@ -53,6 +53,7 @@ html {
 
 body {
   width: 100vw;
+  margin: 0;
   font-family: 'Roboto', sans-serif;
   font-weight: 100;
   line-height: 1;
@@ -78,7 +79,6 @@ button:focus {
   height: 45px;
   top: 0;
   left: 0;
-  /* margin: 0px 0px 20px 0px; */
   padding-top: 12px;
   display: block;
   position: fixed;
@@ -2210,7 +2210,7 @@ hr {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 101vh;
     display: block;
     position: fixed;
     z-index: 1;
@@ -2232,7 +2232,7 @@ hr {
     width: 100%;
     height: 100vh;
     margin-left: 30px;
-    top: 1.5%;
+    top: 2.5%;
     right: 7%;
     float: right;
     display: block;
