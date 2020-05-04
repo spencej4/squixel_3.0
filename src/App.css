@@ -2358,6 +2358,7 @@ hr {
     font-size: 12px;
     font-weight: 100;
     border-radius: 5px;
+    border: 1px solid white;
     transition: background-color 0.5s ease;
   }
 
