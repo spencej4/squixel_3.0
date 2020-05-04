@@ -2231,7 +2231,7 @@ hr {
   
   .fullscreenAside {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     margin-left: 30px;
     top: 2.5%;
     right: 7%;
