@@ -1754,10 +1754,10 @@ hr {
 
   .loadingH1 {
     margin-left: 15px;
-    font-size: 1.8em;
+    font-size: 1em;
     /* color: rgb(244, 118, 208); */
     color: rgb(120, 128, 153);
-    margin-top: 75%;
+    margin-top: 70%;
   }
 
   .lds-ellipsis {
@@ -1766,9 +1766,9 @@ hr {
 
   .lds-ellipsis div {
     position: absolute;
-    width: 11px;
-    height: 11px;
-    margin-top: 18px;
+    width: 9px;
+    height: 9px;
+    margin-top: 15px;
     border-radius: 50%;
     /* background: rgb(244, 118, 208); */
     background: rgb(120, 128, 153);
