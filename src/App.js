@@ -435,6 +435,8 @@ onViewCollectionClick(source) {
   if (source === 'loginMenu'){
     this.toggleLoginMenu();
   }
+  this.scrollWindow();
+  
   let user = this.state.log_email
 
   this.setState({
