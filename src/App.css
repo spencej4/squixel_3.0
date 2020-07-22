@@ -521,7 +521,7 @@ hr {
   width: 25%;
   height: 45px;
   margin: 70px 15px 145px 15px;
-  padding: 0 15px 7px 15px;
+  padding: 0 15px 5px 15px;
   display: inline-block;
   position: relative;
   font-weight: 100;
@@ -550,10 +550,10 @@ hr {
 
   .loadingH1 {
     margin-left: 15px;
-    font-size: 1.8em;
+    font-size: 1.2em;
     /* color: rgb(244, 118, 208); */
     color: rgb(120, 128, 153);
-    margin-top: 25%;
+    margin-top: 29%;
   }
 
   .header {
@@ -1044,16 +1044,15 @@ hr {
 
   .landing-overlay {
     width: 100%;
-    width: 100%;
-    height: 644px;
+    height: 100vh;
     background-color: rgba( 0,0,0, .4);
     position: absolute;
   }
 
   .landing {
     width: 100%;
-    height: 644px;
-    background-image: url('../src/app/img/succulent.jpeg');
+    height: 100vh;
+    background-image: url('../src/app/img/wing.jpeg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1282,6 +1281,7 @@ hr {
     font-size: 12px;
     font-weight: 100;
     border-radius: 5px;
+    border: 1px solid white;
     transition: background-color 0.5s ease;
   }
 
@@ -1300,6 +1300,7 @@ hr {
     font-size: 12px;
     font-weight: 100;
     border-radius: 5px;
+    border: 1px solid white;
     transition: background-color 0.5s ease;
   }
 
@@ -1459,7 +1460,7 @@ hr {
     width: 25%;
     height: 45px;
     margin: 70px 15px 145px 15px;
-    padding: 0 15px 7px 15px;
+    padding: 0 15px 5px 15px;
     display: inline-block;
     position: relative;
     font-weight: 100;
@@ -1610,7 +1611,7 @@ hr {
   .landing {
     width: 100%;
     height: 100vh;
-    background-image: url('../src/app/img/succulent.jpeg');
+    background-image: url('../src/app/img/wing.jpeg');
     background-position:  center; 
     background-repeat: no-repeat;
     opacity: 0.95;
