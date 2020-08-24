@@ -1337,6 +1337,7 @@ hr {
     float: right;
     position: absolute;
     background-color: lightgreen;
+    border: 1px solid white;
     cursor: pointer;
     font-size: 12px;
     font-weight: 100;
@@ -2322,6 +2323,7 @@ hr {
     position: absolute;
     color: white;
     background-color: rgba(201, 201, 201, 0.5);
+    border: 1px solid white;
     cursor: pointer;
     font-size: 12px;
     font-weight: 100;
@@ -2356,11 +2358,11 @@ hr {
     float: right;
     position: absolute;
     background-color: lightgreen;
+    border: 1px solid white;
     cursor: pointer;
     font-size: 12px;
     font-weight: 100;
     border-radius: 5px;
-    border: 1px solid white;
     transition: background-color 0.5s ease;
   }
 
@@ -2410,4 +2412,3 @@ hr {
     color: white;
   }
 }
-
