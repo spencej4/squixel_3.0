@@ -1,4 +1,6 @@
 const express = require('express');
+// new 12/08/20
+const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
@@ -10,19 +12,45 @@ var MongoStore = require('connect-mongo')(session);
 var cookieParser = require('cookie-parser')
 
 
-const app =express();
+const app = express();
 app.set('port', (process.env.PORT || 4000));
 app.use(cors());
 
-//this is our MongoDB database
-const dbRoute = "mongodb://admin:Level_2020@ds259732.mlab.com:59732/heroku_9d3jq7bc";
+
+// this is our MongoDB database
+// original:
+// const dbRoute = "mongodb://admin:Level_2020@ds259732.mlab.com:59732/heroku_9d3jq7bc";
+
+
+// testing new driver and new cluster db via GoogleCloud
+// 12/08/20
+// const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://admin:Levelup_2021@squixel-db.cxn9f.mongodb.net/squixel-db?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });  
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+// original 11/24/20
 //connects our back end code with the database
+// mongoose.connect(
+//     dbRoute, {
+//         useNewUrlParser: true,
+//         useMongoClient: true 
+//     },
+// );
+
+// testing 11/24/20
 mongoose.connect(
-    dbRoute, {
-        useNewUrlParser: true,
-        useMongoClient: true 
-    },
-);
+    uri, { useNewUrlParser: true, 
+        useUnifiedTopology: true, 
+        useFindAndModify: false
+    })
+    .then(() => console.log("Database Connected Successfully...(new mongoose connection)"))
+    .catch(err => console.log(err));
+
 
 // checks if connection with the database is successful
 let db = mongoose.connection;
@@ -70,3 +98,8 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function () {
     console.log('App listening on port ' + app.get('port'));
 });
+
+
+// works, allows connectino to db via shell
+// prompts for password "Levelup_2021"
+// mongo "mongodb+srv://squixel-db.cxn9f.mongodb.net/squixel-db" --username admin
