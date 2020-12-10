@@ -99,7 +99,24 @@ app.listen(app.get('port'), function () {
     console.log('App listening on port ' + app.get('port'));
 });
 
-
-// works, allows connectino to db via shell
-// prompts for password "Levelup_2021"
+// connecting to our mongodb atlas db via shell
 // mongo "mongodb+srv://squixel-db.cxn9f.mongodb.net/squixel-db" --username admin
+
+// sample of one user document within user collection in amber's old db
+
+// {
+//     "_id": {
+//         "$oid": "5eb42e7522f2a71cbdf89e95"
+//     },
+//     "email": "test@test.com",
+//     "password": "$2b$10$5NmMyalEiGYEvzJG691.2eQK89nJo.ZetVq68cyH84N16mmznPYuG",
+//     "content": [],
+//     "__v": 0
+// }
+
+// testing inserstion of new users via shell
+// db.users.insertOne(
+//     { "user" : "test@test.com",
+//       "content": []
+//     }
+//  )
