@@ -1,5 +1,4 @@
 const express = require('express');
-// new 12/08/20
 const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -17,14 +16,6 @@ app.set('port', (process.env.PORT || 4000));
 app.use(cors());
 
 
-// this is our MongoDB database
-// original:
-// const dbRoute = "mongodb://admin:Level_2020@ds259732.mlab.com:59732/heroku_9d3jq7bc";
-
-
-// testing new driver and new cluster db via GoogleCloud
-// 12/08/20
-// const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:Levelup_2021@squixel-db.cxn9f.mongodb.net/squixel-db?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });  
 client.connect(err => {
@@ -32,15 +23,6 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
-
-// original 11/24/20
-//connects our back end code with the database
-// mongoose.connect(
-//     dbRoute, {
-//         useNewUrlParser: true,
-//         useMongoClient: true 
-//     },
-// );
 
 // testing 11/24/20
 mongoose.connect(
